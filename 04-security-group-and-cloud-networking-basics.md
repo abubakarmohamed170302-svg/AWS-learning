@@ -1914,3 +1914,17 @@ Check:
 - Public IPv4 addresses generate hourly charges.
 - Unused Elastic IPs should be released immediately.
 - DNS, load balancers and Auto Scaling are often better than relying on one Elastic IP.
+
+# Official AWS References
+
+- [Security groups](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html)
+- [Security-group rules](https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html)
+- [Security-group referencing](https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html#security-group-referencing)
+- [Network ACLs](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html)
+- [EC2 IP addressing](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html)
+- [Manage EC2 IPv4 addresses](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/working-with-ip-addresses.html)
+- [Manage EC2 IPv6 addresses](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/working-with-ipv6-addresses.html)
+- [Elastic IP addresses](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
+- [Working with Elastic IPs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/working-with-eips.html)
+- [Release an Elastic IP](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing-eips-releasing.html)
+- [Amazon VPC pricing](https://aws.amazon.com/vpc/pricing/)
