@@ -39,7 +39,7 @@ By the end of this section, you should understand:
 
 ---
 
-# 157. Amazon CloudFront
+## 157. Amazon CloudFront
 
 ### What Is a CDN?
 
