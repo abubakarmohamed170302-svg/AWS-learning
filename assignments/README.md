@@ -1,4 +1,4 @@
-\# AWS Hands-On Assignments
+# AWS Hands-On Assignments
 
 
 
@@ -10,11 +10,11 @@ The assignments progress from core networking through high availability, content
 
 
 
-\---
+---
 
 
 
-\## Assignment 1 — VPC and Networking
+## Assignment 1 — VPC and Networking
 
 
 
@@ -26,31 +26,31 @@ Built a custom VPC with public and private subnets, route tables, an Internet Ga
 
 
 
-\- VPC
+- VPC
 
-\- EC2
+- EC2
 
-\- Internet Gateway
+- Internet Gateway
 
-\- NAT Gateway
+- NAT Gateway
 
-\- Route Tables
+- Route Tables
 
-\- Security Groups
+- Security Groups
 
-\- CloudWatch
-
-
-
-\[View Assignment 1](./01-vpc-networking/)
+- CloudWatch
 
 
 
-\---
+[View Assignment 1](./01-vpc-networking/)
 
 
 
-\## Assignment 2 — Application Load Balancer and Auto Scaling
+---
+
+
+
+## Assignment 2 — Application Load Balancer and Auto Scaling
 
 
 
@@ -62,31 +62,31 @@ Built a multi-AZ web architecture using private EC2 instances behind an Applicat
 
 
 
-\- EC2
+- EC2
 
-\- Application Load Balancer
+- Application Load Balancer
 
-\- Target Groups
+- Target Groups
 
-\- Auto Scaling
+- Auto Scaling
 
-\- Route 53
+- Route 53
 
-\- ACM
+- ACM
 
-\- Security Groups
-
-
-
-\[View Assignment 2](./02-alb-auto-scaling/)
+- Security Groups
 
 
 
-\---
+[View Assignment 2](./02-alb-auto-scaling/)
 
 
 
-\## Assignment 3 — S3, CloudFront and Route 53
+---
+
+
+
+## Assignment 3 — S3, CloudFront and Route 53
 
 
 
@@ -98,25 +98,25 @@ Hosted a static website using Amazon S3, delivered it through CloudFront, config
 
 
 
-\- Amazon S3
+- Amazon S3
 
-\- CloudFront
+- CloudFront
 
-\- Route 53
+- Route 53
 
-\- ACM
-
-
-
-\[View Assignment 3](./03-s3-cloudfront-route53/)
+- ACM
 
 
 
-\---
+[View Assignment 3](./03-s3-cloudfront-route53/)
 
 
 
-\## Assignment 4 — Serverless API
+---
+
+
+
+## Assignment 4 — Serverless API
 
 
 
@@ -128,27 +128,27 @@ Built a serverless API using API Gateway, Lambda and DynamoDB with IAM permissio
 
 
 
-\- API Gateway
+- API Gateway
 
-\- AWS Lambda
+- AWS Lambda
 
-\- DynamoDB
+- DynamoDB
 
-\- IAM
+- IAM
 
-\- CloudWatch
-
-
-
-\[View Assignment 4](./04-serverless-api/)
+- CloudWatch
 
 
 
-\---
+[View Assignment 4](./04-serverless-api/)
 
 
 
-\## Project Progression
+---
+
+
+
+## Project Progression
 
 
 
@@ -156,21 +156,21 @@ Built a serverless API using API Gateway, Lambda and DynamoDB with IAM permissio
 
 VPC and Networking
 
-&#x20;       |
+        |
 
-&#x20;       v
+        v
 
 Load Balancing and Auto Scaling
 
-&#x20;       |
+        |
 
-&#x20;       v
+        v
 
 S3, CloudFront and Route 53
 
-&#x20;       |
+        |
 
-&#x20;       v
+        v
 
 Serverless API
 
@@ -178,47 +178,47 @@ Serverless API
 
 
 
-\---
+---
 
 
 
-\## Skills Practised
+## Skills Practised
 
 
 
-\- Designing AWS network architecture
+- Designing AWS network architecture
 
-\- Working with public and private subnets
+- Working with public and private subnets
 
-\- Configuring routing and internet access
+- Configuring routing and internet access
 
-\- Launching and securing EC2 instances
+- Launching and securing EC2 instances
 
-\- Building highly available applications
+- Building highly available applications
 
-\- Configuring load balancing and Auto Scaling
+- Configuring load balancing and Auto Scaling
 
-\- Managing DNS and HTTPS
+- Managing DNS and HTTPS
 
-\- Hosting and distributing static content
+- Hosting and distributing static content
 
-\- Building serverless APIs
+- Building serverless APIs
 
-\- Working with IAM permissions
+- Working with IAM permissions
 
-\- Monitoring services with CloudWatch
+- Monitoring services with CloudWatch
 
-\- Troubleshooting AWS integrations
+- Troubleshooting AWS integrations
 
-\- Documenting project evidence
-
-
-
-\---
+- Documenting project evidence
 
 
 
-\## Author
+---
+
+
+
+## Author
 
 
 
@@ -230,5 +230,6 @@ Aspiring DevOps Engineer currently completing the CoderCo DevOps Academy.
 
 
 
-\[Connect with me on LinkedIn](https://www.linkedin.com/in/abubakar-mohamed-3047a5211/)
+[Connect with me on LinkedIn](https://www.linkedin.com/in/abubakar-mohamed-3047a5211/)
+
 
