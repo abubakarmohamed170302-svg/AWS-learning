@@ -1,6 +1,6 @@
 # Storage
 
-## Learning Objectives
+### Learning Objectives
 
 By the end of these notes, I should be able to:
 
@@ -19,7 +19,7 @@ By the end of these notes, I should be able to:
 
 ---
 
-# Storage Types in AWS
+## Storage Types in AWS
 
 Before looking at EBS and EFS, it is important to understand the three main types of cloud storage.
 
@@ -31,7 +31,7 @@ Before looking at EBS and EFS, it is important to understand the three main type
 
 ---
 
-## Block Storage
+### Block Storage
 
 Block storage behaves like a hard drive attached to a computer.
 
@@ -52,7 +52,7 @@ Amazon EBS
 
 ---
 
-## File Storage
+### File Storage
 
 File storage provides a shared filesystem.
 
@@ -66,7 +66,7 @@ Amazon EFS
 
 ---
 
-## Object Storage
+### Object Storage
 
 Object storage stores complete objects rather than presenting a normal operating-system disk.
 
@@ -87,7 +87,7 @@ Common uses include:
 
 ---
 
-# 53. What Is an EBS Volume?
+## 53. What Is an EBS Volume?
 
 **EBS** stands for **Elastic Block Store**.
 
@@ -107,7 +107,7 @@ An EBS volume can contain:
 
 ---
 
-## EC2 and EBS Relationship
+### EC2 and EBS Relationship
 
 ```text
 EC2 instance = Virtual computer
@@ -130,7 +130,7 @@ Ubuntu EC2 instance
 
 ---
 
-## Root Volume
+### Root Volume
 
 The **root volume** contains the operating system used to boot the instance.
 
@@ -154,7 +154,7 @@ The root volume normally contains directories such as:
 
 ---
 
-## Additional Data Volume
+### Additional Data Volume
 
 A separate EBS volume can be attached for application data.
 
@@ -176,7 +176,7 @@ Separating application data from the operating system can make storage managemen
 
 ---
 
-## Important EBS Characteristics
+### Important EBS Characteristics
 
 - EBS provides block storage.
 - EBS volumes are used with EC2 instances.
@@ -191,7 +191,7 @@ Separating application data from the operating system can make storage managemen
 
 ---
 
-## Availability Zone Requirement
+### Availability Zone Requirement
 
 An EBS volume is tied to one Availability Zone.
 
@@ -220,7 +220,7 @@ To move data to another Availability Zone:
 
 ---
 
-## EBS Replication
+### EBS Replication
 
 AWS automatically replicates an EBS volume within its Availability Zone.
 
@@ -237,7 +237,7 @@ However, this does not replace:
 
 ---
 
-## EBS Volume States
+### EBS Volume States
 
 | State | Meaning |
 | --- | --- |
@@ -250,7 +250,7 @@ However, this does not replace:
 
 ---
 
-## EBS Volume Types
+### EBS Volume Types
 
 AWS provides several EBS volume types for different workloads.
 
@@ -266,7 +266,7 @@ AWS provides several EBS volume types for different workloads.
 
 ---
 
-## General-Purpose SSD – `gp3`
+### General-Purpose SSD – `gp3`
 
 `gp3` is a common choice for:
 
@@ -283,7 +283,7 @@ It is normally a sensible starting choice for a learning EC2 instance.
 
 ---
 
-## General-Purpose SSD – `gp2`
+### General-Purpose SSD – `gp2`
 
 With `gp2`, performance is more closely linked to the volume’s storage capacity.
 
@@ -291,7 +291,7 @@ It is still supported but `gp3` is commonly preferred for new general-purpose wo
 
 ---
 
-## Provisioned IOPS SSD
+### Provisioned IOPS SSD
 
 Provisioned IOPS volumes include:
 
@@ -317,7 +317,7 @@ They normally cost more than general-purpose SSD volumes.
 
 ---
 
-## Throughput-Optimised HDD – `st1`
+### Throughput-Optimised HDD – `st1`
 
 `st1` is designed for large, sequential workloads.
 
@@ -332,7 +332,7 @@ It is not designed for small, random read-and-write operations.
 
 ---
 
-## Cold HDD – `sc1`
+### Cold HDD – `sc1`
 
 `sc1` is designed for:
 
@@ -344,9 +344,9 @@ It is not suitable as an EC2 boot volume.
 
 ---
 
-## IOPS and Throughput
+### IOPS and Throughput
 
-### IOPS
+#### IOPS
 
 **IOPS** stands for **input/output operations per second**.
 
@@ -360,7 +360,7 @@ Example:
 Transactional database
 ```
 
-### Throughput
+#### Throughput
 
 Throughput measures how much data can be transferred over time.
 
@@ -380,7 +380,7 @@ Processing very large log files
 
 ---
 
-## EBS Encryption
+### EBS Encryption
 
 EBS volumes can be encrypted using AWS Key Management Service.
 
@@ -402,7 +402,7 @@ For most learning environments, the AWS-managed EBS key can be used.
 
 ---
 
-## Delete on Termination
+### Delete on Termination
 
 The **Delete on termination** setting controls whether a volume is automatically deleted when its EC2 instance is terminated.
 
@@ -412,7 +412,7 @@ Additional data volumes may be configured to remain.
 
 Always check the setting before terminating an instance.
 
-### Example
+#### Example
 
 ```text
 Root volume:
@@ -431,9 +431,9 @@ Data volume = Remains and continues generating charges
 
 ---
 
-## Stop vs Terminate
+### Stop vs Terminate
 
-### Stop the Instance
+#### Stop the Instance
 
 When an EBS-backed instance is stopped:
 
@@ -443,7 +443,7 @@ When an EBS-backed instance is stopped:
 - EBS storage charges continue.
 - The instance can be started again.
 
-### Terminate the Instance
+#### Terminate the Instance
 
 When an instance is terminated:
 
@@ -454,7 +454,7 @@ When an instance is terminated:
 
 ---
 
-## EBS Snapshots
+### EBS Snapshots
 
 An **EBS snapshot** is a point-in-time backup of an EBS volume.
 
@@ -473,7 +473,7 @@ They do not appear inside a normal S3 bucket belonging to the user.
 
 ---
 
-## Incremental Snapshots
+### Incremental Snapshots
 
 EBS snapshots are incremental.
 
@@ -496,7 +496,7 @@ Deleting one snapshot does not automatically make later snapshots unusable. AWS 
 
 ---
 
-## EBS Attachment Rules
+### EBS Attachment Rules
 
 An EBS volume is normally attached to one EC2 instance at a time.
 
@@ -508,13 +508,13 @@ For normal shared storage between many instances, EFS is usually more suitable.
 
 ---
 
-# EBS Volume Demo
+## EBS Volume Demo
 
 This demo creates and mounts a new EBS data volume on `nginx-networking-lab`.
 
 ---
 
-## Step 1: Check the Instance Availability Zone
+### Step 1: Check the Instance Availability Zone
 
 1. Open the EC2 console.
 2. Select `nginx-networking-lab`.
@@ -531,7 +531,7 @@ The new EBS volume must be created in the same Availability Zone.
 
 ---
 
-## Step 2: Create the Volume
+### Step 2: Create the Volume
 
 1. Open **EC2**.
 2. Select **Volumes**.
@@ -556,7 +556,7 @@ Available
 
 ---
 
-## Step 3: Attach the Volume
+### Step 3: Attach the Volume
 
 1. Select `nginx-data-volume`.
 2. Select **Actions**.
@@ -580,7 +580,7 @@ Always confirm the actual device name inside Linux.
 
 ---
 
-## Step 4: Connect to the Instance
+### Step 4: Connect to the Instance
 
 ```bash
 ssh -i abu-nginx-key.pem ubuntu@PUBLIC-IP-ADDRESS
@@ -588,7 +588,7 @@ ssh -i abu-nginx-key.pem ubuntu@PUBLIC-IP-ADDRESS
 
 ---
 
-## Step 5: List Storage Devices
+### Step 5: List Storage Devices
 
 ```bash
 lsblk
@@ -614,7 +614,7 @@ nvme1n1 = New data volume
 
 ---
 
-## Step 6: Check for an Existing Filesystem
+### Step 6: Check for an Existing Filesystem
 
 ```bash
 sudo file -s /dev/nvme1n1
@@ -630,7 +630,7 @@ If the volume already contains a filesystem or important data, do not format it.
 
 ---
 
-## Step 7: Create a Filesystem
+### Step 7: Create a Filesystem
 
 For a new empty volume:
 
@@ -644,7 +644,7 @@ Formatting destroys existing data on that volume.
 
 ---
 
-## Step 8: Create a Mount Point
+### Step 8: Create a Mount Point
 
 ```bash
 sudo mkdir -p /mnt/nginx-data
@@ -652,7 +652,7 @@ sudo mkdir -p /mnt/nginx-data
 
 ---
 
-## Step 9: Mount the Volume
+### Step 9: Mount the Volume
 
 ```bash
 sudo mount /dev/nvme1n1 /mnt/nginx-data
@@ -666,7 +666,7 @@ df -h
 
 ---
 
-## Step 10: Create a Test File
+### Step 10: Create a Test File
 
 ```bash
 echo "Hello from the EBS data volume" | sudo tee /mnt/nginx-data/ebs-test.txt
@@ -686,7 +686,7 @@ Hello from the EBS data volume
 
 ---
 
-## Step 11: Make the Mount Persistent
+### Step 11: Make the Mount Persistent
 
 A normal manual mount may disappear after reboot.
 
@@ -726,7 +726,7 @@ The `nofail` option helps prevent a missing data volume from blocking the operat
 
 ---
 
-## Safely Detach an EBS Volume
+### Safely Detach an EBS Volume
 
 Before detaching:
 
@@ -751,7 +751,7 @@ Do not detach a volume while applications are actively writing to it.
 
 ---
 
-## Useful EBS CLI Commands
+### Useful EBS CLI Commands
 
 List volumes in London:
 
@@ -793,7 +793,7 @@ aws ec2 create-snapshot \
 
 ---
 
-# 54. AMI Overview
+## 54. AMI Overview
 
 **AMI** stands for **Amazon Machine Image**.
 
@@ -805,7 +805,7 @@ Every EC2 instance must be launched from an AMI.
 
 ---
 
-## What Can an AMI Contain?
+### What Can an AMI Contain?
 
 An AMI can include:
 
@@ -834,7 +834,7 @@ New EC2 instances launched from this AMI already contain that configuration.
 
 ---
 
-## Main AMI Components
+### Main AMI Components
 
 An AMI includes:
 
@@ -849,9 +849,9 @@ For an EBS-backed AMI, the volume templates are normally stored as EBS snapshots
 
 ---
 
-## Types of AMIs
+### Types of AMIs
 
-### AWS-Provided AMI
+#### AWS-Provided AMI
 
 Created and maintained by AWS.
 
@@ -860,7 +860,7 @@ Examples:
 - Amazon Linux
 - Supported Windows Server images
 
-### Vendor AMI
+#### Vendor AMI
 
 Created by an operating-system or software vendor.
 
@@ -870,7 +870,7 @@ Example:
 Canonical Ubuntu AMI
 ```
 
-### AWS Marketplace AMI
+#### AWS Marketplace AMI
 
 Provided through AWS Marketplace.
 
@@ -881,13 +881,13 @@ It may contain:
 - Preconfigured applications
 - Additional licence charges
 
-### Community AMI
+#### Community AMI
 
 Shared publicly by another AWS user or organisation.
 
 Community AMIs should be treated carefully because their contents and security may not be trusted.
 
-### Custom AMI
+#### Custom AMI
 
 Created from an EC2 instance belonging to the organisation.
 
@@ -899,7 +899,7 @@ nginx-golden-ami-v1
 
 ---
 
-## AMI Selection Criteria
+### AMI Selection Criteria
 
 Before selecting an AMI, check:
 
@@ -917,7 +917,7 @@ Before selecting an AMI, check:
 
 ---
 
-## Processor Architecture
+### Processor Architecture
 
 Common AMI architectures include:
 
@@ -937,7 +937,7 @@ ARM64 AMI + x86-only instance = Not compatible
 
 ---
 
-## AMIs Are Regional
+### AMIs Are Regional
 
 An AMI belongs to one AWS Region.
 
@@ -959,7 +959,7 @@ The copied AMI receives a different AMI ID.
 
 ---
 
-## AMI IDs
+### AMI IDs
 
 Each AMI has an identifier beginning with:
 
@@ -984,7 +984,7 @@ Do not assume an AMI ID from one Region will work in another.
 
 ---
 
-## Public, Private and Shared AMIs
+### Public, Private and Shared AMIs
 
 | AMI visibility | Meaning |
 | --- | --- |
@@ -1008,7 +1008,7 @@ An AMI can accidentally contain:
 
 ---
 
-## AMI vs EBS Snapshot
+### AMI vs EBS Snapshot
 
 | AMI | EBS snapshot |
 | --- | --- |
@@ -1022,7 +1022,7 @@ An AMI can accidentally contain:
 
 ---
 
-## AMI vs User Data
+### AMI vs User Data
 
 | AMI | User Data |
 | --- | --- |
@@ -1046,7 +1046,7 @@ Downloads the latest application version and environment configuration
 
 ---
 
-## Golden AMI
+### Golden AMI
 
 A **golden AMI** is an approved, reusable image containing a standard server configuration.
 
@@ -1071,13 +1071,13 @@ However, they must be:
 
 ---
 
-# AMI Demo
+## AMI Demo
 
 This demo creates a reusable AMI from `nginx-networking-lab`.
 
 ---
 
-## Step 1: Prepare the Instance
+### Step 1: Prepare the Instance
 
 Connect to the server:
 
@@ -1101,7 +1101,7 @@ Remove unnecessary sensitive information before creating the AMI.
 
 ---
 
-## Step 2: Create the Image
+### Step 2: Create the Image
 
 1. Open the EC2 console.
 2. Select `nginx-networking-lab`.
@@ -1124,7 +1124,7 @@ The console may provide a no-reboot option, but creating an image without reboot
 
 ---
 
-## Step 3: Monitor the AMI
+### Step 3: Monitor the AMI
 
 Open:
 
@@ -1146,7 +1146,7 @@ Available
 
 ---
 
-## Step 4: Launch a New Instance
+### Step 4: Launch a New Instance
 
 1. Select `nginx-golden-ami-v1`.
 2. Select **Launch instance from AMI**.
@@ -1164,7 +1164,7 @@ nginx-from-custom-ami
 
 ---
 
-## Step 5: Verify the New Server
+### Step 5: Verify the New Server
 
 After the instance passes both status checks, open:
 
@@ -1182,7 +1182,7 @@ sudo systemctl status nginx
 
 ---
 
-## AMI Lifecycle
+### AMI Lifecycle
 
 A custom AMI can move through the following lifecycle:
 
@@ -1202,7 +1202,7 @@ Delete associated snapshots
 
 ---
 
-## Deregistering an AMI
+### Deregistering an AMI
 
 Deregistering an AMI prevents new instances from being launched from it.
 
@@ -1221,7 +1221,7 @@ AWS can optionally delete associated snapshots while deregistering, but snapshot
 
 ---
 
-## Useful AMI CLI Commands
+### Useful AMI CLI Commands
 
 List owned AMIs:
 
@@ -1262,7 +1262,7 @@ aws ec2 deregister-image \
 
 ---
 
-# 55. Amazon EFS – Elastic File System
+## 55. Amazon EFS – Elastic File System
 
 **EFS** stands for **Elastic File System**.
 
@@ -1272,7 +1272,7 @@ Amazon EFS provides serverless, fully elastic file storage that can be shared by
 
 ---
 
-## EFS Example
+### EFS Example
 
 Imagine three EC2 web servers:
 
@@ -1298,7 +1298,7 @@ Every server can access the same files.
 
 ---
 
-## EFS Characteristics
+### EFS Characteristics
 
 - EFS provides file storage.
 - It uses the Network File System protocol.
@@ -1313,7 +1313,7 @@ Every server can access the same files.
 
 ---
 
-## NFS
+### NFS
 
 EFS uses **NFS**, which stands for **Network File System**.
 
@@ -1333,7 +1333,7 @@ Applications can access files through paths such as:
 
 ---
 
-## EFS Mount Targets
+### EFS Mount Targets
 
 A **mount target** provides an NFS endpoint inside a VPC.
 
@@ -1358,7 +1358,7 @@ An EC2 instance should normally use the mount target in the same Availability Zo
 
 ---
 
-## Regional EFS
+### Regional EFS
 
 Regional EFS stores data redundantly across multiple Availability Zones.
 
@@ -1370,7 +1370,7 @@ It is suitable when:
 
 ---
 
-## EFS One Zone
+### EFS One Zone
 
 EFS One Zone stores data within one Availability Zone.
 
@@ -1387,7 +1387,7 @@ It may be suitable for:
 
 ---
 
-## EFS Storage Classes
+### EFS Storage Classes
 
 EFS storage classes can include:
 
@@ -1403,7 +1403,7 @@ Availability and pricing should be checked for the selected AWS Region.
 
 ---
 
-## EFS Lifecycle Management
+### EFS Lifecycle Management
 
 Lifecycle management can automatically move files between storage classes based on access patterns.
 
@@ -1427,7 +1427,7 @@ Accessing files in lower-cost storage classes may create additional access charg
 
 ---
 
-## EFS Performance and Throughput
+### EFS Performance and Throughput
 
 EFS provides different performance and throughput options.
 
@@ -1437,15 +1437,15 @@ Throughput options can include:
 - Bursting throughput
 - Provisioned throughput
 
-### Elastic Throughput
+#### Elastic Throughput
 
 Automatically adjusts throughput based on workload activity.
 
-### Bursting Throughput
+#### Bursting Throughput
 
 Performance scales partly with the amount of data stored, with the ability to burst.
 
-### Provisioned Throughput
+#### Provisioned Throughput
 
 Allows a specific throughput level to be configured independently of storage size.
 
@@ -1453,7 +1453,7 @@ The suitable option depends on the workload and current AWS service configuratio
 
 ---
 
-## EFS Security
+### EFS Security
 
 EFS security can include:
 
@@ -1468,7 +1468,7 @@ EFS security can include:
 
 ---
 
-## EFS Security-Group Rule
+### EFS Security-Group Rule
 
 The EFS mount target’s security group should allow:
 
@@ -1505,7 +1505,7 @@ Do not normally open NFS port 2049 to:
 
 ---
 
-## EFS Access Points
+### EFS Access Points
 
 An EFS access point provides an application-specific entry point into an EFS filesystem.
 
@@ -1530,13 +1530,13 @@ This helps separate applications using the same filesystem.
 
 ---
 
-# EFS Demo
+## EFS Demo
 
 This demo creates an EFS filesystem and mounts it on EC2.
 
 ---
 
-## Demo Architecture
+### Demo Architecture
 
 ```text
 EC2 instance in eu-west-2a
@@ -1552,7 +1552,7 @@ EC2 instance in eu-west-2b
 
 ---
 
-## Step 1: Create the Client Security Group
+### Step 1: Create the Client Security Group
 
 Create:
 
@@ -1565,7 +1565,7 @@ Attach it to the EC2 instances that need EFS access.
 
 ---
 
-## Step 2: Create the EFS Security Group
+### Step 2: Create the EFS Security Group
 
 Create:
 
@@ -1582,7 +1582,7 @@ Add this inbound rule:
 
 ---
 
-## Step 3: Create the File System
+### Step 3: Create the File System
 
 1. Open the AWS console.
 2. Search for **EFS**.
@@ -1609,7 +1609,7 @@ Available
 
 ---
 
-## Step 4: Connect to the EC2 Instance
+### Step 4: Connect to the EC2 Instance
 
 ```bash
 ssh -i abu-nginx-key.pem ubuntu@PUBLIC-IP-ADDRESS
@@ -1617,7 +1617,7 @@ ssh -i abu-nginx-key.pem ubuntu@PUBLIC-IP-ADDRESS
 
 ---
 
-## Step 5: Create a Mount Directory
+### Step 5: Create a Mount Directory
 
 ```bash
 sudo mkdir -p /mnt/efs
@@ -1625,7 +1625,7 @@ sudo mkdir -p /mnt/efs
 
 ---
 
-## Step 6: Install the Required Client
+### Step 6: Install the Required Client
 
 The AWS EFS mount helper is the recommended option because it supports features such as encryption in transit.
 
@@ -1640,7 +1640,7 @@ sudo apt-get install -y nfs-common
 
 ---
 
-## Step 7: Mount Using the EFS Mount Helper
+### Step 7: Mount Using the EFS Mount Helper
 
 When `amazon-efs-utils` is installed:
 
@@ -1658,7 +1658,7 @@ The `tls` option enables encryption in transit.
 
 ---
 
-## Alternative NFS Mount
+### Alternative NFS Mount
 
 For a basic NFS lab:
 
@@ -1673,7 +1673,7 @@ The EFS console’s **Attach** option provides commands for the selected filesys
 
 ---
 
-## Step 8: Confirm the Mount
+### Step 8: Confirm the Mount
 
 ```bash
 df -h
@@ -1685,7 +1685,7 @@ mount | grep efs
 
 ---
 
-## Step 9: Create a Shared File
+### Step 9: Create a Shared File
 
 ```bash
 echo "Hello from Abubakar's EFS filesystem" | sudo tee /mnt/efs/shared-file.txt
@@ -1699,7 +1699,7 @@ cat /mnt/efs/shared-file.txt
 
 ---
 
-## Step 10: Test from Another EC2 Instance
+### Step 10: Test from Another EC2 Instance
 
 Mount the same EFS filesystem on a second EC2 instance.
 
@@ -1719,7 +1719,7 @@ This proves that both EC2 instances can access the same shared file.
 
 ---
 
-## Step 11: Mount EFS After Reboot
+### Step 11: Mount EFS After Reboot
 
 When using the EFS mount helper, add the following to `/etc/fstab`:
 
@@ -1739,7 +1739,7 @@ df -h
 
 ---
 
-## Clean Up EFS
+### Clean Up EFS
 
 When the lab is complete:
 
@@ -1760,7 +1760,7 @@ Deleting an EFS filesystem permanently deletes the data it contains.
 
 ---
 
-# EBS vs EFS vs S3 vs Instance Store
+## EBS vs EFS vs S3 vs Instance Store
 
 | Feature | EBS | EFS | S3 | Instance Store |
 | --- | --- | --- | --- | --- |
@@ -1776,7 +1776,7 @@ Deleting an EFS filesystem permanently deletes the data it contains.
 
 ---
 
-## When to Choose EBS
+### When to Choose EBS
 
 Use EBS when:
 
@@ -1789,7 +1789,7 @@ Use EBS when:
 
 ---
 
-## When to Choose EFS
+### When to Choose EFS
 
 Use EFS when:
 
@@ -1802,7 +1802,7 @@ Use EFS when:
 
 ---
 
-## When to Choose S3
+### When to Choose S3
 
 Use S3 when:
 
@@ -1815,7 +1815,7 @@ Use S3 when:
 
 ---
 
-## When to Choose Instance Store
+### When to Choose Instance Store
 
 Use Instance Store when:
 
@@ -1828,9 +1828,9 @@ Never use Instance Store as the only location for important data.
 
 ---
 
-# Storage Troubleshooting
+## Storage Troubleshooting
 
-## EBS Volume Will Not Attach
+### EBS Volume Will Not Attach
 
 Check:
 
@@ -1842,7 +1842,7 @@ Check:
 
 ---
 
-## EBS Volume Does Not Appear in Linux
+### EBS Volume Does Not Appear in Linux
 
 Run:
 
@@ -1864,7 +1864,7 @@ Nitro instances may display a different Linux device name from the one selected 
 
 ---
 
-## EBS Volume Does Not Mount
+### EBS Volume Does Not Mount
 
 Check:
 
@@ -1891,7 +1891,7 @@ sudo mount -a
 
 ---
 
-## AMI Is Missing
+### AMI Is Missing
 
 Check:
 
@@ -1903,7 +1903,7 @@ Check:
 
 ---
 
-## Instance Will Not Launch from AMI
+### Instance Will Not Launch from AMI
 
 Check:
 
@@ -1916,7 +1916,7 @@ Check:
 
 ---
 
-## EFS Will Not Mount
+### EFS Will Not Mount
 
 Check:
 
@@ -1945,7 +1945,7 @@ nc -zv FILE-SYSTEM-ID.efs.eu-west-2.amazonaws.com 2049
 
 ---
 
-# Storage Cost and Security Checklist
+## Storage Cost and Security Checklist
 
 - [ ] Select the correct EBS volume type.
 - [ ] Avoid provisioning unnecessary storage.
@@ -1969,7 +1969,7 @@ nc -zv FILE-SYSTEM-ID.efs.eu-west-2.amazonaws.com 2049
 
 ---
 
-# Storage Quick Revision Questions
+## Storage Quick Revision Questions
 
 1. What does EBS stand for?
 2. What type of storage does EBS provide?
@@ -2011,7 +2011,7 @@ nc -zv FILE-SYSTEM-ID.efs.eu-west-2.amazonaws.com 2049
 
 ---
 
-# Storage Key Takeaways
+## Storage Key Takeaways
 
 - EBS provides persistent block storage for EC2.
 - An EBS volume behaves like a virtual hard drive.
@@ -2043,7 +2043,7 @@ nc -zv FILE-SYSTEM-ID.efs.eu-west-2.amazonaws.com 2049
 
 ---
 
-# Official AWS References
+## Official AWS References
 
 - [What is Amazon EBS?](https://docs.aws.amazon.com/ebs/latest/userguide/what-is-ebs.html)
 - [EBS volume features](https://docs.aws.amazon.com/ebs/latest/userguide/EBSFeatures.html)

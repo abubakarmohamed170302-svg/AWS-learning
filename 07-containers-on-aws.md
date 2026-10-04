@@ -1,6 +1,6 @@
 # Containers on AWS
 
-## Learning Objectives
+### Learning Objectives
 
 By the end of these notes, I should be able to:
 
@@ -22,7 +22,7 @@ By the end of these notes, I should be able to:
 
 ---
 
-# 86. Containers on AWS
+## 86. Containers on AWS
 
 A **container** is a lightweight, isolated environment used to run an application and its dependencies.
 
@@ -39,7 +39,7 @@ A container can package:
 
 ---
 
-## Traditional Deployment Problem
+### Traditional Deployment Problem
 
 An application may work on a developer’s laptop but fail on another server because of differences in:
 
@@ -60,7 +60,7 @@ Containers reduce this problem by packaging the application and its required dep
 
 ---
 
-## Container Image vs Container
+### Container Image vs Container
 
 | Container image | Container |
 | --- | --- |
@@ -88,7 +88,7 @@ nginx image
 
 ---
 
-## Container Workflow
+### Container Workflow
 
 ```text
 Write application
@@ -114,7 +114,7 @@ Docker → Amazon ECR → Amazon ECS or EKS
 
 ---
 
-## Benefits of Containers
+### Benefits of Containers
 
 - Consistent environments
 - Fast startup
@@ -130,7 +130,7 @@ Docker → Amazon ECR → Amazon ECS or EKS
 
 ---
 
-## Containers Are Not Automatically Secure
+### Containers Are Not Automatically Secure
 
 Containers still require:
 
@@ -149,7 +149,7 @@ A container is isolated, but it still shares infrastructure with its host.
 
 ---
 
-# 87. Docker on an Operating System
+## 87. Docker on an Operating System
 
 Docker normally runs on a host operating system.
 
@@ -163,7 +163,7 @@ The host can be:
 
 ---
 
-## Docker Engine
+### Docker Engine
 
 Docker Engine includes components such as:
 
@@ -177,7 +177,7 @@ Docker Engine includes components such as:
 
 ---
 
-## Simplified Docker Architecture
+### Simplified Docker Architecture
 
 ```text
 User
@@ -195,7 +195,7 @@ Container process
 
 ---
 
-## Containers Share the Host Kernel
+### Containers Share the Host Kernel
 
 Linux containers use the Linux kernel of the host.
 
@@ -217,7 +217,7 @@ This is one reason containers are smaller and start faster than virtual machines
 
 ---
 
-## Container Isolation
+### Container Isolation
 
 Linux container isolation uses technologies such as:
 
@@ -228,7 +228,7 @@ Linux container isolation uses technologies such as:
 - Security profiles
 - Network namespaces
 
-### Namespaces
+#### Namespaces
 
 Namespaces isolate what a container can see.
 
@@ -240,7 +240,7 @@ Examples include:
 - Hostnames
 - Users
 
-### Control Groups
+#### Control Groups
 
 Control groups, also called **cgroups**, control resource usage.
 
@@ -253,7 +253,7 @@ They can limit or measure:
 
 ---
 
-## Linux and Windows Containers
+### Linux and Windows Containers
 
 Linux containers require a compatible Linux kernel.
 
@@ -263,7 +263,7 @@ When Docker Desktop runs Linux containers on Windows or macOS, it normally uses 
 
 ---
 
-## Docker Is Not an Operating System
+### Docker Is Not an Operating System
 
 Docker is not a complete operating system.
 
@@ -285,7 +285,7 @@ The container does not boot a complete Ubuntu virtual machine.
 
 ---
 
-# 88. Where Are Docker Images Stored?
+## 88. Where Are Docker Images Stored?
 
 Docker images can exist in two main places:
 
@@ -294,7 +294,7 @@ Docker images can exist in two main places:
 
 ---
 
-## Local Image Store
+### Local Image Store
 
 When an image is pulled or built, Docker stores its layers locally on the Docker host.
 
@@ -332,7 +332,7 @@ Use Docker commands to manage images.
 
 ---
 
-## Remote Container Registry
+### Remote Container Registry
 
 A registry stores and distributes container images.
 
@@ -352,7 +352,7 @@ ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/nginx-container-lab:v1
 
 ---
 
-## Registry Structure
+### Registry Structure
 
 ```text
 Registry
@@ -364,7 +364,7 @@ Registry
 
 ---
 
-## Image Layers
+### Image Layers
 
 Docker images are built from read-only layers.
 
@@ -389,9 +389,9 @@ Layers can be reused between images, reducing download time and storage duplicat
 
 ---
 
-## Image Tag vs Digest
+### Image Tag vs Digest
 
-### Tag
+#### Tag
 
 A human-readable label.
 
@@ -406,7 +406,7 @@ latest
 
 A tag can be moved to a different image unless immutability is enabled.
 
-### Digest
+#### Digest
 
 A content-based identifier.
 
@@ -426,7 +426,7 @@ latest
 
 ---
 
-## Container Writable Layer
+### Container Writable Layer
 
 When a container starts, Docker adds a temporary writable layer above the read-only image layers.
 
@@ -442,7 +442,7 @@ Files written to this layer normally disappear when the container is deleted.
 
 ---
 
-## Persistent Container Data
+### Persistent Container Data
 
 Persistent data should be stored using:
 
@@ -468,13 +468,13 @@ docker run -d \
 
 ---
 
-# 89. Docker vs Virtual Machines
+## 89. Docker vs Virtual Machines
 
 Containers and virtual machines both isolate workloads, but they work differently.
 
 ---
 
-## Virtual Machine Architecture
+### Virtual Machine Architecture
 
 ```text
 Application
@@ -494,7 +494,7 @@ Every VM normally includes:
 
 ---
 
-## Container Architecture
+### Container Architecture
 
 ```text
 Containerised application
@@ -509,7 +509,7 @@ Containers normally share the host kernel.
 
 ---
 
-## Comparison
+### Comparison
 
 | Containers | Virtual machines |
 | --- | --- |
@@ -523,7 +523,7 @@ Containers normally share the host kernel.
 
 ---
 
-## Containers Inside Virtual Machines
+### Containers Inside Virtual Machines
 
 Containers and VMs are often used together.
 
@@ -543,7 +543,7 @@ Amazon ECS using the EC2 launch type follows this general model.
 
 ---
 
-## When to Use Containers
+### When to Use Containers
 
 Containers are suitable when:
 
@@ -556,7 +556,7 @@ Containers are suitable when:
 
 ---
 
-## When to Use Virtual Machines
+### When to Use Virtual Machines
 
 VMs may be suitable when:
 
@@ -569,9 +569,9 @@ VMs may be suitable when:
 
 ---
 
-# 90. Getting Started with Docker
+## 90. Getting Started with Docker
 
-## Check Docker
+### Check Docker
 
 ```bash
 docker --version
@@ -585,7 +585,7 @@ docker info
 
 ---
 
-## Pull an Image
+### Pull an Image
 
 ```bash
 docker pull nginx:alpine
@@ -595,7 +595,7 @@ This downloads the image into the local image store.
 
 ---
 
-## List Images
+### List Images
 
 ```bash
 docker image ls
@@ -603,7 +603,7 @@ docker image ls
 
 ---
 
-## Run a Container
+### Run a Container
 
 ```bash
 docker run -d \
@@ -612,7 +612,7 @@ docker run -d \
   nginx:alpine
 ```
 
-### Command Meaning
+#### Command Meaning
 
 | Part | Meaning |
 | --- | --- |
@@ -630,7 +630,7 @@ http://localhost:8080
 
 ---
 
-## List Containers
+### List Containers
 
 Running containers:
 
@@ -646,7 +646,7 @@ docker ps -a
 
 ---
 
-## Read Container Logs
+### Read Container Logs
 
 ```bash
 docker logs nginx-demo
@@ -660,7 +660,7 @@ docker logs -f nginx-demo
 
 ---
 
-## Run a Command Inside a Container
+### Run a Command Inside a Container
 
 ```bash
 docker exec -it nginx-demo sh
@@ -670,7 +670,7 @@ A small Alpine image may have `sh` but not Bash.
 
 ---
 
-## Stop and Remove
+### Stop and Remove
 
 ```bash
 docker stop nginx-demo
@@ -688,7 +688,7 @@ docker image rm nginx:alpine
 
 ---
 
-## Example Dockerfile
+### Example Dockerfile
 
 ```dockerfile
 FROM nginx:alpine
@@ -716,7 +716,7 @@ Example `index.html`:
 
 ---
 
-## Build the Image
+### Build the Image
 
 ```bash
 docker build -t nginx-container-lab:v1 .
@@ -724,7 +724,7 @@ docker build -t nginx-container-lab:v1 .
 
 ---
 
-## Run the Custom Image
+### Run the Custom Image
 
 ```bash
 docker run -d \
@@ -741,7 +741,7 @@ curl http://localhost:8080
 
 ---
 
-## Docker Security Basics
+### Docker Security Basics
 
 - Use trusted base images.
 - Use specific image versions.
@@ -757,7 +757,7 @@ curl http://localhost:8080
 
 ---
 
-# 91. Container-Related Services on AWS
+## 91. Container-Related Services on AWS
 
 AWS provides services for building, storing and running containers.
 
@@ -776,7 +776,7 @@ AWS provides services for building, storing and running containers.
 
 ---
 
-## Amazon ECS
+### Amazon ECS
 
 **ECS** stands for **Elastic Container Service**.
 
@@ -794,7 +794,7 @@ It manages:
 
 ---
 
-## Amazon EKS
+### Amazon EKS
 
 **EKS** stands for **Elastic Kubernetes Service**.
 
@@ -809,7 +809,7 @@ It is suitable when:
 
 ---
 
-## AWS Fargate
+### AWS Fargate
 
 Fargate provides on-demand compute capacity for containers.
 
@@ -822,7 +822,7 @@ Fargate can be used with:
 
 ---
 
-## Amazon ECR
+### Amazon ECR
 
 ECR stores container images.
 
@@ -836,7 +836,7 @@ It integrates with services such as:
 
 ---
 
-## ECS vs EKS
+### ECS vs EKS
 
 | Amazon ECS | Amazon EKS |
 | --- | --- |
@@ -848,13 +848,13 @@ It integrates with services such as:
 
 ---
 
-# 92. Amazon ECS – EC2 Launch Type
+## 92. Amazon ECS – EC2 Launch Type
 
 With the ECS EC2 launch type, containers run on EC2 instances managed by the customer.
 
 ---
 
-## ECS EC2 Architecture
+### ECS EC2 Architecture
 
 ```text
 Amazon ECS cluster
@@ -869,7 +869,7 @@ Amazon ECS cluster
 
 ---
 
-## ECS Container Instance
+### ECS Container Instance
 
 An **ECS container instance** is an EC2 instance that:
 
@@ -880,7 +880,7 @@ An **ECS container instance** is an EC2 instance that:
 
 ---
 
-## ECS Agent
+### ECS Agent
 
 The ECS agent communicates between:
 
@@ -898,7 +898,7 @@ It helps ECS:
 
 ---
 
-## Core ECS Components
+### Core ECS Components
 
 | Component | Meaning |
 | --- | --- |
@@ -912,7 +912,7 @@ It helps ECS:
 
 ---
 
-## Task Definition
+### Task Definition
 
 A task definition can specify:
 
@@ -941,9 +941,9 @@ nginx-task:3
 
 ---
 
-## Task vs Service
+### Task vs Service
 
-### Task
+#### Task
 
 A task is one running copy of a task definition.
 
@@ -953,7 +953,7 @@ It may be suitable for:
 - One-time process
 - Testing
 
-### Service
+#### Service
 
 A service maintains a selected number of tasks.
 
@@ -967,7 +967,7 @@ If one task stops, the service starts a replacement.
 
 ---
 
-## Customer Responsibilities with EC2 Launch Type
+### Customer Responsibilities with EC2 Launch Type
 
 The customer manages:
 
@@ -986,7 +986,7 @@ AWS manages the ECS orchestration control plane.
 
 ---
 
-## ECS EC2 vs Fargate
+### ECS EC2 vs Fargate
 
 | ECS on EC2 | ECS on Fargate |
 | --- | --- |
@@ -999,7 +999,7 @@ AWS manages the ECS orchestration control plane.
 
 ---
 
-## Capacity Providers
+### Capacity Providers
 
 A capacity provider connects ECS with compute capacity.
 
@@ -1011,7 +1011,7 @@ This is different from ECS Service Auto Scaling, which changes the number of app
 
 ---
 
-# 93. Amazon ECS – IAM Roles
+## 93. Amazon ECS – IAM Roles
 
 ECS uses different IAM roles for different purposes.
 
@@ -1019,7 +1019,7 @@ These roles should not be confused.
 
 ---
 
-## Main ECS Roles
+### Main ECS Roles
 
 | IAM role | Used by | Purpose |
 | --- | --- | --- |
@@ -1030,7 +1030,7 @@ These roles should not be confused.
 
 ---
 
-## ECS Task Role
+### ECS Task Role
 
 The **task role** is used by application code inside the container.
 
@@ -1048,7 +1048,7 @@ Do not place permanent access keys inside the image.
 
 ---
 
-## Task Role Example
+### Task Role Example
 
 ```json
 {
@@ -1067,7 +1067,7 @@ This policy should be attached to the task role, not stored inside the container
 
 ---
 
-## Task Execution Role
+### Task Execution Role
 
 The **task execution role** is used by ECS or the Fargate agent to prepare and run the task.
 
@@ -1086,7 +1086,7 @@ AmazonECSTaskExecutionRolePolicy
 
 ---
 
-## Container Instance Role
+### Container Instance Role
 
 The **container instance role** is attached to EC2 container instances.
 
@@ -1102,7 +1102,7 @@ This role is not a replacement for the application’s task role.
 
 ---
 
-## IAM Role Mental Model
+### IAM Role Mental Model
 
 ```text
 Application needs S3
@@ -1120,7 +1120,7 @@ Container instance role
 
 ---
 
-## IAM Security Rules
+### IAM Security Rules
 
 - Use separate roles for separate purposes.
 - Apply least privilege.
@@ -1132,7 +1132,7 @@ Container instance role
 
 ---
 
-# 94. Amazon ECS – Load Balancer Integrations
+## 94. Amazon ECS – Load Balancer Integrations
 
 ECS services can integrate with Elastic Load Balancing.
 
@@ -1140,7 +1140,7 @@ AWS generally recommends an Application Load Balancer for HTTP and HTTPS ECS ser
 
 ---
 
-## ECS Load-Balancing Flow
+### ECS Load-Balancing Flow
 
 ```text
 Internet
@@ -1157,7 +1157,7 @@ ECS service
 
 ---
 
-## ECS and Target Groups
+### ECS and Target Groups
 
 When ECS starts a service task:
 
@@ -1176,7 +1176,7 @@ When a task stops:
 
 ---
 
-## ECS Load-Balancer Options
+### ECS Load-Balancer Options
 
 | Load balancer | Common ECS use |
 | --- | --- |
@@ -1187,7 +1187,7 @@ When a task stops:
 
 ---
 
-## Dynamic Host Port Mapping
+### Dynamic Host Port Mapping
 
 With EC2 and a suitable network mode, ECS can dynamically select a host port.
 
@@ -1207,9 +1207,9 @@ This allows several copies of the same container to run on one EC2 instance.
 
 ---
 
-## Target Type and Network Mode
+### Target Type and Network Mode
 
-### `awsvpc` Network Mode
+#### `awsvpc` Network Mode
 
 Each task receives its own network interface and IP address.
 
@@ -1219,7 +1219,7 @@ Use target type:
 ip
 ```
 
-### Bridge or Host Networking
+#### Bridge or Host Networking
 
 For supported EC2 task configurations, target type may be:
 
@@ -1231,7 +1231,7 @@ The correct target type must be selected when creating the target group.
 
 ---
 
-## ECS Load-Balancer Security Groups
+### ECS Load-Balancer Security Groups
 
 ```text
 ALB security group:
@@ -1245,7 +1245,7 @@ Do not expose task application ports to the entire internet when traffic should 
 
 ---
 
-# 95. ECS Service Auto Scaling
+## 95. ECS Service Auto Scaling
 
 ECS Service Auto Scaling changes the desired number of tasks in an ECS service.
 
@@ -1253,7 +1253,7 @@ It uses the AWS Application Auto Scaling service.
 
 ---
 
-## Example
+### Example
 
 ```text
 Minimum tasks: 2
@@ -1275,7 +1275,7 @@ When demand falls:
 
 ---
 
-## Scaling Policy Types
+### Scaling Policy Types
 
 ECS Service Auto Scaling supports policies such as:
 
@@ -1285,7 +1285,7 @@ ECS Service Auto Scaling supports policies such as:
 
 ---
 
-## Target Tracking
+### Target Tracking
 
 Target tracking attempts to keep a metric near a selected target.
 
@@ -1302,7 +1302,7 @@ When CPU falls, ECS can remove tasks safely.
 
 ---
 
-## Common ECS Scaling Metrics
+### Common ECS Scaling Metrics
 
 - ECS service average CPU
 - ECS service average memory
@@ -1312,11 +1312,11 @@ When CPU falls, ECS can remove tasks safely.
 
 ---
 
-## Service Scaling vs Cluster Scaling
+### Service Scaling vs Cluster Scaling
 
 These are different.
 
-### ECS Service Auto Scaling
+#### ECS Service Auto Scaling
 
 Changes:
 
@@ -1324,7 +1324,7 @@ Changes:
 Number of application tasks
 ```
 
-### ECS Cluster Auto Scaling
+#### ECS Cluster Auto Scaling
 
 Changes:
 
@@ -1334,7 +1334,7 @@ Number of EC2 container instances
 
 ---
 
-## Capacity Problem Example
+### Capacity Problem Example
 
 ```text
 Service requests 10 tasks
@@ -1356,7 +1356,7 @@ With Fargate, AWS provides the underlying task compute capacity.
 
 ---
 
-## Scaling During Deployments
+### Scaling During Deployments
 
 ECS Service Auto Scaling may pause some scale-in behaviour during deployments to avoid removing too much capacity.
 
@@ -1364,7 +1364,7 @@ Deployment and scaling settings should be tested together.
 
 ---
 
-# 96. Amazon ECR
+## 96. Amazon ECR
 
 **ECR** stands for **Elastic Container Registry**.
 
@@ -1379,7 +1379,7 @@ It can store:
 
 ---
 
-## ECR Structure
+### ECR Structure
 
 ```text
 AWS account
@@ -1392,7 +1392,7 @@ AWS account
 
 ---
 
-## ECR Image URI
+### ECR Image URI
 
 ```text
 ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/nginx-container-lab:v1
@@ -1407,7 +1407,7 @@ ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/nginx-container-lab:v1
 
 ---
 
-## ECR Features
+### ECR Features
 
 - Private and public repositories
 - IAM access control
@@ -1423,7 +1423,7 @@ ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/nginx-container-lab:v1
 
 ---
 
-## Create an ECR Repository
+### Create an ECR Repository
 
 ```bash
 aws ecr create-repository \
@@ -1435,7 +1435,7 @@ aws ecr create-repository \
 
 ---
 
-## Authenticate Docker with ECR
+### Authenticate Docker with ECR
 
 ```bash
 aws ecr get-login-password \
@@ -1452,7 +1452,7 @@ Use an approved IAM identity, not root-user access keys.
 
 ---
 
-## Build the Image
+### Build the Image
 
 ```bash
 docker build -t nginx-container-lab:v1 .
@@ -1460,7 +1460,7 @@ docker build -t nginx-container-lab:v1 .
 
 ---
 
-## Tag the Image
+### Tag the Image
 
 ```bash
 docker tag nginx-container-lab:v1 \
@@ -1469,7 +1469,7 @@ docker tag nginx-container-lab:v1 \
 
 ---
 
-## Push the Image
+### Push the Image
 
 ```bash
 docker push \
@@ -1478,7 +1478,7 @@ docker push \
 
 ---
 
-## Pull the Image
+### Pull the Image
 
 ```bash
 docker pull \
@@ -1487,7 +1487,7 @@ docker pull \
 
 ---
 
-## Tags and Immutability
+### Tags and Immutability
 
 If tag immutability is enabled, an existing tag cannot be overwritten.
 
@@ -1507,7 +1507,7 @@ or use the exact image digest.
 
 ---
 
-## Image Scanning
+### Image Scanning
 
 ECR scanning can identify known software vulnerabilities in:
 
@@ -1521,7 +1521,7 @@ Critical and high findings should be reviewed before deployment.
 
 ---
 
-## Lifecycle Policies
+### Lifecycle Policies
 
 A lifecycle policy can automatically expire old images.
 
@@ -1538,7 +1538,7 @@ Test lifecycle rules before applying them.
 
 ---
 
-## ECR Security
+### ECR Security
 
 - Keep repositories private unless public access is intended.
 - Use IAM least privilege.
@@ -1552,7 +1552,7 @@ Test lifecycle rules before applying them.
 
 ---
 
-# 97. Amazon EKS Overview
+## 97. Amazon EKS Overview
 
 **EKS** stands for **Elastic Kubernetes Service**.
 
@@ -1564,7 +1564,7 @@ The customer deploys and manages Kubernetes workloads.
 
 ---
 
-## What Is Kubernetes?
+### What Is Kubernetes?
 
 Kubernetes is a container orchestration platform.
 
@@ -1583,7 +1583,7 @@ It manages:
 
 ---
 
-## Important Kubernetes Terms
+### Important Kubernetes Terms
 
 | Term | Meaning |
 | --- | --- |
@@ -1600,9 +1600,9 @@ It manages:
 
 ---
 
-## EKS Responsibilities
+### EKS Responsibilities
 
-### AWS Manages
+#### AWS Manages
 
 - Kubernetes control-plane infrastructure
 - Control-plane availability
@@ -1611,7 +1611,7 @@ It manages:
 - etcd infrastructure
 - Integration with AWS services
 
-### Customer Manages
+#### Customer Manages
 
 Depending on the compute option:
 
@@ -1631,7 +1631,7 @@ Managed options can reduce some node-management responsibilities.
 
 ---
 
-## Why Use EKS?
+### Why Use EKS?
 
 - Use Kubernetes APIs and tools
 - Run Kubernetes on AWS
@@ -1644,7 +1644,7 @@ Managed options can reduce some node-management responsibilities.
 
 ---
 
-## ECS vs EKS Decision
+### ECS vs EKS Decision
 
 Choose ECS when:
 
@@ -1663,9 +1663,9 @@ Choose EKS when:
 
 ---
 
-# 98. Amazon EKS Diagram
+## 98. Amazon EKS Diagram
 
-## Basic EKS Architecture
+### Basic EKS Architecture
 
 ```mermaid
 flowchart TD
@@ -1680,7 +1680,7 @@ flowchart TD
 
 ---
 
-## Control Plane
+### Control Plane
 
 The Kubernetes control plane contains components such as:
 
@@ -1693,7 +1693,7 @@ AWS runs the EKS control plane across multiple Availability Zones for resilience
 
 ---
 
-## Data Plane
+### Data Plane
 
 The data plane provides the compute where Pods run.
 
@@ -1707,7 +1707,7 @@ Possible compute options include:
 
 ---
 
-## Application Traffic Flow
+### Application Traffic Flow
 
 ```text
 Internet user
@@ -1723,7 +1723,7 @@ Database or other AWS services
 
 ---
 
-## Image Deployment Flow
+### Image Deployment Flow
 
 ```text
 Developer builds image
@@ -1739,7 +1739,7 @@ Pod starts container
 
 ---
 
-## Kubernetes Deployment Example
+### Kubernetes Deployment Example
 
 ```yaml
 apiVersion: apps/v1
@@ -1783,7 +1783,7 @@ kubectl get deployments
 
 ---
 
-## Kubernetes Service Example
+### Kubernetes Service Example
 
 ```yaml
 apiVersion: v1
@@ -1805,7 +1805,7 @@ External traffic normally requires a suitable LoadBalancer Service or Ingress co
 
 ---
 
-## EKS IAM and Pod Permissions
+### EKS IAM and Pod Permissions
 
 Applications inside Pods should not use permanent access keys.
 
@@ -1819,7 +1819,7 @@ The Kubernetes service account is associated with suitable AWS permissions.
 
 ---
 
-# 99. Amazon EKS Node Types
+## 99. Amazon EKS Node Types
 
 A Kubernetes **node** provides CPU and memory for Pods.
 
@@ -1827,7 +1827,7 @@ Different EKS compute options provide different levels of control and management
 
 ---
 
-## EKS Managed Node Groups
+### EKS Managed Node Groups
 
 Managed node groups use EC2 instances managed through EKS node-group operations.
 
@@ -1854,7 +1854,7 @@ The customer still chooses areas such as:
 
 ---
 
-## Self-Managed Nodes
+### Self-Managed Nodes
 
 Self-managed nodes are EC2 instances configured and maintained by the customer.
 
@@ -1874,7 +1874,7 @@ Self-managed nodes provide more control but more operational work.
 
 ---
 
-## AWS Fargate for EKS
+### AWS Fargate for EKS
 
 Fargate runs selected Kubernetes Pods without the customer managing EC2 worker nodes.
 
@@ -1899,7 +1899,7 @@ Considerations:
 
 ---
 
-## EKS Auto Mode
+### EKS Auto Mode
 
 EKS Auto Mode automates more of the cluster infrastructure.
 
@@ -1926,7 +1926,7 @@ Auto Mode has additional service charges alongside the AWS resources it creates.
 
 ---
 
-## EKS Hybrid Nodes
+### EKS Hybrid Nodes
 
 EKS Hybrid Nodes allow on-premises or edge infrastructure to join an EKS cluster as worker nodes.
 
@@ -1938,7 +1938,7 @@ This is an advanced option for applications that must run outside AWS Regions.
 
 ---
 
-## Node Option Comparison
+### Node Option Comparison
 
 | Option | Infrastructure management | Best suited for |
 | --- | --- | --- |
@@ -1950,17 +1950,17 @@ This is an advanced option for applications that must run outside AWS Regions.
 
 ---
 
-## Node Capacity Types
+### Node Capacity Types
 
 EC2-based node groups can use options such as:
 
-### On-Demand Instances
+#### On-Demand Instances
 
 - Stable capacity
 - No interruption from Spot reclamation
 - Suitable for critical workloads
 
-### Spot Instances
+#### Spot Instances
 
 - Lower potential cost
 - Can be interrupted
@@ -1969,7 +1969,7 @@ EC2-based node groups can use options such as:
 
 ---
 
-## Specialised Nodes
+### Specialised Nodes
 
 EKS nodes can also use supported EC2 hardware for:
 
@@ -1984,13 +1984,13 @@ The selected AMI, architecture and Kubernetes configuration must be compatible.
 
 ---
 
-# Practical Demo: Docker to ECR
+## Practical Demo: Docker to ECR
 
 This lab builds a custom NGINX image and pushes it to Amazon ECR.
 
 ---
 
-## Step 1: Create the Files
+### Step 1: Create the Files
 
 Create:
 
@@ -2028,7 +2028,7 @@ EXPOSE 80
 
 ---
 
-## Step 2: Build and Test
+### Step 2: Build and Test
 
 ```bash
 docker build -t nginx-container-lab:v1 .
@@ -2049,7 +2049,7 @@ curl http://localhost:8080
 
 ---
 
-## Step 3: Confirm AWS Identity
+### Step 3: Confirm AWS Identity
 
 ```bash
 aws sts get-caller-identity
@@ -2065,7 +2065,7 @@ Never use root-user access keys.
 
 ---
 
-## Step 4: Create the ECR Repository
+### Step 4: Create the ECR Repository
 
 ```bash
 aws ecr create-repository \
@@ -2077,7 +2077,7 @@ aws ecr create-repository \
 
 ---
 
-## Step 5: Sign In to ECR
+### Step 5: Sign In to ECR
 
 ```bash
 aws ecr get-login-password \
@@ -2090,7 +2090,7 @@ aws ecr get-login-password \
 
 ---
 
-## Step 6: Tag the Image
+### Step 6: Tag the Image
 
 ```bash
 docker tag nginx-container-lab:v1 \
@@ -2099,7 +2099,7 @@ docker tag nginx-container-lab:v1 \
 
 ---
 
-## Step 7: Push the Image
+### Step 7: Push the Image
 
 ```bash
 docker push \
@@ -2108,7 +2108,7 @@ docker push \
 
 ---
 
-## Step 8: Verify
+### Step 8: Verify
 
 Open:
 
@@ -2130,9 +2130,9 @@ Check:
 
 ---
 
-# Practical ECS EC2 Deployment Outline
+## Practical ECS EC2 Deployment Outline
 
-## Required Resources
+### Required Resources
 
 ```text
 ECR repository
@@ -2149,7 +2149,7 @@ CloudWatch log group
 
 ---
 
-## Task Definition Example
+### Task Definition Example
 
 ```json
 {
@@ -2183,7 +2183,7 @@ CloudWatch log group
 
 ---
 
-## Service Configuration
+### Service Configuration
 
 Example:
 
@@ -2201,9 +2201,9 @@ The service should be distributed across multiple Availability Zones where possi
 
 ---
 
-# Container Troubleshooting
+## Container Troubleshooting
 
-## Docker Build Fails
+### Docker Build Fails
 
 Check:
 
@@ -2217,7 +2217,7 @@ Check:
 
 ---
 
-## ECR Login Fails
+### ECR Login Fails
 
 Check:
 
@@ -2237,7 +2237,7 @@ aws sts get-caller-identity
 
 ---
 
-## ECR Push Is Denied
+### ECR Push Is Denied
 
 Check permissions such as:
 
@@ -2256,7 +2256,7 @@ Also check:
 
 ---
 
-## ECS Task Remains Pending
+### ECS Task Remains Pending
 
 Possible causes:
 
@@ -2272,7 +2272,7 @@ Possible causes:
 
 ---
 
-## ECS Task Stops
+### ECS Task Stops
 
 Open the task and check:
 
@@ -2294,7 +2294,7 @@ Also review:
 
 ---
 
-## Cannot Pull ECR Image
+### Cannot Pull ECR Image
 
 Check:
 
@@ -2310,7 +2310,7 @@ Check:
 
 ---
 
-## ECS Service Is Unhealthy
+### ECS Service Is Unhealthy
 
 Check:
 
@@ -2324,7 +2324,7 @@ Check:
 
 ---
 
-## EKS Pod Is Pending
+### EKS Pod Is Pending
 
 Check:
 
@@ -2344,7 +2344,7 @@ Possible causes:
 
 ---
 
-## EKS ImagePullBackOff
+### EKS ImagePullBackOff
 
 Check:
 
@@ -2364,7 +2364,7 @@ Possible causes:
 
 ---
 
-# Container Security and Cost Checklist
+## Container Security and Cost Checklist
 
 - [ ] Use trusted base images.
 - [ ] Pin important image versions.
@@ -2395,7 +2395,7 @@ Possible causes:
 
 ---
 
-# Quick Revision Questions
+## Quick Revision Questions
 
 1. What is a container?
 2. What is the difference between an image and a container?
@@ -2453,7 +2453,7 @@ Possible causes:
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - Containers package applications and their dependencies.
 - Images are read-only templates.
@@ -2489,7 +2489,7 @@ Possible causes:
 
 ---
 
-# Official References
+## Official References
 
 - [What is Amazon ECS?](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html)
 - [Amazon ECS clusters](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html)

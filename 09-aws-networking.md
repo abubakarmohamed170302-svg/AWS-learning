@@ -12,7 +12,7 @@ The main AWS networking service is **Amazon Virtual Private Cloud**, normally ca
 
 ---
 
-## AWS Networking Learning Objectives
+### AWS Networking Learning Objectives
 
 By the end of this section, you should understand:
 
@@ -34,7 +34,7 @@ By the end of this section, you should understand:
 
 ---
 
-# 106. Amazon Networking
+## 106. Amazon Networking
 
 AWS networking provides the services used to connect and protect cloud resources.
 
@@ -52,7 +52,7 @@ Amazon VPC
 
 ---
 
-## What Is a Network?
+### What Is a Network?
 
 A network is a group of devices that can communicate with each other.
 
@@ -73,7 +73,7 @@ Every connection in this path depends on networking configuration.
 
 ---
 
-## Important AWS Networking Components
+### Important AWS Networking Components
 
 | Component | Purpose |
 | --- | --- |
@@ -95,7 +95,7 @@ Every connection in this path depends on networking configuration.
 
 ---
 
-## Basic AWS Network Flow
+### Basic AWS Network Flow
 
 ```mermaid
 flowchart TD
@@ -108,7 +108,7 @@ flowchart TD
 
 ---
 
-## The Five Main Connectivity Questions
+### The Five Main Connectivity Questions
 
 When troubleshooting AWS networking, ask:
 
@@ -122,7 +122,7 @@ When troubleshooting AWS networking, ask:
 
 ---
 
-# 107. Understanding CIDR – IPv4
+## 107. Understanding CIDR – IPv4
 
 **CIDR** stands for:
 
@@ -142,7 +142,7 @@ The `/24` is called the **prefix length**.
 
 ---
 
-## IPv4 Address Structure
+### IPv4 Address Structure
 
 An IPv4 address contains 32 binary bits divided into four octets.
 
@@ -166,7 +166,7 @@ Each decimal octet can contain a value from:
 
 ---
 
-## Network Bits and Host Bits
+### Network Bits and Host Bits
 
 In this CIDR block:
 
@@ -186,7 +186,7 @@ Host bits: 32 - 24 = 8
 
 ---
 
-## Calculating the Number of Addresses
+### Calculating the Number of Addresses
 
 Use:
 
@@ -204,7 +204,7 @@ For a `/24`:
 
 ---
 
-## Common IPv4 CIDR Sizes
+### Common IPv4 CIDR Sizes
 
 | CIDR | Total addresses | AWS-usable subnet addresses |
 | --- | ---: | ---: |
@@ -223,7 +223,7 @@ AWS reserves five IPv4 addresses in every subnet.
 
 ---
 
-## AWS-Reserved Subnet Addresses
+### AWS-Reserved Subnet Addresses
 
 For this subnet:
 
@@ -253,9 +253,9 @@ Usable addresses: 251
 
 ---
 
-## Special CIDR Values
+### Special CIDR Values
 
-### One Specific IP Address
+#### One Specific IP Address
 
 ```text
 203.0.113.25/32
@@ -265,7 +265,7 @@ This represents one IPv4 address.
 
 It is useful for restricting SSH access to one trusted public IP.
 
-### All IPv4 Addresses
+#### All IPv4 Addresses
 
 ```text
 0.0.0.0/0
@@ -283,7 +283,7 @@ It should not normally be used for public SSH access.
 
 ---
 
-## CIDR Size Rule
+### CIDR Size Rule
 
 A smaller prefix number represents a larger network.
 
@@ -296,7 +296,7 @@ A smaller prefix number represents a larger network.
 
 ---
 
-# 108. Understanding CIDR – Subnet Mask
+## 108. Understanding CIDR – Subnet Mask
 
 A subnet mask is another way of showing which bits belong to the network.
 
@@ -309,7 +309,7 @@ Subnet mask: 255.255.255.0
 
 ---
 
-## Common CIDR and Subnet Masks
+### Common CIDR and Subnet Masks
 
 | CIDR | Subnet mask |
 | --- | --- |
@@ -328,7 +328,7 @@ Subnet mask: 255.255.255.0
 
 ---
 
-## Useful Binary Values
+### Useful Binary Values
 
 | Binary | Decimal |
 | --- | ---: |
@@ -343,7 +343,7 @@ Subnet mask: 255.255.255.0
 
 ---
 
-## Example: `/26`
+### Example: `/26`
 
 A `/26` has:
 
@@ -381,7 +381,7 @@ Possible `/26` networks inside `192.168.1.0/24` are:
 
 ---
 
-## CIDR Planning Rules
+### CIDR Planning Rules
 
 When designing a VPC:
 
@@ -395,9 +395,9 @@ When designing a VPC:
 
 ---
 
-# 109. Understanding CIDR – Exercise
+## 109. Understanding CIDR – Exercise
 
-## Exercise 1
+### Exercise 1
 
 How many addresses are in:
 
@@ -420,7 +420,7 @@ AWS-usable:
 
 ---
 
-## Exercise 2
+### Exercise 2
 
 How many addresses are in:
 
@@ -438,7 +438,7 @@ Calculation:
 
 ---
 
-## Exercise 3
+### Exercise 3
 
 Find the range of:
 
@@ -477,7 +477,7 @@ AWS reserves:
 
 ---
 
-## Exercise 4
+### Exercise 4
 
 Can these two subnets exist in the same VPC?
 
@@ -492,7 +492,7 @@ No.
 
 ---
 
-## Exercise 5
+### Exercise 5
 
 Create four `/24` subnets inside:
 
@@ -513,7 +513,7 @@ These ranges do not overlap.
 
 ---
 
-## Exercise 6
+### Exercise 6
 
 Which CIDR represents one trusted public IP?
 
@@ -529,7 +529,7 @@ Which CIDR represents every IPv4 address?
 
 ---
 
-## Quick CIDR Method
+### Quick CIDR Method
 
 1. Identify the prefix.
 2. Calculate the host bits.
@@ -541,9 +541,9 @@ Which CIDR represents every IPv4 address?
 
 ---
 
-# 110. Public vs Private IP – IPv4
+## 110. Public vs Private IP – IPv4
 
-## Private IPv4 Addresses
+### Private IPv4 Addresses
 
 Private IPv4 addresses are used inside private networks.
 
@@ -559,7 +559,7 @@ Private IPv4 addresses are not directly reachable from the public internet.
 
 ---
 
-## Public IPv4 Addresses
+### Public IPv4 Addresses
 
 A public IPv4 address can be routed over the public internet.
 
@@ -574,7 +574,7 @@ An EC2 instance requires all of the following for direct IPv4 internet connectiv
 
 ---
 
-## Public vs Private IPv4
+### Public vs Private IPv4
 
 | Private IPv4 | Public IPv4 |
 | --- | --- |
@@ -587,7 +587,7 @@ An EC2 instance requires all of the following for direct IPv4 internet connectiv
 
 ---
 
-## EC2 Public IPv4 Translation
+### EC2 Public IPv4 Translation
 
 An EC2 operating system normally sees its private IPv4 address.
 
@@ -599,7 +599,7 @@ Private IPv4 address ↔ Public IPv4 address
 
 ---
 
-## Public IPv4 Changes
+### Public IPv4 Changes
 
 An automatically assigned public IPv4 address may change when an EC2 instance is stopped and started.
 
@@ -609,7 +609,7 @@ An Elastic IP remains stable until it is disassociated or released.
 
 ---
 
-# 111. Default VPC Walkthrough
+## 111. Default VPC Walkthrough
 
 AWS normally provides a default VPC in each Region.
 
@@ -617,7 +617,7 @@ A default VPC makes it easier to launch resources without first designing a cust
 
 ---
 
-## Default VPC Components
+### Default VPC Components
 
 A default VPC normally contains:
 
@@ -634,7 +634,7 @@ A default VPC normally contains:
 
 ---
 
-## Default VPC Architecture
+### Default VPC Architecture
 
 ```mermaid
 flowchart TD
@@ -648,7 +648,7 @@ Default subnets are public because their route table has a route to the internet
 
 ---
 
-## View the Default VPC
+### View the Default VPC
 
 AWS CLI:
 
@@ -668,9 +668,9 @@ aws ec2 describe-subnets \
 
 ---
 
-# 112. Default VPC Walkthrough – Part 2
+## 112. Default VPC Walkthrough – Part 2
 
-## Main Route Table
+### Main Route Table
 
 A default VPC route table normally includes:
 
@@ -685,7 +685,7 @@ The default route sends other IPv4 traffic to the internet gateway.
 
 ---
 
-## Default Security Group
+### Default Security Group
 
 A default security group normally:
 
@@ -699,7 +699,7 @@ Create purpose-specific security groups.
 
 ---
 
-## Default NACL
+### Default NACL
 
 The default NACL normally allows all inbound and outbound traffic.
 
@@ -707,7 +707,7 @@ A newly created custom NACL starts by denying traffic until suitable rules are a
 
 ---
 
-## Default VPC Advantages
+### Default VPC Advantages
 
 - Quick to start
 - Useful for simple learning exercises
@@ -716,7 +716,7 @@ A newly created custom NACL starts by denying traffic until suitable rules are a
 
 ---
 
-## Default VPC Disadvantages
+### Default VPC Disadvantages
 
 - IP planning was not designed for your application
 - Resources may accidentally receive public connectivity
@@ -729,7 +729,7 @@ A newly created custom NACL starts by denying traffic until suitable rules are a
 
 ---
 
-# 113. VPC in AWS
+## 113. VPC in AWS
 
 A **Virtual Private Cloud** is a logically isolated virtual network inside AWS.
 
@@ -737,7 +737,7 @@ A VPC belongs to one AWS Region and can contain subnets across multiple Availabi
 
 ---
 
-## VPC Scope
+### VPC Scope
 
 | Resource | Scope |
 | --- | --- |
@@ -751,7 +751,7 @@ A VPC belongs to one AWS Region and can contain subnets across multiple Availabi
 
 ---
 
-## Example Custom VPC
+### Example Custom VPC
 
 ```text
 Name: devops-vpc
@@ -769,7 +769,7 @@ The VPC can then be divided into smaller subnet ranges.
 
 ---
 
-## VPC Components
+### VPC Components
 
 ```mermaid
 flowchart TD
@@ -782,7 +782,7 @@ flowchart TD
 
 ---
 
-## Create a VPC with the CLI
+### Create a VPC with the CLI
 
 ```bash
 aws ec2 create-vpc \
@@ -814,7 +814,7 @@ Replace `VPC_ID` with the real VPC ID.
 
 ---
 
-# 114. VPC Subnets – IPv4
+## 114. VPC Subnets – IPv4
 
 A subnet is a smaller IP address range inside a VPC.
 
@@ -822,7 +822,7 @@ A subnet belongs to exactly one Availability Zone.
 
 ---
 
-## Example Subnet Plan
+### Example Subnet Plan
 
 | Subnet | Availability Zone | CIDR |
 | --- | --- | --- |
@@ -833,7 +833,7 @@ A subnet belongs to exactly one Availability Zone.
 
 ---
 
-## What Makes a Subnet Public?
+### What Makes a Subnet Public?
 
 A subnet is public when its route table has a direct route to an internet gateway.
 
@@ -850,7 +850,7 @@ An EC2 instance in that subnet still needs a public IPv4 address or Elastic IP f
 
 ---
 
-## Private Subnet
+### Private Subnet
 
 A private subnet does not have a direct route to an internet gateway.
 
@@ -863,7 +863,7 @@ It may use a NAT gateway for outbound IPv4 internet access.
 
 ---
 
-## Isolated Subnet
+### Isolated Subnet
 
 An isolated subnet has no route outside the VPC.
 
@@ -875,7 +875,7 @@ This can be useful for highly restricted database tiers.
 
 ---
 
-## Create a Subnet
+### Create a Subnet
 
 ```bash
 aws ec2 create-subnet \
@@ -889,7 +889,7 @@ aws ec2 create-subnet \
 
 ---
 
-# 115. Internet Gateway
+## 115. Internet Gateway
 
 An **Internet Gateway**, or **IGW**, connects a VPC to the public internet.
 
@@ -897,7 +897,7 @@ It supports IPv4 and IPv6 traffic.
 
 ---
 
-## Internet Connectivity Requirements
+### Internet Connectivity Requirements
 
 For direct public IPv4 connectivity, you need:
 
@@ -917,7 +917,7 @@ Application listening
 
 ---
 
-## Create and Attach an Internet Gateway
+### Create and Attach an Internet Gateway
 
 Create:
 
@@ -939,7 +939,7 @@ aws ec2 attach-internet-gateway \
 
 ---
 
-## Public Route
+### Public Route
 
 ```bash
 aws ec2 create-route \
@@ -951,7 +951,7 @@ aws ec2 create-route \
 
 ---
 
-## Common Internet Gateway Problems
+### Common Internet Gateway Problems
 
 - Internet gateway is not attached.
 - Subnet uses the wrong route table.
@@ -964,7 +964,7 @@ aws ec2 create-route \
 
 ---
 
-# 116. Bastion Hosts
+## 116. Bastion Hosts
 
 A **bastion host** is a controlled entry point used to connect to resources in private subnets.
 
@@ -977,7 +977,7 @@ Jump server
 
 ---
 
-## Bastion Architecture
+### Bastion Architecture
 
 ```mermaid
 flowchart LR
@@ -987,15 +987,15 @@ flowchart LR
 
 ---
 
-## Bastion Security Groups
+### Bastion Security Groups
 
-### Bastion Security Group
+#### Bastion Security Group
 
 | Type | Port | Source |
 | --- | ---: | --- |
 | SSH | 22 | Administrator's public IP `/32` |
 
-### Private Instance Security Group
+#### Private Instance Security Group
 
 | Type | Port | Source |
 | --- | ---: | --- |
@@ -1005,7 +1005,7 @@ Referencing the bastion security group is safer than allowing an entire public s
 
 ---
 
-## Example Connection
+### Example Connection
 
 ```bash
 ssh -J ec2-user@BASTION_PUBLIC_IP \
@@ -1016,7 +1016,7 @@ Do not copy private SSH keys onto the bastion host.
 
 ---
 
-## Bastion Host Risks
+### Bastion Host Risks
 
 A bastion host is internet-facing and must be protected.
 
@@ -1031,7 +1031,7 @@ A bastion host is internet-facing and must be protected.
 
 ---
 
-## AWS Systems Manager Alternative
+### AWS Systems Manager Alternative
 
 AWS Systems Manager Session Manager can provide instance access without:
 
@@ -1051,7 +1051,7 @@ For modern AWS environments, Session Manager is often preferred over a tradition
 
 ---
 
-# 117. NAT Gateway
+## 117. NAT Gateway
 
 **NAT** stands for:
 
@@ -1065,7 +1065,7 @@ Internet systems cannot normally use the NAT gateway to initiate unsolicited con
 
 ---
 
-## Traditional Public NAT Gateway Architecture
+### Traditional Public NAT Gateway Architecture
 
 ```mermaid
 flowchart LR
@@ -1076,7 +1076,7 @@ flowchart LR
 
 ---
 
-## Zonal NAT Gateway Requirements
+### Zonal NAT Gateway Requirements
 
 A traditional public zonal NAT gateway requires:
 
@@ -1088,16 +1088,16 @@ A traditional public zonal NAT gateway requires:
 
 ---
 
-## Route Tables
+### Route Tables
 
-### Public Subnet
+#### Public Subnet
 
 | Destination | Target |
 | --- | --- |
 | `10.0.0.0/16` | `local` |
 | `0.0.0.0/0` | Internet gateway |
 
-### Private Subnet
+#### Private Subnet
 
 | Destination | Target |
 | --- | --- |
@@ -1106,7 +1106,7 @@ A traditional public zonal NAT gateway requires:
 
 ---
 
-## Why Private Instances Need Outbound Access
+### Why Private Instances Need Outbound Access
 
 Private instances may need to:
 
@@ -1121,7 +1121,7 @@ A NAT gateway provides outbound IPv4 access without assigning each instance a pu
 
 ---
 
-## NAT Gateway Cost Warning
+### NAT Gateway Cost Warning
 
 NAT gateways normally create charges for:
 
@@ -1134,13 +1134,13 @@ Delete unused lab NAT gateways promptly.
 
 ---
 
-# 118. NAT Gateway with High Availability
+## 118. NAT Gateway with High Availability
 
 There are now two main NAT Gateway availability models.
 
 ---
 
-## Traditional Zonal NAT Gateways
+### Traditional Zonal NAT Gateways
 
 A zonal NAT gateway is resilient within its Availability Zone.
 
@@ -1162,7 +1162,7 @@ This prevents both private subnets depending on one Availability Zone.
 
 ---
 
-## Why Not Share One Zonal NAT Gateway?
+### Why Not Share One Zonal NAT Gateway?
 
 A private subnet in `eu-west-2b` can technically route through a NAT gateway in `eu-west-2a`.
 
@@ -1174,7 +1174,7 @@ However, this introduces:
 
 ---
 
-## Regional NAT Gateway
+### Regional NAT Gateway
 
 AWS also provides **Regional NAT Gateways**.
 
@@ -1197,7 +1197,7 @@ aws ec2 create-nat-gateway \
 
 ---
 
-## Course Pattern vs Current AWS Option
+### Course Pattern vs Current AWS Option
 
 | Traditional course architecture | Newer AWS option |
 | --- | --- |
@@ -1211,7 +1211,7 @@ Understand both models because existing architectures and exam material may use 
 
 ---
 
-# 119. NAT Gateway vs NAT Instance
+## 119. NAT Gateway vs NAT Instance
 
 A **NAT instance** is an EC2 instance configured to perform network address translation.
 
@@ -1219,7 +1219,7 @@ A **NAT gateway** is an AWS-managed NAT service.
 
 ---
 
-## Comparison
+### Comparison
 
 | NAT gateway | NAT instance |
 | --- | --- |
@@ -1235,7 +1235,7 @@ A **NAT gateway** is an AWS-managed NAT service.
 
 ---
 
-## NAT Instance Responsibilities
+### NAT Instance Responsibilities
 
 If using a NAT instance, you may need to:
 
@@ -1253,7 +1253,7 @@ AWS generally recommends NAT gateways where their managed behaviour meets the wo
 
 ---
 
-# 120. Network Access Control Lists
+## 120. Network Access Control Lists
 
 A **Network Access Control List**, or **NACL**, is a subnet-level network security control.
 
@@ -1261,7 +1261,7 @@ A NACL controls traffic entering and leaving associated subnets.
 
 ---
 
-## NACL Characteristics
+### NACL Characteristics
 
 - Applied at subnet level
 - Stateless
@@ -1274,7 +1274,7 @@ A NACL controls traffic entering and leaving associated subnets.
 
 ---
 
-## Example Inbound NACL
+### Example Inbound NACL
 
 | Rule | Protocol | Port | Source | Action |
 | ---: | --- | ---: | --- | --- |
@@ -1285,7 +1285,7 @@ A NACL controls traffic entering and leaving associated subnets.
 
 ---
 
-## Stateless Behaviour
+### Stateless Behaviour
 
 Suppose an inbound request is allowed on port 443.
 
@@ -1303,13 +1303,13 @@ The exact required range depends on the clients and operating systems involved.
 
 ---
 
-## Default and Custom NACLs
+### Default and Custom NACLs
 
-### Default NACL
+#### Default NACL
 
 The default NACL normally allows all inbound and outbound traffic.
 
-### Custom NACL
+#### Custom NACL
 
 A newly created custom NACL blocks traffic until allow rules are added.
 
@@ -1319,7 +1319,7 @@ A subnet can be associated with only one NACL at a time, but one NACL can be ass
 
 ---
 
-## NACL Use Cases
+### NACL Use Cases
 
 NACLs can provide:
 
@@ -1333,13 +1333,13 @@ Security groups should normally remain the primary resource-level traffic contro
 
 ---
 
-# 121. Security Groups and NACLs
+## 121. Security Groups and NACLs
 
 Security groups and NACLs both control network traffic, but they work differently.
 
 ---
 
-## Comparison
+### Comparison
 
 | Security group | Network ACL |
 | --- | --- |
@@ -1353,7 +1353,7 @@ Security groups and NACLs both control network traffic, but they work differentl
 
 ---
 
-## Stateful Example
+### Stateful Example
 
 Security-group rule:
 
@@ -1365,7 +1365,7 @@ The response is automatically permitted because the security group is stateful.
 
 ---
 
-## Stateless Example
+### Stateless Example
 
 NACL rules must permit:
 
@@ -1379,7 +1379,7 @@ If either direction is blocked, the connection fails.
 
 ---
 
-## Defence in Depth
+### Defence in Depth
 
 ```mermaid
 flowchart LR
@@ -1392,7 +1392,7 @@ Both controls must allow the required path.
 
 ---
 
-## Troubleshooting Order
+### Troubleshooting Order
 
 Check:
 
@@ -1408,7 +1408,7 @@ Check:
 
 ---
 
-# 122. VPC Peering
+## 122. VPC Peering
 
 A **VPC peering connection** privately connects two VPCs.
 
@@ -1416,7 +1416,7 @@ Resources communicate using private IP addresses without routing traffic over th
 
 ---
 
-## Peering Architecture
+### Peering Architecture
 
 ```mermaid
 flowchart LR
@@ -1426,7 +1426,7 @@ flowchart LR
 
 ---
 
-## VPC Peering Requirements
+### VPC Peering Requirements
 
 1. The VPC CIDR blocks must not overlap.
 2. A peering request must be created.
@@ -1438,16 +1438,16 @@ flowchart LR
 
 ---
 
-## Example Routes
+### Example Routes
 
-### VPC A Route Table
+#### VPC A Route Table
 
 | Destination | Target |
 | --- | --- |
 | `10.0.0.0/16` | `local` |
 | `10.1.0.0/16` | Peering connection |
 
-### VPC B Route Table
+#### VPC B Route Table
 
 | Destination | Target |
 | --- | --- |
@@ -1458,7 +1458,7 @@ Routing must be configured in both directions.
 
 ---
 
-## Create a Peering Request
+### Create a Peering Request
 
 ```bash
 aws ec2 create-vpc-peering-connection \
@@ -1477,9 +1477,9 @@ aws ec2 accept-vpc-peering-connection \
 
 ---
 
-# 123. VPC Peering – Good to Know
+## 123. VPC Peering – Good to Know
 
-## No Overlapping CIDRs
+### No Overlapping CIDRs
 
 These VPCs cannot be peered:
 
@@ -1492,7 +1492,7 @@ The second range is contained inside the first.
 
 ---
 
-## Peering Is Not Transitive
+### Peering Is Not Transitive
 
 Suppose:
 
@@ -1516,7 +1516,7 @@ For larger multi-VPC networks, consider AWS Transit Gateway.
 
 ---
 
-## No Edge-to-Edge Routing
+### No Edge-to-Edge Routing
 
 A peered VPC cannot normally use another VPC's:
 
@@ -1530,7 +1530,7 @@ Each VPC must have the necessary connectivity itself.
 
 ---
 
-## Other Peering Facts
+### Other Peering Facts
 
 - Peering can connect VPCs in the same account.
 - Peering can connect VPCs in different accounts.
@@ -1542,7 +1542,7 @@ Each VPC must have the necessary connectivity itself.
 
 ---
 
-# 124. VPC Endpoints and AWS PrivateLink
+## 124. VPC Endpoints and AWS PrivateLink
 
 A VPC endpoint allows resources in a VPC to access supported services or resources privately.
 
@@ -1550,7 +1550,7 @@ Traffic does not need to traverse the public internet.
 
 ---
 
-## Without a VPC Endpoint
+### Without a VPC Endpoint
 
 ```mermaid
 flowchart LR
@@ -1560,7 +1560,7 @@ flowchart LR
 
 ---
 
-## With a VPC Endpoint
+### With a VPC Endpoint
 
 ```mermaid
 flowchart LR
@@ -1570,7 +1570,7 @@ flowchart LR
 
 ---
 
-## Benefits
+### Benefits
 
 - Private connectivity
 - No public IP required
@@ -1582,7 +1582,7 @@ flowchart LR
 
 ---
 
-## AWS PrivateLink
+### AWS PrivateLink
 
 AWS PrivateLink provides private connectivity to:
 
@@ -1596,7 +1596,7 @@ Interface endpoints are a common way to consume services through AWS PrivateLink
 
 ---
 
-## Endpoint Security Layers
+### Endpoint Security Layers
 
 Access may depend on:
 
@@ -1612,7 +1612,7 @@ An endpoint policy does not automatically replace the other permission systems.
 
 ---
 
-# 125. Types of VPC Endpoints
+## 125. Types of VPC Endpoints
 
 The two types most commonly covered in beginner AWS courses are:
 
@@ -1623,7 +1623,7 @@ AWS also supports additional endpoint types.
 
 ---
 
-## Gateway Endpoint
+### Gateway Endpoint
 
 Gateway endpoints support:
 
@@ -1647,7 +1647,7 @@ Example route:
 
 ---
 
-## Interface Endpoint
+### Interface Endpoint
 
 An interface endpoint:
 
@@ -1661,7 +1661,7 @@ An interface endpoint:
 
 ---
 
-## Gateway vs Interface Endpoint
+### Gateway vs Interface Endpoint
 
 | Gateway endpoint | Interface endpoint |
 | --- | --- |
@@ -1674,7 +1674,7 @@ An interface endpoint:
 
 ---
 
-## Other Current Endpoint Types
+### Other Current Endpoint Types
 
 | Endpoint type | Purpose |
 | --- | --- |
@@ -1686,7 +1686,7 @@ These are more advanced than the gateway and interface endpoint types normally i
 
 ---
 
-## Example: S3 Gateway Endpoint
+### Example: S3 Gateway Endpoint
 
 A private EC2 instance can access S3 without:
 
@@ -1700,7 +1700,7 @@ An endpoint policy can restrict access to selected buckets.
 
 ---
 
-# 126. What Is IPv6?
+## 126. What Is IPv6?
 
 IPv6 is a newer version of the Internet Protocol.
 
@@ -1710,13 +1710,13 @@ IPv6 uses 128-bit addresses.
 
 ---
 
-## Example IPv4 Address
+### Example IPv4 Address
 
 ```text
 192.168.1.10
 ```
 
-## Example IPv6 Address
+### Example IPv6 Address
 
 ```text
 2001:db8:1234:5678:abcd:ef01:2345:6789
@@ -1731,7 +1731,7 @@ a–f
 
 ---
 
-## IPv6 Compression
+### IPv6 Compression
 
 Leading zeros can be removed.
 
@@ -1749,7 +1749,7 @@ Becomes:
 
 ---
 
-## Why IPv6 Exists
+### Why IPv6 Exists
 
 IPv4 has a limited address space.
 
@@ -1763,7 +1763,7 @@ IPv6 provides:
 
 ---
 
-## IPv4 vs IPv6
+### IPv4 vs IPv6
 
 | IPv4 | IPv6 |
 | --- | --- |
@@ -1776,7 +1776,7 @@ IPv6 provides:
 
 ---
 
-# 127. IPv6 in a VPC
+## 127. IPv6 in a VPC
 
 A VPC can support:
 
@@ -1786,7 +1786,7 @@ A VPC can support:
 
 ---
 
-## Dual Stack
+### Dual Stack
 
 A dual-stack resource has both:
 
@@ -1797,7 +1797,7 @@ Applications can choose the appropriate protocol.
 
 ---
 
-## AWS IPv6 CIDR Allocation
+### AWS IPv6 CIDR Allocation
 
 A common Amazon-provided IPv6 VPC allocation is:
 
@@ -1822,7 +1822,7 @@ The exact real range is assigned by AWS and will not use the documentation-only 
 
 ---
 
-## IPv6 Does Not Use Public IPv4 Translation
+### IPv6 Does Not Use Public IPv4 Translation
 
 A publicly routable IPv6 address can be routed directly.
 
@@ -1839,7 +1839,7 @@ A resource still needs:
 
 ---
 
-## IPv6 Security-Group Rules
+### IPv6 Security-Group Rules
 
 IPv4 and IPv6 rules are separate.
 
@@ -1863,13 +1863,13 @@ Adding an IPv4 rule does not automatically permit IPv6 traffic.
 
 ---
 
-# 128. IPv6 Troubleshooting
+## 128. IPv6 Troubleshooting
 
 When IPv4 works but IPv6 fails, check each IPv6 component separately.
 
 ---
 
-## IPv6 Troubleshooting Checklist
+### IPv6 Troubleshooting Checklist
 
 1. Does the VPC have an IPv6 CIDR?
 2. Does the subnet have an IPv6 CIDR?
@@ -1885,7 +1885,7 @@ When IPv4 works but IPv6 fails, check each IPv6 component separately.
 
 ---
 
-## Linux Commands
+### Linux Commands
 
 View IPv6 addresses:
 
@@ -1925,7 +1925,7 @@ sudo ss -lntp
 
 ---
 
-## Common IPv6 Problems
+### Common IPv6 Problems
 
 | Problem | Cause |
 | --- | --- |
@@ -1941,7 +1941,7 @@ ICMPv6 is important for IPv6 operation and troubleshooting. Do not block it with
 
 ---
 
-# 129. Egress-Only Internet Gateway
+## 129. Egress-Only Internet Gateway
 
 An **egress-only internet gateway** provides outbound-only internet connectivity for public IPv6 addresses.
 
@@ -1949,7 +1949,7 @@ It allows resources to initiate IPv6 connections while preventing internet syste
 
 ---
 
-## Why It Is Needed
+### Why It Is Needed
 
 For IPv4 private subnets:
 
@@ -1965,7 +1965,7 @@ IPv6 EC2 → Egress-only internet gateway → Internet
 
 ---
 
-## Important Difference
+### Important Difference
 
 An egress-only internet gateway does not perform NAT.
 
@@ -1975,7 +1975,7 @@ It controls the direction in which connections can be initiated.
 
 ---
 
-## Private IPv6 Route
+### Private IPv6 Route
 
 | Destination | Target |
 | --- | --- |
@@ -1984,7 +1984,7 @@ It controls the direction in which connections can be initiated.
 
 ---
 
-## Create an Egress-Only Internet Gateway
+### Create an Egress-Only Internet Gateway
 
 ```bash
 aws ec2 create-egress-only-internet-gateway \
@@ -2004,13 +2004,13 @@ aws ec2 create-route \
 
 ---
 
-# 130. IPv6 Routing
+## 130. IPv6 Routing
 
 IPv4 and IPv6 use separate routes.
 
 ---
 
-## Public Dual-Stack Route Table
+### Public Dual-Stack Route Table
 
 | Destination | Target |
 | --- | --- |
@@ -2025,7 +2025,7 @@ Security groups and NACLs still determine which traffic is allowed.
 
 ---
 
-## Private Dual-Stack Route Table
+### Private Dual-Stack Route Table
 
 | Destination | Target |
 | --- | --- |
@@ -2036,7 +2036,7 @@ Security groups and NACLs still determine which traffic is allowed.
 
 ---
 
-## Longest Prefix Match
+### Longest Prefix Match
 
 AWS selects the most specific matching route.
 
@@ -2058,9 +2058,9 @@ uses the `/24` route because it is more specific than `/16` and `/0`.
 
 ---
 
-# 131. IPv6 Routing Architecture
+## 131. IPv6 Routing Architecture
 
-## Dual-Stack Architecture
+### Dual-Stack Architecture
 
 ```mermaid
 flowchart TD
@@ -2075,9 +2075,9 @@ flowchart TD
 
 ---
 
-## Protocol Paths
+### Protocol Paths
 
-### Public IPv4
+#### Public IPv4
 
 ```text
 Resource → 0.0.0.0/0 → Internet gateway
@@ -2085,19 +2085,19 @@ Resource → 0.0.0.0/0 → Internet gateway
 
 The resource also needs a public IPv4 address.
 
-### Private IPv4 Outbound
+#### Private IPv4 Outbound
 
 ```text
 Resource → 0.0.0.0/0 → NAT gateway → Internet gateway
 ```
 
-### Public IPv6
+#### Public IPv6
 
 ```text
 Resource → ::/0 → Internet gateway
 ```
 
-### Private-Style IPv6 Outbound
+#### Private-Style IPv6 Outbound
 
 ```text
 Resource → ::/0 → Egress-only internet gateway
@@ -2105,7 +2105,7 @@ Resource → ::/0 → Egress-only internet gateway
 
 ---
 
-## Important IPv6 Security Point
+### Important IPv6 Security Point
 
 An IPv6 address can be globally routable, but that does not automatically mean the resource is reachable.
 
@@ -2120,7 +2120,7 @@ Reachability also depends on:
 
 ---
 
-# 132. VPC Section Summary
+## 132. VPC Section Summary
 
 - Amazon VPC creates an isolated network inside AWS.
 - A VPC is Regional.
@@ -2150,7 +2150,7 @@ Reachability also depends on:
 
 ---
 
-# AWS Networking End-to-End Demo
+## AWS Networking End-to-End Demo
 
 This demo creates a resilient two-AZ network with:
 
@@ -2168,7 +2168,7 @@ This demo creates a resilient two-AZ network with:
 
 ---
 
-## Target Architecture
+### Target Architecture
 
 ```mermaid
 flowchart TD
@@ -2183,7 +2183,7 @@ flowchart TD
 
 ---
 
-## Network Plan
+### Network Plan
 
 ```text
 Region: eu-west-2
@@ -2198,7 +2198,7 @@ Private B: 10.20.12.0/24 in eu-west-2b
 
 ---
 
-## Step 1: Create the VPC
+### Step 1: Create the VPC
 
 1. Open the VPC console.
 2. Select **Create VPC**.
@@ -2211,7 +2211,7 @@ Private B: 10.20.12.0/24 in eu-west-2b
 
 ---
 
-## Step 2: Create the Subnets
+### Step 2: Create the Subnets
 
 Create:
 
@@ -2228,14 +2228,14 @@ The private subnets should not automatically assign public IPv4 addresses.
 
 ---
 
-## Step 3: Create the Internet Gateway
+### Step 3: Create the Internet Gateway
 
 1. Create an internet gateway named `networking-lab-igw`.
 2. Attach it to `networking-lab-vpc`.
 
 ---
 
-## Step 4: Create the Public Route Table
+### Step 4: Create the Public Route Table
 
 Create `public-rt`.
 
@@ -2253,7 +2253,7 @@ Associate:
 
 ---
 
-## Step 5: Create NAT Connectivity
+### Step 5: Create NAT Connectivity
 
 For the full traditional high-availability architecture:
 
@@ -2269,9 +2269,9 @@ Alternatively, investigate a Regional NAT Gateway if it is available and appropr
 
 ---
 
-## Step 6: Create Private Route Tables
+### Step 6: Create Private Route Tables
 
-### `private-a-rt`
+#### `private-a-rt`
 
 | Destination | Target |
 | --- | --- |
@@ -2284,7 +2284,7 @@ Associate it with:
 private-a
 ```
 
-### `private-b-rt`
+#### `private-b-rt`
 
 | Destination | Target |
 | --- | --- |
@@ -2299,9 +2299,9 @@ private-b
 
 ---
 
-## Step 7: Create Security Groups
+### Step 7: Create Security Groups
 
-### Load Balancer Security Group
+#### Load Balancer Security Group
 
 Name:
 
@@ -2316,7 +2316,7 @@ Inbound:
 | HTTP | 80 | `0.0.0.0/0` |
 | HTTPS | 443 | `0.0.0.0/0` when configured |
 
-### Application Security Group
+#### Application Security Group
 
 Name:
 
@@ -2336,7 +2336,7 @@ No public SSH rule is required when using Systems Manager.
 
 ---
 
-## Step 8: Create an EC2 IAM Role
+### Step 8: Create an EC2 IAM Role
 
 Create an EC2 role with:
 
@@ -2350,11 +2350,11 @@ This allows Systems Manager access when the instances have connectivity to the r
 
 ---
 
-## Step 9: Launch Private EC2 Instances
+### Step 9: Launch Private EC2 Instances
 
 Launch one instance in each private subnet.
 
-### Instance A
+#### Instance A
 
 ```text
 Subnet: private-a
@@ -2363,7 +2363,7 @@ Security group: app-sg
 IAM role: SSM role
 ```
 
-### Instance B
+#### Instance B
 
 ```text
 Subnet: private-b
@@ -2407,7 +2407,7 @@ For production, use IMDSv2 tokens when reading instance metadata.
 
 ---
 
-## Step 10: Create the Target Group
+### Step 10: Create the Target Group
 
 Create an instance target group:
 
@@ -2429,7 +2429,7 @@ Healthy
 
 ---
 
-## Step 11: Create the Application Load Balancer
+### Step 11: Create the Application Load Balancer
 
 Create:
 
@@ -2447,7 +2447,7 @@ The load balancer receives public traffic and forwards it to private instances.
 
 ---
 
-## Step 12: Test the Application
+### Step 12: Test the Application
 
 Open the ALB DNS name in a browser.
 
@@ -2463,7 +2463,7 @@ You may see responses from instances in different Availability Zones.
 
 ---
 
-## Step 13: Add an S3 Gateway Endpoint
+### Step 13: Add an S3 Gateway Endpoint
 
 Create an S3 gateway endpoint for the VPC.
 
@@ -2478,9 +2478,9 @@ Review the endpoint policy and restrict it where appropriate.
 
 ---
 
-## Expected Traffic Flows
+### Expected Traffic Flows
 
-### User to Application
+#### User to Application
 
 ```text
 Browser
@@ -2491,7 +2491,7 @@ Browser
 → NGINX
 ```
 
-### Private Instance to Internet
+#### Private Instance to Internet
 
 ```text
 Private EC2
@@ -2502,7 +2502,7 @@ Private EC2
 → Internet
 ```
 
-### Private Instance to S3
+#### Private Instance to S3
 
 ```text
 Private EC2
@@ -2513,7 +2513,7 @@ Private EC2
 
 ---
 
-## Verification Commands
+### Verification Commands
 
 Describe the VPC:
 
@@ -2557,11 +2557,11 @@ aws ec2 describe-vpc-endpoints \
 
 ---
 
-## End-to-End Troubleshooting
+### End-to-End Troubleshooting
 
 If the website does not load, check:
 
-### Load Balancer
+#### Load Balancer
 
 - Is the ALB internet-facing?
 - Is it using both public subnets?
@@ -2569,14 +2569,14 @@ If the website does not load, check:
 - Does `alb-sg` allow TCP 80?
 - Is the listener forwarding to the correct target group?
 
-### Target Group
+#### Target Group
 
 - Are the targets registered?
 - Are the targets healthy?
 - Is the health check using `/`?
 - Is the health-check port correct?
 
-### Application Instances
+#### Application Instances
 
 - Is NGINX running?
 - Is port 80 listening?
@@ -2584,7 +2584,7 @@ If the website does not load, check:
 - Did User Data complete successfully?
 - Can the instances download packages through NAT?
 
-### Routing
+#### Routing
 
 - Does each private subnet use the correct private route table?
 - Does `0.0.0.0/0` point to the NAT gateway?
@@ -2592,7 +2592,7 @@ If the website does not load, check:
 - Is the NAT gateway in a public subnet?
 - Does the public subnet route to the IGW?
 
-### NACLs
+#### NACLs
 
 - Are request ports allowed?
 - Are response ephemeral ports allowed?
@@ -2600,9 +2600,9 @@ If the website does not load, check:
 
 ---
 
-## VPC Troubleshooting Tools
+### VPC Troubleshooting Tools
 
-### VPC Flow Logs
+#### VPC Flow Logs
 
 VPC Flow Logs capture information about IP traffic associated with:
 
@@ -2618,7 +2618,7 @@ Flow logs can be sent to:
 - Amazon S3
 - Amazon Data Firehose
 
-### Reachability Analyzer
+#### Reachability Analyzer
 
 Reachability Analyzer performs static configuration analysis.
 
@@ -2633,7 +2633,7 @@ It does not send real network packets.
 
 ---
 
-## Cleanup
+### Cleanup
 
 Delete resources in a safe dependency order:
 
@@ -2658,7 +2658,7 @@ Confirm every resource ID and name before deletion.
 
 ---
 
-# AWS Networking Security Checklist
+## AWS Networking Security Checklist
 
 - [ ] VPC CIDRs do not overlap with connected networks.
 - [ ] Public and private subnets have separate route tables.
@@ -2678,7 +2678,7 @@ Confirm every resource ID and name before deletion.
 
 ---
 
-# AWS Networking Cost Checklist
+## AWS Networking Cost Checklist
 
 - [ ] NAT gateway hourly charges are understood.
 - [ ] NAT data-processing charges are understood.
@@ -2694,7 +2694,7 @@ Confirm every resource ID and name before deletion.
 
 ---
 
-# AWS Networking Quick Revision Questions
+## AWS Networking Quick Revision Questions
 
 1. What does CIDR stand for?
 2. How many bits are in an IPv4 address?
@@ -2741,7 +2741,7 @@ Confirm every resource ID and name before deletion.
 
 ---
 
-# AWS Networking Key Takeaways
+## AWS Networking Key Takeaways
 
 - A VPC is a Regional isolated network.
 - Subnets divide a VPC into Availability Zone-specific ranges.
@@ -2767,7 +2767,7 @@ Confirm every resource ID and name before deletion.
 
 ---
 
-# Official AWS Networking References
+## Official AWS Networking References
 
 - [What is Amazon VPC?](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html)
 - [IP addressing for VPCs](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html)

@@ -1,6 +1,6 @@
 # Load Balancing and Scalability
 
-# Learning Objectives
+## Learning Objectives
 
 By the end of these notes, I should be able to:
 
@@ -24,9 +24,9 @@ By the end of these notes, I should be able to:
 
 ---
 
-# 56. Scalability and High Availability
+## 56. Scalability and High Availability
 
-## What Is Scalability?
+### What Is Scalability?
 
 **Scalability** is the ability of a system to handle changes in demand by increasing or decreasing its resources.
 
@@ -49,7 +49,7 @@ A scalable application can continue performing when:
 
 ---
 
-## What Is Elasticity?
+### What Is Elasticity?
 
 **Elasticity** is the ability to automatically add and remove resources as demand changes.
 
@@ -69,7 +69,7 @@ Elasticity focuses on making those changes dynamically, often automatically.
 
 ---
 
-## What Is High Availability?
+### What Is High Availability?
 
 **High availability** means designing a system to remain accessible when part of the infrastructure fails.
 
@@ -83,7 +83,7 @@ A highly available application avoids depending on one:
 
 ---
 
-## Scalability vs High Availability
+### Scalability vs High Availability
 
 | Scalability | High availability |
 | --- | --- |
@@ -105,7 +105,7 @@ This provides additional capacity, but an Availability Zone failure could affect
 
 ---
 
-## Scalable and Highly Available Design
+### Scalable and Highly Available Design
 
 ```text
                          Application Load Balancer
@@ -130,7 +130,7 @@ This design can:
 
 ---
 
-# 57. Vertical Scalability
+## 57. Vertical Scalability
 
 **Vertical scaling** means increasing or decreasing the capacity of one server.
 
@@ -142,7 +142,7 @@ Scaling up or scaling down
 
 ---
 
-## Scaling Up
+### Scaling Up
 
 Scaling up means changing to a more powerful server.
 
@@ -161,7 +161,7 @@ The larger instance may provide:
 
 ---
 
-## Scaling Down
+### Scaling Down
 
 Scaling down means changing to a smaller server.
 
@@ -175,7 +175,7 @@ This can reduce cost when the larger capacity is no longer required.
 
 ---
 
-## Vertical Scaling Example
+### Vertical Scaling Example
 
 ```text
 Before:
@@ -193,7 +193,7 @@ The number of servers stays the same, but the server becomes more powerful.
 
 ---
 
-## Advantages of Vertical Scaling
+### Advantages of Vertical Scaling
 
 - Relatively simple
 - May not require application redesign
@@ -203,7 +203,7 @@ The number of servers stays the same, but the server becomes more powerful.
 
 ---
 
-## Disadvantages of Vertical Scaling
+### Disadvantages of Vertical Scaling
 
 - The server has a maximum possible size.
 - Changing the instance type may require downtime.
@@ -214,7 +214,7 @@ The number of servers stays the same, but the server becomes more powerful.
 
 ---
 
-## Vertical Scaling on EC2
+### Vertical Scaling on EC2
 
 For many EBS-backed EC2 instances:
 
@@ -241,7 +241,7 @@ Before resizing, check:
 
 ---
 
-## When to Use Vertical Scaling
+### When to Use Vertical Scaling
 
 Vertical scaling can be suitable when:
 
@@ -253,7 +253,7 @@ Vertical scaling can be suitable when:
 
 ---
 
-# 58. Horizontal Scalability
+## 58. Horizontal Scalability
 
 **Horizontal scaling** means adding or removing servers.
 
@@ -265,7 +265,7 @@ Scaling out or scaling in
 
 ---
 
-## Scaling Out
+### Scaling Out
 
 Scaling out means adding more servers.
 
@@ -279,7 +279,7 @@ This increases the total capacity of the application.
 
 ---
 
-## Scaling In
+### Scaling In
 
 Scaling in means removing unnecessary servers.
 
@@ -293,7 +293,7 @@ This can reduce cost during quiet periods.
 
 ---
 
-## Horizontal Scaling Example
+### Horizontal Scaling Example
 
 ```text
 Before:
@@ -313,7 +313,7 @@ This is normally handled by a load balancer.
 
 ---
 
-## Advantages of Horizontal Scaling
+### Advantages of Horizontal Scaling
 
 - Can support large workloads
 - Improves fault tolerance
@@ -325,7 +325,7 @@ This is normally handled by a load balancer.
 
 ---
 
-## Disadvantages of Horizontal Scaling
+### Disadvantages of Horizontal Scaling
 
 - The application may need redesigning.
 - Data must be shared or synchronised.
@@ -336,7 +336,7 @@ This is normally handled by a load balancer.
 
 ---
 
-## Stateless Applications
+### Stateless Applications
 
 Horizontal scaling works best when application servers are **stateless**.
 
@@ -354,7 +354,7 @@ This allows any healthy server to process the next request.
 
 ---
 
-## Vertical vs Horizontal Scaling
+### Vertical vs Horizontal Scaling
 
 | Vertical scaling | Horizontal scaling |
 | --- | --- |
@@ -368,13 +368,13 @@ This allows any healthy server to process the next request.
 
 ---
 
-# 59. High Availability
+## 59. High Availability
 
 A highly available application continues operating when part of the system fails.
 
 ---
 
-## Single Point of Failure
+### Single Point of Failure
 
 A **single point of failure** is one component whose failure can stop the entire service.
 
@@ -390,7 +390,7 @@ If the EC2 instance fails, the website becomes unavailable.
 
 ---
 
-## Removing the Single Point of Failure
+### Removing the Single Point of Failure
 
 ```text
                    Load Balancer
@@ -405,7 +405,7 @@ If Availability Zone A fails, the instance in Availability Zone B can continue s
 
 ---
 
-## High-Availability Principles
+### High-Availability Principles
 
 - Use more than one instance.
 - Distribute instances across Availability Zones.
@@ -419,7 +419,7 @@ If Availability Zone A fails, the instance in Availability Zone B can continue s
 
 ---
 
-## Availability Zones
+### Availability Zones
 
 Availability Zones are separate locations inside an AWS Region.
 
@@ -437,7 +437,7 @@ Use at least two Availability Zones for a highly available design.
 
 ---
 
-## High Availability Is Not Backup
+### High Availability Is Not Backup
 
 High availability keeps the service running during failures.
 
@@ -453,7 +453,7 @@ Replication without backups may copy accidental deletions or corrupted data to t
 
 ---
 
-# 60. High Availability and Scalability for EC2
+## 60. High Availability and Scalability for EC2
 
 A common highly available EC2 architecture uses:
 
@@ -467,7 +467,7 @@ A common highly available EC2 architecture uses:
 
 ---
 
-## Example Architecture
+### Example Architecture
 
 ```text
                          Internet
@@ -487,7 +487,7 @@ For stronger security, the EC2 application instances can be placed in private su
 
 ---
 
-## What Each Component Does
+### What Each Component Does
 
 | Component | Purpose |
 | --- | --- |
@@ -501,7 +501,7 @@ For stronger security, the EC2 application instances can be placed in private su
 
 ---
 
-## Example Failure
+### Example Failure
 
 Suppose instance 1 stops responding:
 
@@ -514,7 +514,7 @@ Suppose instance 1 stops responding:
 
 ---
 
-# 61. What Is Load Balancing?
+## 61. What Is Load Balancing?
 
 **Load balancing** means distributing incoming network traffic across multiple targets.
 
@@ -528,7 +528,7 @@ Targets can include:
 
 ---
 
-## Without a Load Balancer
+### Without a Load Balancer
 
 ```text
 All users
@@ -546,7 +546,7 @@ Problems include:
 
 ---
 
-## With a Load Balancer
+### With a Load Balancer
 
 ```text
 Users
@@ -561,7 +561,7 @@ The load balancer provides a single entry point and sends requests to healthy ta
 
 ---
 
-## Basic Load-Balancing Flow
+### Basic Load-Balancing Flow
 
 1. A client resolves the load balancer’s DNS name.
 2. The client connects to a load-balancer node.
@@ -574,7 +574,7 @@ The load balancer provides a single entry point and sends requests to healthy ta
 
 ---
 
-# 62. Why Use a Load Balancer?
+## 62. Why Use a Load Balancer?
 
 Load balancers can provide:
 
@@ -591,7 +591,7 @@ Load balancers can provide:
 
 ---
 
-## Traffic Distribution
+### Traffic Distribution
 
 Instead of one server receiving every request, traffic is spread across multiple servers.
 
@@ -608,7 +608,7 @@ The exact distribution depends on the load-balancer type, algorithm, target heal
 
 ---
 
-## Maintenance
+### Maintenance
 
 A server can be removed from the target group for maintenance.
 
@@ -616,7 +616,7 @@ The load balancer can continue sending traffic to the remaining healthy targets.
 
 ---
 
-## Failure Handling
+### Failure Handling
 
 If one target becomes unhealthy, the load balancer stops selecting it for new traffic.
 
@@ -624,7 +624,7 @@ This protects users from being intentionally routed to a known failed server.
 
 ---
 
-## Single Entry Point
+### Single Entry Point
 
 Clients connect to the load balancer’s DNS name rather than individual instance IP addresses.
 
@@ -638,13 +638,13 @@ A custom domain can point to the load balancer using Route 53 or another DNS pro
 
 ---
 
-# 63. Why Use an Elastic Load Balancer?
+## 63. Why Use an Elastic Load Balancer?
 
 **Elastic Load Balancing**, also called **ELB**, is AWS’s managed load-balancing service.
 
 ---
 
-## Managed by AWS
+### Managed by AWS
 
 AWS manages:
 
@@ -669,7 +669,7 @@ The customer manages:
 
 ---
 
-## ELB Benefits
+### ELB Benefits
 
 - Automatically distributes traffic
 - Integrates with EC2 Auto Scaling
@@ -684,9 +684,9 @@ The customer manages:
 
 ---
 
-## Internet-Facing vs Internal
+### Internet-Facing vs Internal
 
-### Internet-Facing Load Balancer
+#### Internet-Facing Load Balancer
 
 Receives requests from internet clients.
 
@@ -696,7 +696,7 @@ Example:
 Internet → Public load balancer → Application targets
 ```
 
-### Internal Load Balancer
+#### Internal Load Balancer
 
 Used for private communication inside a VPC.
 
@@ -710,13 +710,13 @@ An internal load balancer is not directly internet-facing.
 
 ---
 
-# 64. Health Checks
+## 64. Health Checks
 
 A **health check** is a test used by a load balancer to determine whether a target can receive traffic.
 
 ---
 
-## Health-Check Example
+### Health-Check Example
 
 For an NGINX server:
 
@@ -737,7 +737,7 @@ If it receives the expected response, the target can become healthy.
 
 ---
 
-## Target Health States
+### Target Health States
 
 | State | Meaning |
 | --- | --- |
@@ -752,7 +752,7 @@ Exact status names can vary by load-balancer and target type.
 
 ---
 
-## Health-Check Settings
+### Health-Check Settings
 
 | Setting | Meaning |
 | --- | --- |
@@ -767,7 +767,7 @@ Exact status names can vary by load-balancer and target type.
 
 ---
 
-## Good Health Endpoint
+### Good Health Endpoint
 
 A useful health endpoint should:
 
@@ -792,13 +792,13 @@ http://SERVER/health
 
 ---
 
-## EC2 Health vs Application Health
+### EC2 Health vs Application Health
 
-### EC2 Status Check
+#### EC2 Status Check
 
 Checks the virtual machine and underlying infrastructure.
 
-### Load-Balancer Health Check
+#### Load-Balancer Health Check
 
 Checks whether the application responds on the configured protocol, port and path.
 
@@ -811,7 +811,7 @@ Application health: Unhealthy
 
 ---
 
-# 65. Types of Load Balancers on AWS
+## 65. Types of Load Balancers on AWS
 
 AWS supports the following Elastic Load Balancing types.
 
@@ -824,7 +824,7 @@ AWS supports the following Elastic Load Balancing types.
 
 ---
 
-## Application Load Balancer
+### Application Load Balancer
 
 Best suited for:
 
@@ -838,7 +838,7 @@ Best suited for:
 
 ---
 
-## Network Load Balancer
+### Network Load Balancer
 
 Best suited for:
 
@@ -852,7 +852,7 @@ Best suited for:
 
 ---
 
-## Gateway Load Balancer
+### Gateway Load Balancer
 
 Used for virtual network appliances such as:
 
@@ -864,7 +864,7 @@ Used for virtual network appliances such as:
 
 ---
 
-## Classic Load Balancer
+### Classic Load Balancer
 
 Classic Load Balancer is the previous-generation load balancer.
 
@@ -872,7 +872,7 @@ For new applications, AWS normally recommends selecting an Application, Network 
 
 ---
 
-# 66. Load Balancer Security Groups
+## 66. Load Balancer Security Groups
 
 Application Load Balancers use security groups.
 
@@ -880,7 +880,7 @@ Network Load Balancers also support security groups in current AWS configuration
 
 ---
 
-## Two-Security-Group Design
+### Two-Security-Group Design
 
 Use separate security groups for:
 
@@ -889,7 +889,7 @@ Use separate security groups for:
 
 ---
 
-## Load-Balancer Security Group
+### Load-Balancer Security Group
 
 Example:
 
@@ -913,7 +913,7 @@ If IPv6 is enabled:
 
 ---
 
-## Instance Security Group
+### Instance Security Group
 
 Example:
 
@@ -943,7 +943,7 @@ Only the load balancer should reach their application port.
 
 ---
 
-## Security Flow
+### Security Flow
 
 ```text
 Internet
@@ -959,7 +959,7 @@ This prevents users from bypassing the load balancer and directly accessing the 
 
 ---
 
-## Health-Check Security
+### Health-Check Security
 
 The instance security group must allow the health-check protocol and port from the load balancer.
 
@@ -974,7 +974,7 @@ allows both application requests and health checks.
 
 ---
 
-# 67. Application Load Balancer
+## 67. Application Load Balancer
 
 An **Application Load Balancer**, or **ALB**, operates at Layer 7 of the OSI model.
 
@@ -984,7 +984,7 @@ An ALB understands HTTP and HTTPS requests.
 
 ---
 
-## ALB Features
+### ALB Features
 
 - HTTP and HTTPS listeners
 - Host-based routing
@@ -1007,7 +1007,7 @@ An ALB understands HTTP and HTTPS requests.
 
 ---
 
-## ALB Architecture
+### ALB Architecture
 
 ```text
 Client
@@ -1022,7 +1022,7 @@ Target group
 
 ---
 
-## ALB Target Types
+### ALB Target Types
 
 An ALB target group can use supported target types such as:
 
@@ -1036,9 +1036,9 @@ The target type is selected when the target group is created.
 
 ---
 
-# 68. Application Load Balancer – Part 2
+## 68. Application Load Balancer – Part 2
 
-## Listeners
+### Listeners
 
 A **listener** checks for connection requests using a configured protocol and port.
 
@@ -1059,7 +1059,7 @@ Each listener has:
 
 ---
 
-## Listener Rules
+### Listener Rules
 
 Listener rules decide what the ALB should do with a request.
 
@@ -1075,7 +1075,7 @@ If no custom rule matches, the default rule is used.
 
 ---
 
-## Listener Actions
+### Listener Actions
 
 Actions can include:
 
@@ -1086,7 +1086,7 @@ Actions can include:
 
 ---
 
-## HTTP-to-HTTPS Redirect
+### HTTP-to-HTTPS Redirect
 
 A common configuration is:
 
@@ -1100,7 +1100,7 @@ This ensures users use an encrypted connection.
 
 ---
 
-## Fixed Response Example
+### Fixed Response Example
 
 A listener rule could return:
 
@@ -1113,13 +1113,13 @@ without sending the request to an EC2 instance.
 
 ---
 
-# 69. ALB HTTP-Based Traffic Routing
+## 69. ALB HTTP-Based Traffic Routing
 
 Because an ALB understands HTTP, it can inspect information inside requests.
 
 ---
 
-## Path-Based Routing
+### Path-Based Routing
 
 ```text
 /images/* → images-target-group
@@ -1137,7 +1137,7 @@ is forwarded to the API servers.
 
 ---
 
-## Host-Based Routing
+### Host-Based Routing
 
 ```text
 shop.example.com → shop-target-group
@@ -1149,7 +1149,7 @@ One ALB can route several domain names.
 
 ---
 
-## Header-Based Routing
+### Header-Based Routing
 
 Example:
 
@@ -1163,7 +1163,7 @@ Forward to testing-target-group
 
 ---
 
-## Query-String Routing
+### Query-String Routing
 
 Example request:
 
@@ -1175,7 +1175,7 @@ The ALB can route requests containing selected query-string values.
 
 ---
 
-## HTTP-Method Routing
+### HTTP-Method Routing
 
 Example:
 
@@ -1188,7 +1188,7 @@ This should be used carefully because application design and security still need
 
 ---
 
-## Weighted Target Groups
+### Weighted Target Groups
 
 Traffic can be divided between target groups.
 
@@ -1208,13 +1208,13 @@ This can support:
 
 ---
 
-# 70. Application Load Balancer Target Groups
+## 70. Application Load Balancer Target Groups
 
 A **target group** is a logical group of resources that receive traffic from a load balancer.
 
 ---
 
-## Target Group Configuration
+### Target Group Configuration
 
 A target group defines:
 
@@ -1230,7 +1230,7 @@ A target group defines:
 
 ---
 
-## Example Target Group
+### Example Target Group
 
 ```text
 Name: nginx-asg-targets
@@ -1251,7 +1251,7 @@ EC2 instance 3
 
 ---
 
-## Registration Process
+### Registration Process
 
 ```text
 Register target
@@ -1267,7 +1267,7 @@ Load balancer sends traffic
 
 ---
 
-## Deregistration Process
+### Deregistration Process
 
 ```text
 Deregister target
@@ -1283,7 +1283,7 @@ Target is removed
 
 ---
 
-## Target Group vs Auto Scaling Group
+### Target Group vs Auto Scaling Group
 
 | Target group | Auto Scaling group |
 | --- | --- |
@@ -1296,9 +1296,9 @@ They can work together but are different resources.
 
 ---
 
-# 71. Application Load Balancer – Good to Know
+## 71. Application Load Balancer – Good to Know
 
-## ALB Uses DNS
+### ALB Uses DNS
 
 An ALB provides a DNS name such as:
 
@@ -1318,7 +1318,7 @@ Use:
 
 ---
 
-## Multiple Availability Zones
+### Multiple Availability Zones
 
 An Application Load Balancer requires subnets in at least two Availability Zones.
 
@@ -1328,7 +1328,7 @@ Targets should also be distributed across multiple enabled Availability Zones.
 
 ---
 
-## Cross-Zone Load Balancing
+### Cross-Zone Load Balancing
 
 Cross-zone load balancing allows load-balancer nodes to route traffic to targets across enabled Availability Zones.
 
@@ -1336,7 +1336,7 @@ For ALBs, cross-zone load balancing is enabled at the load-balancer level. Targe
 
 ---
 
-## Client IP Address
+### Client IP Address
 
 Because the ALB receives the client connection, the backend may see the load balancer as the direct connection source.
 
@@ -1356,7 +1356,7 @@ Applications must only trust forwarded headers from trusted proxies such as the 
 
 ---
 
-## ALB Does Not Provide Static IPs
+### ALB Does Not Provide Static IPs
 
 Application Load Balancer IP addresses can change.
 
@@ -1368,7 +1368,7 @@ If fixed IP addresses are required, consider:
 
 ---
 
-## Monitoring
+### Monitoring
 
 Useful ALB CloudWatch metrics include:
 
@@ -1385,7 +1385,7 @@ Access logging can be configured for more detailed request records.
 
 ---
 
-# 72. Network Load Balancer
+## 72. Network Load Balancer
 
 A **Network Load Balancer**, or **NLB**, operates mainly at Layer 4.
 
@@ -1395,7 +1395,7 @@ An NLB handles network connections without needing to understand HTTP paths or h
 
 ---
 
-## NLB Protocols
+### NLB Protocols
 
 Network Load Balancers support listener protocols such as:
 
@@ -1408,7 +1408,7 @@ Available options depend on the selected configuration.
 
 ---
 
-## NLB Benefits
+### NLB Benefits
 
 - Very high performance
 - Low latency
@@ -1421,7 +1421,7 @@ Available options depend on the selected configuration.
 
 ---
 
-## NLB Use Cases
+### NLB Use Cases
 
 - Gaming servers
 - Voice and media traffic
@@ -1434,7 +1434,7 @@ Available options depend on the selected configuration.
 
 ---
 
-## NLB Architecture
+### NLB Architecture
 
 ```text
 Client
@@ -1449,7 +1449,7 @@ Target group
 
 ---
 
-# 73. Network Load Balancer – TCP Layer 4
+## 73. Network Load Balancer – TCP Layer 4
 
 A Network Load Balancer makes decisions using Layer 4 information such as:
 
@@ -1469,7 +1469,7 @@ It does not normally route based on:
 
 ---
 
-## ALB vs NLB
+### ALB vs NLB
 
 | Application Load Balancer | Network Load Balancer |
 | --- | --- |
@@ -1483,11 +1483,11 @@ It does not normally route based on:
 
 ---
 
-## TLS on an NLB
+### TLS on an NLB
 
 An NLB can use:
 
-### TLS Listener
+#### TLS Listener
 
 The NLB terminates TLS using a certificate.
 
@@ -1495,7 +1495,7 @@ The NLB terminates TLS using a certificate.
 Client → TLS → NLB → TCP or TLS → Target
 ```
 
-### TCP Listener on Port 443
+#### TCP Listener on Port 443
 
 The NLB passes encrypted traffic to the target without decrypting it.
 
@@ -1507,7 +1507,7 @@ This is known as TLS pass-through.
 
 ---
 
-# 74. Sticky Sessions
+## 74. Sticky Sessions
 
 A **sticky session** sends a user’s requests to the same target for a configured period.
 
@@ -1519,7 +1519,7 @@ Session affinity
 
 ---
 
-## Without Stickiness
+### Without Stickiness
 
 ```text
 Request 1 → Instance A
@@ -1529,7 +1529,7 @@ Request 3 → Instance C
 
 ---
 
-## With Stickiness
+### With Stickiness
 
 ```text
 Request 1 → Instance A
@@ -1541,7 +1541,7 @@ The load balancer commonly uses a cookie to remember the selected target.
 
 ---
 
-## Types of ALB Stickiness
+### Types of ALB Stickiness
 
 ALB stickiness can use:
 
@@ -1551,7 +1551,7 @@ ALB stickiness can use:
 
 ---
 
-## Why Use Sticky Sessions?
+### Why Use Sticky Sessions?
 
 They can help older or stateful applications where session information is stored locally on one server.
 
@@ -1565,7 +1565,7 @@ Later requests must return to Instance A
 
 ---
 
-## Disadvantages
+### Disadvantages
 
 - Traffic may become uneven.
 - One target can receive too many users.
@@ -1576,7 +1576,7 @@ Later requests must return to Instance A
 
 ---
 
-## Preferred Design
+### Preferred Design
 
 Where possible, store session state externally.
 
@@ -1591,7 +1591,7 @@ This allows any healthy target to handle the request.
 
 ---
 
-# 75. SSL/TLS Basics
+## 75. SSL/TLS Basics
 
 **SSL** stands for **Secure Sockets Layer**.
 
@@ -1603,7 +1603,7 @@ The term SSL is still commonly used, but modern secure connections use TLS.
 
 ---
 
-## HTTP vs HTTPS
+### HTTP vs HTTPS
 
 | HTTP | HTTPS |
 | --- | --- |
@@ -1614,25 +1614,25 @@ The term SSL is still commonly used, but modern secure connections use TLS.
 
 ---
 
-## What TLS Provides
+### What TLS Provides
 
 TLS provides:
 
-### Encryption
+#### Encryption
 
 Prevents third parties from easily reading the traffic.
 
-### Authentication
+#### Authentication
 
 Helps the client confirm the identity of the server.
 
-### Integrity
+#### Integrity
 
 Helps detect whether the traffic was modified.
 
 ---
 
-## Simplified TLS Handshake
+### Simplified TLS Handshake
 
 ```text
 Client connects to server
@@ -1650,7 +1650,7 @@ The full process depends on the TLS version and selected cipher suite.
 
 ---
 
-# 76. Load Balancer SSL Certificate
+## 76. Load Balancer SSL Certificate
 
 An HTTPS listener requires a server certificate.
 
@@ -1663,7 +1663,7 @@ AWS Certificate Manager is commonly preferred.
 
 ---
 
-## Certificate Information
+### Certificate Information
 
 A certificate contains information such as:
 
@@ -1677,7 +1677,7 @@ The private key must remain protected.
 
 ---
 
-## ACM Certificate Process
+### ACM Certificate Process
 
 1. Open AWS Certificate Manager.
 2. Request a public certificate.
@@ -1690,7 +1690,7 @@ The private key must remain protected.
 
 ---
 
-## Domain Validation
+### Domain Validation
 
 ACM commonly supports DNS validation.
 
@@ -1708,7 +1708,7 @@ DNS-validated ACM certificates can normally renew automatically while the requir
 
 ---
 
-## HTTPS Listener
+### HTTPS Listener
 
 Example:
 
@@ -1729,7 +1729,7 @@ Use a current security policy compatible with required clients.
 
 ---
 
-# 77. SSL Server Name Indication
+## 77. SSL Server Name Indication
 
 **SNI** stands for **Server Name Indication**.
 
@@ -1737,13 +1737,13 @@ SNI allows one load balancer listener to use different certificates for differen
 
 ---
 
-## Without SNI
+### Without SNI
 
 Historically, hosting several HTTPS domains on one IP address was difficult because certificate selection happened before the HTTP hostname was available.
 
 ---
 
-## With SNI
+### With SNI
 
 The client includes the requested hostname during the TLS handshake.
 
@@ -1759,7 +1759,7 @@ The load balancer selects the matching certificate.
 
 ---
 
-## ALB Certificate List
+### ALB Certificate List
 
 An HTTPS listener can have:
 
@@ -1780,13 +1780,13 @@ The default certificate is used when a suitable additional certificate is not se
 
 ---
 
-# 78. Elastic Load Balancers and SSL
+## 78. Elastic Load Balancers and SSL
 
 Load balancers can manage TLS in several ways.
 
 ---
 
-## TLS Termination
+### TLS Termination
 
 The client’s TLS connection ends at the load balancer.
 
@@ -1801,7 +1801,7 @@ The load balancer:
 3. Decrypts the request.
 4. Sends the request to the target.
 
-### Advantages
+#### Advantages
 
 - Certificates are managed centrally.
 - EC2 instances perform less TLS processing.
@@ -1810,7 +1810,7 @@ The load balancer:
 
 ---
 
-## End-to-End Encryption
+### End-to-End Encryption
 
 Traffic is encrypted between both:
 
@@ -1827,7 +1827,7 @@ The target group uses HTTPS, and the target must run HTTPS.
 
 ---
 
-## TLS Pass-Through
+### TLS Pass-Through
 
 A Network Load Balancer with a TCP listener can pass encrypted traffic through without decrypting it.
 
@@ -1843,7 +1843,7 @@ The backend target manages:
 
 ---
 
-## HTTP-to-HTTPS Redirect
+### HTTP-to-HTTPS Redirect
 
 A common ALB configuration is:
 
@@ -1859,7 +1859,7 @@ This ensures normal HTTP requests are redirected to HTTPS.
 
 ---
 
-# 79. Connection Draining
+## 79. Connection Draining
 
 **Connection draining** allows existing requests to finish when a target is removed.
 
@@ -1867,7 +1867,7 @@ For modern target groups, this is controlled by the **deregistration delay**.
 
 ---
 
-## Without Connection Draining
+### Without Connection Draining
 
 ```text
 Target removed
@@ -1879,7 +1879,7 @@ User receives an error
 
 ---
 
-## With Connection Draining
+### With Connection Draining
 
 ```text
 Target starts deregistering
@@ -1899,7 +1899,7 @@ Draining
 
 ---
 
-## Deregistration Delay
+### Deregistration Delay
 
 The default ALB target-group deregistration delay is commonly:
 
@@ -1915,7 +1915,7 @@ Long-running requests may require more time.
 
 ---
 
-## When Connection Draining Is Used
+### When Connection Draining Is Used
 
 - Scaling in
 - Instance maintenance
@@ -1928,7 +1928,7 @@ The operating system or application should not be shut down before important in-
 
 ---
 
-# 80. What Is an Auto Scaling Group?
+## 80. What Is an Auto Scaling Group?
 
 An **Auto Scaling group**, or **ASG**, manages a collection of EC2 instances.
 
@@ -1936,7 +1936,7 @@ It attempts to maintain the required capacity and can automatically add, replace
 
 ---
 
-## ASG Capacity Settings
+### ASG Capacity Settings
 
 An Auto Scaling group uses:
 
@@ -1960,7 +1960,7 @@ It cannot scale below two or above six unless the limits are changed.
 
 ---
 
-## ASG Example
+### ASG Example
 
 ```text
 Low demand:
@@ -1975,7 +1975,7 @@ Demand reduces:
 
 ---
 
-## ASG Responsibilities
+### ASG Responsibilities
 
 - Launch EC2 instances
 - Maintain desired capacity
@@ -1989,9 +1989,9 @@ Demand reduces:
 
 ---
 
-# 81. Auto Scaling Group in AWS
+## 81. Auto Scaling Group in AWS
 
-## Launch Template
+### Launch Template
 
 An Auto Scaling group needs a definition for new EC2 instances.
 
@@ -2020,7 +2020,7 @@ User Data: Install and configure NGINX
 
 ---
 
-## Multiple Availability Zones
+### Multiple Availability Zones
 
 Configure the ASG with subnets in multiple Availability Zones.
 
@@ -2035,7 +2035,7 @@ The ASG attempts to balance capacity across the configured Availability Zones.
 
 ---
 
-## Self-Healing
+### Self-Healing
 
 If an instance becomes unhealthy:
 
@@ -2053,7 +2053,7 @@ This is known as self-healing infrastructure.
 
 ---
 
-## Health-Check Grace Period
+### Health-Check Grace Period
 
 A new instance may require time to:
 
@@ -2069,7 +2069,7 @@ The grace period should reflect the application’s real startup time.
 
 ---
 
-## Launch Template Versions
+### Launch Template Versions
 
 Launch templates support versions.
 
@@ -2087,13 +2087,13 @@ Existing instances are not automatically rebuilt unless an instance refresh or r
 
 ---
 
-# 82. Auto Scaling Group with a Load Balancer
+## 82. Auto Scaling Group with a Load Balancer
 
 An ASG can be connected to an ALB target group.
 
 ---
 
-## Integration Flow
+### Integration Flow
 
 ```text
 ASG launches instance
@@ -2121,7 +2121,7 @@ Instance terminates
 
 ---
 
-## Combined Architecture
+### Combined Architecture
 
 ```text
                          Internet
@@ -2138,7 +2138,7 @@ Instance terminates
 
 ---
 
-## Load-Balancer Health Checks in an ASG
+### Load-Balancer Health Checks in an ASG
 
 The ASG can use load-balancer health information.
 
@@ -2154,13 +2154,13 @@ Without ELB health checks, the ASG may only see that the EC2 virtual machine its
 
 ---
 
-# 83. Auto Scaling Group Activities
+## 83. Auto Scaling Group Activities
 
 The **Activity** or **Activity history** section records actions performed by the ASG.
 
 ---
 
-## Activity Information
+### Activity Information
 
 An activity can show:
 
@@ -2175,7 +2175,7 @@ An activity can show:
 
 ---
 
-## Example Activities
+### Example Activities
 
 ```text
 Launching a new EC2 instance
@@ -2188,7 +2188,7 @@ Failed to launch instance
 
 ---
 
-## Why Activity History Matters
+### Why Activity History Matters
 
 It helps answer questions such as:
 
@@ -2203,7 +2203,7 @@ It helps answer questions such as:
 
 ---
 
-## Common Activity Failures
+### Common Activity Failures
 
 - Incorrect launch-template configuration
 - Invalid AMI
@@ -2218,7 +2218,7 @@ It helps answer questions such as:
 
 ---
 
-# 84. Auto Scaling, CloudWatch Alarms and Scaling
+## 84. Auto Scaling, CloudWatch Alarms and Scaling
 
 Amazon CloudWatch collects metrics from AWS resources.
 
@@ -2228,7 +2228,7 @@ A scaling policy can respond to the alarm.
 
 ---
 
-## Scaling Flow
+### Scaling Flow
 
 ```text
 CloudWatch metric
@@ -2244,7 +2244,7 @@ ASG changes desired capacity
 
 ---
 
-## Example Scale-Out Alarm
+### Example Scale-Out Alarm
 
 ```text
 Metric: Average CPU utilisation
@@ -2255,7 +2255,7 @@ Action: Add instances
 
 ---
 
-## Example Scale-In Alarm
+### Example Scale-In Alarm
 
 ```text
 Metric: Average CPU utilisation
@@ -2268,7 +2268,7 @@ Scale-in conditions are often more conservative to prevent capacity being remove
 
 ---
 
-## Useful Scaling Metrics
+### Useful Scaling Metrics
 
 - Average CPU utilisation
 - Network in
@@ -2281,7 +2281,7 @@ Scale-in conditions are often more conservative to prevent capacity being remove
 
 ---
 
-## Alarm States
+### Alarm States
 
 | State | Meaning |
 | --- | --- |
@@ -2293,7 +2293,7 @@ An alarm state does not always mean the application is broken. It means the conf
 
 ---
 
-## Instance Warmup
+### Instance Warmup
 
 A new instance needs time before its metrics represent normal operation.
 
@@ -2310,13 +2310,13 @@ Warmup can include time for:
 
 ---
 
-# 85. Auto Scaling Group Scaling Policies
+## 85. Auto Scaling Group Scaling Policies
 
 A scaling policy defines when and how the ASG changes capacity.
 
 ---
 
-## Target Tracking Scaling
+### Target Tracking Scaling
 
 Target tracking attempts to maintain a metric near a selected target.
 
@@ -2340,7 +2340,7 @@ Target tracking is commonly the simplest dynamic scaling policy.
 
 ---
 
-## Step Scaling
+### Step Scaling
 
 Step scaling changes capacity based on how far a metric passes a threshold.
 
@@ -2358,7 +2358,7 @@ CloudWatch alarms must be configured for the policy.
 
 ---
 
-## Simple Scaling
+### Simple Scaling
 
 Simple scaling performs one adjustment when an alarm is triggered.
 
@@ -2376,7 +2376,7 @@ It is less flexible than target tracking or step scaling and is generally consid
 
 ---
 
-## Scheduled Scaling
+### Scheduled Scaling
 
 Scheduled scaling changes capacity at known times.
 
@@ -2394,7 +2394,7 @@ It is useful for predictable traffic patterns.
 
 ---
 
-## Predictive Scaling
+### Predictive Scaling
 
 Predictive scaling analyses historical metric data and forecasts future demand.
 
@@ -2406,7 +2406,7 @@ Predictive scaling requires sufficient metric history before useful forecasts ca
 
 ---
 
-## Manual Scaling
+### Manual Scaling
 
 An administrator directly changes:
 
@@ -2425,7 +2425,7 @@ It is not automatic.
 
 ---
 
-## Scaling Policy Comparison
+### Scaling Policy Comparison
 
 | Policy | Best suited for |
 | --- | --- |
@@ -2438,7 +2438,7 @@ It is not automatic.
 
 ---
 
-## Scale-Out vs Scale-In Safety
+### Scale-Out vs Scale-In Safety
 
 Scale out quickly enough to protect performance.
 
@@ -2461,13 +2461,13 @@ Use:
 
 ---
 
-# Practical Demo: ALB and Auto Scaling Group
+## Practical Demo: ALB and Auto Scaling Group
 
 This lab extends the previous Ubuntu and NGINX work.
 
 ---
 
-## Final Architecture
+### Final Architecture
 
 ```text
                              Internet
@@ -2488,7 +2488,7 @@ This lab extends the previous Ubuntu and NGINX work.
 
 ---
 
-## Step 1: Create the ALB Security Group
+### Step 1: Create the ALB Security Group
 
 Create:
 
@@ -2508,7 +2508,7 @@ Only add HTTPS when a certificate and HTTPS listener will be configured.
 
 ---
 
-## Step 2: Create the Instance Security Group
+### Step 2: Create the Instance Security Group
 
 Create:
 
@@ -2528,7 +2528,7 @@ The SSH rule is optional for the lab. Systems Manager Session Manager can provid
 
 ---
 
-## Step 3: Create the Launch Template
+### Step 3: Create the Launch Template
 
 Create:
 
@@ -2545,7 +2545,7 @@ Do not select a fixed subnet in the launch template because the ASG will select 
 
 ---
 
-## Step 4: Add User Data
+### Step 4: Add User Data
 
 ```bash
 #!/bin/bash
@@ -2591,7 +2591,7 @@ Each instance displays its own instance ID and Availability Zone.
 
 ---
 
-## Step 5: Create the Target Group
+### Step 5: Create the Target Group
 
 Create:
 
@@ -2616,7 +2616,7 @@ Do not manually register temporary instances when the target group will be manag
 
 ---
 
-## Step 6: Create the Application Load Balancer
+### Step 6: Create the Application Load Balancer
 
 Create:
 
@@ -2651,7 +2651,7 @@ Default action: Forward to nginx-asg-targets
 
 ---
 
-## Step 7: Create the Auto Scaling Group
+### Step 7: Create the Auto Scaling Group
 
 Create:
 
@@ -2681,7 +2681,7 @@ Enable Elastic Load Balancing health checks and configure a suitable health-chec
 
 ---
 
-## Step 8: Wait for Healthy Targets
+### Step 8: Wait for Healthy Targets
 
 Open:
 
@@ -2707,7 +2707,7 @@ If they remain unhealthy, check:
 
 ---
 
-## Step 9: Test the Load Balancer
+### Step 9: Test the Load Balancer
 
 Copy the ALB DNS name:
 
@@ -2740,7 +2740,7 @@ done
 
 ---
 
-## Step 10: Test a Failed Target
+### Step 10: Test a Failed Target
 
 Connect to one target and stop NGINX:
 
@@ -2762,7 +2762,7 @@ If the ASG uses ELB health checks, it may replace the unhealthy instance after t
 
 ---
 
-## Step 11: Test Manual Scaling
+### Step 11: Test Manual Scaling
 
 Change desired capacity:
 
@@ -2786,7 +2786,7 @@ Auto Scaling Groups → Activity
 
 ---
 
-## Step 12: Add Target Tracking
+### Step 12: Add Target Tracking
 
 Create a dynamic scaling policy:
 
@@ -2802,7 +2802,7 @@ For web applications, ALB request count per target may sometimes represent deman
 
 ---
 
-## Step 13: Add HTTPS
+### Step 13: Add HTTPS
 
 When a domain is available:
 
@@ -2817,7 +2817,7 @@ When a domain is available:
 
 ---
 
-# Useful AWS CLI Commands
+## Useful AWS CLI Commands
 
 List load balancers:
 
@@ -2871,9 +2871,9 @@ aws autoscaling set-desired-capacity \
 
 ---
 
-# Troubleshooting
+## Troubleshooting
 
-## ALB Returns HTTP 503
+### ALB Returns HTTP 503
 
 Possible causes:
 
@@ -2891,7 +2891,7 @@ Target Groups → Targets
 
 ---
 
-## Target Is Unhealthy
+### Target Is Unhealthy
 
 Check:
 
@@ -2920,7 +2920,7 @@ sudo less /var/log/cloud-init-output.log
 
 ---
 
-## ALB Times Out
+### ALB Times Out
 
 Check:
 
@@ -2933,7 +2933,7 @@ Check:
 
 ---
 
-## ASG Does Not Launch Instances
+### ASG Does Not Launch Instances
 
 Review the ASG Activity history.
 
@@ -2951,7 +2951,7 @@ Common causes:
 
 ---
 
-## ASG Does Not Scale Out
+### ASG Does Not Scale Out
 
 Check:
 
@@ -2965,7 +2965,7 @@ Check:
 
 ---
 
-## ASG Scales Repeatedly
+### ASG Scales Repeatedly
 
 Possible causes:
 
@@ -2978,7 +2978,7 @@ Possible causes:
 
 ---
 
-## HTTPS Certificate Error
+### HTTPS Certificate Error
 
 Check:
 
@@ -2992,7 +2992,7 @@ Check:
 
 ---
 
-# Load-Balancing and Scaling Checklist
+## Load-Balancing and Scaling Checklist
 
 - [ ] Use at least two Availability Zones.
 - [ ] Use more than one application instance.
@@ -3021,7 +3021,7 @@ Check:
 
 ---
 
-# Quick Revision Questions
+## Quick Revision Questions
 
 1. What is scalability?
 2. What is elasticity?
@@ -3081,7 +3081,7 @@ Check:
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - Scalability handles changes in demand.
 - Elasticity adjusts resources dynamically.
@@ -3120,7 +3120,7 @@ Check:
 
 ---
 
-# Official AWS References
+## Official AWS References
 
 - [What is Elastic Load Balancing?](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html)
 - [How Elastic Load Balancing works](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)

@@ -15,7 +15,7 @@ Route 53 can be used to:
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 By the end of these notes, I should be able to:
 
@@ -34,7 +34,7 @@ By the end of these notes, I should be able to:
 
 ---
 
-# 133. Amazon Route 53
+## 133. Amazon Route 53
 
 Amazon Route 53 is a managed AWS DNS service.
 
@@ -44,7 +44,7 @@ It provides three main functions:
 2. **DNS routing** – directing DNS queries to the correct application or resource.
 3. **Health checking** – checking resources and helping route traffic away from unhealthy endpoints.
 
-## Simple Explanation
+### Simple Explanation
 
 People remember names more easily than IP addresses.
 
@@ -69,7 +69,7 @@ flowchart LR
     ALB --> App[EC2 application]
 ```
 
-## Important Route 53 Characteristics
+### Important Route 53 Characteristics
 
 - Route 53 is a global AWS service.
 - Hosted zones are not created inside one Availability Zone.
@@ -78,7 +78,7 @@ flowchart LR
 - Route 53 is authoritative for a domain only when the domain is delegated to its name servers.
 - Creating a hosted zone alone does not automatically update a third-party registrar.
 
-## Why Route 53 Matters to DevOps
+### Why Route 53 Matters to DevOps
 
 DevOps engineers use Route 53 for:
 
@@ -94,7 +94,7 @@ DevOps engineers use Route 53 for:
 
 ---
 
-# 134. Route 53 Hosted Zones
+## 134. Route 53 Hosted Zones
 
 A **hosted zone** is a container for DNS records belonging to a domain and its subdomains.
 
@@ -113,7 +113,7 @@ api.example.com
 mail.example.com
 ```
 
-## Records Inside a Hosted Zone
+### Records Inside a Hosted Zone
 
 | Record name | Type | Purpose |
 | --- | --- | --- |
@@ -123,14 +123,14 @@ mail.example.com
 | `example.com` | MX | Identify email servers |
 | `example.com` | TXT | Store verification or email-policy text |
 
-## Automatically Created Records
+### Automatically Created Records
 
 When Route 53 creates a hosted zone, it automatically creates:
 
 - An **NS record**
 - An **SOA record**
 
-### NS Record
+#### NS Record
 
 The NS record identifies the authoritative name servers for the hosted zone.
 
@@ -145,13 +145,13 @@ ns-789.awsdns-10.org
 ns-101.awsdns-11.co.uk
 ```
 
-### SOA Record
+#### SOA Record
 
 The **Start of Authority** record contains administrative information about the DNS zone.
 
 Do not delete or manually recreate the default NS and SOA records unless there is a specific, well-understood requirement.
 
-## View Hosted Zones with the AWS CLI
+### View Hosted Zones with the AWS CLI
 
 ```bash
 aws route53 list-hosted-zones
@@ -168,11 +168,11 @@ aws route53 list-resource-record-sets \
 
 ---
 
-# 135. Public vs Private Hosted Zones
+## 135. Public vs Private Hosted Zones
 
 Route 53 supports public and private hosted zones.
 
-## Public Hosted Zone
+### Public Hosted Zone
 
 A public hosted zone contains records that can be answered through public DNS.
 
@@ -190,7 +190,7 @@ Use a public hosted zone for:
 - Public verification records
 - Internet-facing AWS resources
 
-## Private Hosted Zone
+### Private Hosted Zone
 
 A private hosted zone provides DNS records inside associated VPCs.
 
@@ -210,7 +210,7 @@ Use a private hosted zone for:
 - Service discovery
 - Friendly names for private IP addresses
 
-## Comparison
+### Comparison
 
 | Public hosted zone | Private hosted zone |
 | --- | --- |
@@ -220,7 +220,7 @@ Use a private hosted zone for:
 | Common for websites and public APIs | Common for internal services |
 | Records can target public resources | Records commonly target private resources |
 
-## Split-Horizon DNS
+### Split-Horizon DNS
 
 The same domain name can exist in both a public and private hosted zone.
 
@@ -237,7 +237,7 @@ Internal VPC clients can receive the private answer while internet users receive
 
 ---
 
-# 136. What Is DNS?
+## 136. What Is DNS?
 
 **DNS** stands for **Domain Name System**.
 
@@ -249,7 +249,7 @@ The most common example is translating a domain name into an IP address.
 www.example.com → 203.0.113.20
 ```
 
-## DNS as the Internet’s Directory
+### DNS as the Internet’s Directory
 
 Think of DNS like a contact list:
 
@@ -258,7 +258,7 @@ Person's name → Telephone number
 Domain name   → IP address or service destination
 ```
 
-## DNS Does Not Carry the Website Traffic
+### DNS Does Not Carry the Website Traffic
 
 DNS normally tells the client where to connect.
 
@@ -275,7 +275,7 @@ sequenceDiagram
     W-->>U: Website response
 ```
 
-## Why DNS Is Important
+### Why DNS Is Important
 
 Without DNS, users would need to remember changing IP addresses for every service.
 
@@ -285,9 +285,9 @@ DNS allows infrastructure to change while the user-facing name remains stable.
 
 ---
 
-# 137. DNS Terminology
+## 137. DNS Terminology
 
-## Domain Name
+### Domain Name
 
 A human-readable name used to identify an internet resource.
 
@@ -295,7 +295,7 @@ A human-readable name used to identify an internet resource.
 example.com
 ```
 
-## Top-Level Domain
+### Top-Level Domain
 
 The final part of a domain name.
 
@@ -308,7 +308,7 @@ Examples:
 .uk
 ```
 
-## Second-Level Domain
+### Second-Level Domain
 
 The name directly before the top-level domain.
 
@@ -324,7 +324,7 @@ The second-level domain is:
 example
 ```
 
-## Subdomain
+### Subdomain
 
 A name added before the main domain.
 
@@ -336,7 +336,7 @@ api.example.com
 shop.example.com
 ```
 
-## Fully Qualified Domain Name
+### Fully Qualified Domain Name
 
 An **FQDN** identifies a complete name in the DNS hierarchy.
 
@@ -346,7 +346,7 @@ Example:
 api.example.com
 ```
 
-## Domain Registrar
+### Domain Registrar
 
 The organisation through which a domain is registered.
 
@@ -357,17 +357,17 @@ Examples include:
 - Namecheap
 - Cloudflare Registrar
 
-## Registrant
+### Registrant
 
 The person or organisation that holds the domain registration.
 
-## Name Server
+### Name Server
 
 A DNS server responsible for providing DNS information.
 
 An authoritative name server stores or serves the official records for a zone.
 
-## Recursive Resolver
+### Recursive Resolver
 
 A resolver receives a DNS query from a client and searches for the answer, using cached information where possible.
 
@@ -378,25 +378,25 @@ Resolvers may be operated by:
 - A cloud provider
 - A public DNS provider
 
-## DNS Zone
+### DNS Zone
 
 An administrative section of the DNS namespace.
 
 In Route 53, records for a zone are stored in a hosted zone.
 
-## Record
+### Record
 
 A DNS record contains information about a domain or subdomain.
 
-## TTL
+### TTL
 
 **Time To Live** determines how long a resolver can cache a DNS answer.
 
-## Authoritative DNS
+### Authoritative DNS
 
 The authoritative DNS service provides the official answer for a domain’s records.
 
-## DNS Propagation
+### DNS Propagation
 
 DNS propagation describes the period during which DNS caches and delegations are updating after a change.
 
@@ -404,7 +404,7 @@ The change may already exist on the authoritative server while some users still 
 
 ---
 
-# 138. How DNS Works
+## 138. How DNS Works
 
 Suppose a user requests:
 
@@ -412,7 +412,7 @@ Suppose a user requests:
 www.example.com
 ```
 
-## DNS Lookup Process
+### DNS Lookup Process
 
 1. The browser checks its DNS cache.
 2. The operating system checks its cache and local configuration.
@@ -435,17 +435,17 @@ flowchart TD
     Resolver --> Client
 ```
 
-## Recursive and Iterative Queries
+### Recursive and Iterative Queries
 
-### Recursive Query
+#### Recursive Query
 
 The client asks a resolver to obtain the final answer.
 
-### Iterative Query
+#### Iterative Query
 
 A DNS server may return a referral telling the resolver which server to ask next.
 
-## Local Hosts File
+### Local Hosts File
 
 A local hosts file can override normal DNS resolution on one computer.
 
@@ -473,7 +473,7 @@ This affects only the machine where the entry exists.
 
 ---
 
-# 139. Route 53 Routes
+## 139. Route 53 Routes
 
 Route 53 does not route network packets in the same way as a VPC route table.
 
@@ -486,7 +486,7 @@ DNS answer: Use the London load balancer.
 
 The client then attempts to connect to that destination.
 
-## DNS Routing Flow
+### DNS Routing Flow
 
 ```mermaid
 flowchart LR
@@ -495,7 +495,7 @@ flowchart LR
     Answer --> Connection[Client connects to endpoint]
 ```
 
-## DNS Routing vs VPC Routing
+### DNS Routing vs VPC Routing
 
 | Route 53 DNS routing | VPC route table |
 | --- | --- |
@@ -508,11 +508,11 @@ flowchart LR
 
 ---
 
-# 140. Route 53 Record Types
+## 140. Route 53 Record Types
 
 DNS record types store different kinds of information.
 
-## Common Records
+### Common Records
 
 | Type | Meaning | Example purpose |
 | --- | --- | --- |
@@ -528,7 +528,7 @@ DNS record types store different kinds of information.
 | SRV | Service locator | Identify a service’s host and port |
 | DS | Delegation Signer | Create a DNSSEC chain of trust |
 
-## A Record
+### A Record
 
 Maps a name to an IPv4 address.
 
@@ -536,7 +536,7 @@ Maps a name to an IPv4 address.
 app.example.com → 203.0.113.20
 ```
 
-## AAAA Record
+### AAAA Record
 
 Maps a name to an IPv6 address.
 
@@ -544,7 +544,7 @@ Maps a name to an IPv6 address.
 app.example.com → 2001:db8::20
 ```
 
-## CNAME Record
+### CNAME Record
 
 Maps one hostname to another hostname.
 
@@ -552,7 +552,7 @@ Maps one hostname to another hostname.
 www.example.com → app.example.net
 ```
 
-## MX Record
+### MX Record
 
 Specifies mail servers and their priority.
 
@@ -562,7 +562,7 @@ Specifies mail servers and their priority.
 
 A lower MX priority number is preferred.
 
-## TXT Record
+### TXT Record
 
 Stores text values used for purposes such as:
 
@@ -571,7 +571,7 @@ Stores text values used for purposes such as:
 - DKIM configuration
 - Third-party service verification
 
-## CAA Record
+### CAA Record
 
 Specifies which certificate authorities may issue certificates for a domain.
 
@@ -581,7 +581,7 @@ Example:
 0 issue "amazon.com"
 ```
 
-## NS and SOA Records
+### NS and SOA Records
 
 Route 53 creates these when it creates a hosted zone.
 
@@ -589,7 +589,7 @@ Avoid deleting or changing them without understanding the effect on the zone.
 
 ---
 
-# 141. Route 53 Record TTL
+## 141. Route 53 Record TTL
 
 **TTL** stands for **Time To Live**.
 
@@ -603,7 +603,7 @@ TTL: 300 seconds
 
 This means the answer may be cached for five minutes.
 
-## High vs Low TTL
+### High vs Low TTL
 
 | Low TTL | High TTL |
 | --- | --- |
@@ -612,7 +612,7 @@ This means the answer may be cached for five minutes.
 | Useful before migrations | Useful for stable records |
 | Can increase DNS query volume | Can delay failover or record changes |
 
-## Example TTL Values
+### Example TTL Values
 
 | TTL | Time |
 | ---: | --- |
@@ -623,7 +623,7 @@ This means the answer may be cached for five minutes.
 | 86,400 | 1 day |
 | 172,800 | 2 days |
 
-## Safe DNS Change Process
+### Safe DNS Change Process
 
 Before a planned migration:
 
@@ -634,7 +634,7 @@ Before a planned migration:
 5. Monitor the application.
 6. Increase the TTL again after the change is stable.
 
-## Important Client Behaviour
+### Important Client Behaviour
 
 Changing a record does not remove answers already stored in external caches.
 
@@ -644,11 +644,11 @@ Some users may continue receiving the old answer until their cached TTL expires.
 
 ---
 
-# 142. CNAME vs Alias
+## 142. CNAME vs Alias
 
 A CNAME record and a Route 53 alias record can both direct one name towards another destination, but they are not the same.
 
-## CNAME
+### CNAME
 
 A CNAME is a standard DNS record.
 
@@ -672,7 +672,7 @@ The zone apex is the root of the hosted zone:
 example.com
 ```
 
-## Route 53 Alias
+### Route 53 Alias
 
 An alias is a Route 53 extension to DNS.
 
@@ -691,7 +691,7 @@ An alias:
 - Can use **Evaluate target health** for supported targets
 - Does not let you enter a normal record TTL directly
 
-## Comparison
+### Comparison
 
 | CNAME | Route 53 alias |
 | --- | --- |
@@ -706,11 +706,11 @@ An alias:
 
 ---
 
-# 143. Route 53 Alias Records
+## 143. Route 53 Alias Records
 
 An alias record routes DNS traffic to a supported AWS resource or another record in the same hosted zone.
 
-## Example ALB Alias
+### Example ALB Alias
 
 ```text
 Name: example.com
@@ -721,7 +721,7 @@ Target: dualstack.my-alb.eu-west-2.elb.amazonaws.com
 
 This allows the root domain to point to a load balancer without placing a changing load-balancer IP address in an A record.
 
-## Evaluate Target Health
+### Evaluate Target Health
 
 For supported targets, an alias record can use:
 
@@ -733,7 +733,7 @@ Route 53 then considers the target resource’s health when selecting an answer.
 
 For an Application Load Balancer, target-group health can affect this evaluation.
 
-## Why Not Store an ALB IP Address?
+### Why Not Store an ALB IP Address?
 
 Load-balancer IP addresses can change.
 
@@ -741,7 +741,7 @@ Use the load balancer’s DNS name through an alias instead of attempting to sto
 
 ---
 
-# 144. Route 53 Alias Record Targets
+## 144. Route 53 Alias Record Targets
 
 Common alias targets include:
 
@@ -758,7 +758,7 @@ Common alias targets include:
 
 The Route 53 console displays valid targets for the selected record and hosted zone.
 
-## Common Architecture
+### Common Architecture
 
 ```mermaid
 flowchart LR
@@ -767,7 +767,7 @@ flowchart LR
     ALB --> Targets[EC2 target group]
 ```
 
-## Important Limitations
+### Important Limitations
 
 - An alias cannot point to any arbitrary external hostname.
 - An EC2 public IP is normally used with an A record, preferably through an Elastic IP if a fixed address is essential.
@@ -777,11 +777,11 @@ flowchart LR
 
 ---
 
-# 145. Route 53 Routing Policies
+## 145. Route 53 Routing Policies
 
 A routing policy determines how Route 53 selects a DNS response when multiple possible records or endpoints exist.
 
-## Main Policies
+### Main Policies
 
 | Policy | Main purpose |
 | --- | --- |
@@ -794,7 +794,7 @@ A routing policy determines how Route 53 selects a DNS response when multiple po
 | IP-based | Route using configured client-IP CIDR mappings |
 | Multivalue answer | Return multiple healthy values |
 
-## Routing Policy Does Not Filter Network Traffic
+### Routing Policy Does Not Filter Network Traffic
 
 Routing policies influence DNS answers.
 
@@ -806,7 +806,7 @@ They do not replace:
 - Load balancers
 - Application authentication
 
-## DNS Caching Still Applies
+### DNS Caching Still Applies
 
 Route 53 makes a decision when it receives a DNS query.
 
@@ -814,7 +814,7 @@ If a resolver already has a cached answer, it may not ask Route 53 again until t
 
 ---
 
-# 146. Simple Routing Policy
+## 146. Simple Routing Policy
 
 Simple routing is used when no specialised routing behaviour is required.
 
@@ -824,7 +824,7 @@ Example:
 app.example.com → One Application Load Balancer
 ```
 
-## Characteristics
+### Characteristics
 
 - Commonly routes to one resource
 - Can contain multiple values in one non-alias record
@@ -832,7 +832,7 @@ app.example.com → One Application Load Balancer
 - Multiple returned values may be presented in a random order
 - Can be used in public and private hosted zones
 
-## Use Cases
+### Use Cases
 
 - One website endpoint
 - One load balancer
@@ -844,11 +844,11 @@ app.example.com → One Application Load Balancer
 
 ---
 
-# 147. Weighted Routing Policy
+## 147. Weighted Routing Policy
 
 Weighted routing divides DNS responses between multiple resources using relative weights.
 
-## Example
+### Example
 
 | Endpoint | Weight | Approximate share |
 | --- | ---: | ---: |
@@ -867,7 +867,7 @@ For the new release:
 10 / (90 + 10) = 10%
 ```
 
-## Common Use Cases
+### Common Use Cases
 
 - Canary deployments
 - Blue/green deployments
@@ -875,7 +875,7 @@ For the new release:
 - A/B testing
 - Dividing traffic between application versions
 
-## Important Behaviour
+### Important Behaviour
 
 - Weights are relative, not fixed percentages.
 - Records in the group use the same name and record type.
@@ -891,7 +891,7 @@ flowchart TD
 
 ---
 
-# 148. Latency-Based Routing
+## 148. Latency-Based Routing
 
 Latency-based routing directs a DNS query towards the configured AWS Region expected to provide the lowest latency for that user.
 
@@ -904,14 +904,14 @@ US East (N. Virginia): us-east-1
 
 Route 53 uses AWS latency measurements to choose between the Regions for which latency records exist.
 
-## Use Cases
+### Use Cases
 
 - Global applications
 - Multi-Region APIs
 - Improving user response times
 - Directing users towards better-performing regional deployments
 
-## Important Points
+### Important Points
 
 - Lowest latency does not necessarily mean geographically closest.
 - Internet paths and latency can change over time.
@@ -923,13 +923,13 @@ Route 53 uses AWS latency measurements to choose between the Regions for which l
 
 ---
 
-# 149. Route 53 Health Checks
+## 149. Route 53 Health Checks
 
 Route 53 health checks monitor endpoint availability or other health signals.
 
 They can help Route 53 avoid returning unhealthy resources in supported routing configurations.
 
-## Health Check Types
+### Health Check Types
 
 Route 53 can monitor:
 
@@ -937,7 +937,7 @@ Route 53 can monitor:
 - The status of other Route 53 health checks
 - The state of a CloudWatch alarm
 
-## Endpoint Health Check
+### Endpoint Health Check
 
 Route 53 health checkers can send requests using protocols such as:
 
@@ -962,7 +962,7 @@ Example path:
 
 A useful health endpoint should verify enough of the application to show that it can serve users.
 
-## Private Endpoints
+### Private Endpoints
 
 Public Route 53 health checkers cannot directly reach a private IP address inside a VPC.
 
@@ -972,7 +972,7 @@ For private resources, possible approaches include:
 - Evaluating the health of an alias target such as an ALB
 - Monitoring through an appropriate public or managed application endpoint
 
-## DNS Failover
+### DNS Failover
 
 ```mermaid
 flowchart TD
@@ -981,13 +981,13 @@ flowchart TD
     Check -->|No| Secondary[Secondary endpoint]
 ```
 
-## Important Limitation
+### Important Limitation
 
 DNS failover is not always immediate because clients and resolvers may have cached the previous answer.
 
 Choose TTL values that match the required recovery objective, while considering query volume and stability.
 
-## Health Check Costs
+### Health Check Costs
 
 Route 53 health checks can create ongoing charges, with some features costing more than basic health checks.
 
@@ -995,7 +995,7 @@ Delete unused lab health checks.
 
 ---
 
-# 150. Geolocation Routing
+## 150. Geolocation Routing
 
 Geolocation routing chooses an answer based on the geographic origin of the DNS query.
 
@@ -1006,7 +1006,7 @@ Locations can include:
 - US states
 - A default location
 
-## Example
+### Example
 
 | User location | Destination |
 | --- | --- |
@@ -1014,7 +1014,7 @@ Locations can include:
 | United States | Virginia application |
 | Other locations | Default application |
 
-## Use Cases
+### Use Cases
 
 - Localised website content
 - Language selection
@@ -1022,7 +1022,7 @@ Locations can include:
 - Licensing restrictions
 - Data-sovereignty designs
 
-## Default Record
+### Default Record
 
 A default geolocation record handles users whose location:
 
@@ -1031,7 +1031,7 @@ A default geolocation record handles users whose location:
 
 Without an appropriate default record, some queries may receive no answer.
 
-## Most Specific Match
+### Most Specific Match
 
 A more specific matching location takes priority over a broader one.
 
@@ -1047,19 +1047,19 @@ Default record        → Everyone else
 
 ---
 
-# 151. Geoproximity Routing
+## 151. Geoproximity Routing
 
 Geoproximity routing directs users based on the location of users and resources.
 
 It normally sends traffic to the closest configured resource, but a **bias** can change the size of the geographic area routed to that resource.
 
-## Resource Locations
+### Resource Locations
 
 For AWS resources, a location can be an AWS Region or supported Local Zone group.
 
 For non-AWS resources, latitude and longitude can be provided.
 
-## Bias
+### Bias
 
 | Bias | Effect |
 | --- | --- |
@@ -1071,7 +1071,7 @@ AWS supports bias values from `-99` to `+99`.
 
 Change bias gradually to avoid suddenly overwhelming an endpoint.
 
-## Geolocation vs Geoproximity
+### Geolocation vs Geoproximity
 
 | Geolocation | Geoproximity |
 | --- | --- |
@@ -1084,15 +1084,15 @@ Change bias gradually to avoid suddenly overwhelming an endpoint.
 
 ---
 
-# 152. IP-Based Routing
+## 152. IP-Based Routing
 
 IP-based routing uses configured client-IP ranges to select a DNS response.
 
 It is useful when an organisation has its own knowledge about customers, networks or internet service providers.
 
-## Main Components
+### Main Components
 
-### CIDR Block
+#### CIDR Block
 
 An IP range such as:
 
@@ -1100,7 +1100,7 @@ An IP range such as:
 198.51.100.0/24
 ```
 
-### CIDR Location
+#### CIDR Location
 
 A named group of one or more CIDR blocks.
 
@@ -1110,11 +1110,11 @@ Example:
 uk-corporate-users
 ```
 
-### CIDR Collection
+#### CIDR Collection
 
 A reusable collection containing CIDR locations.
 
-## Example
+### Example
 
 | Source range | DNS destination |
 | --- | --- |
@@ -1122,14 +1122,14 @@ A reusable collection containing CIDR locations.
 | Partner network B | Endpoint B |
 | Default `*` | Public endpoint |
 
-## Use Cases
+### Use Cases
 
 - Route particular ISPs to selected endpoints
 - Optimise known network transit paths
 - Direct corporate client ranges
 - Override a more general location-based design
 
-## Important Points
+### Important Points
 
 - A default `*` location can handle unmatched queries.
 - CIDR planning must be accurate.
@@ -1138,7 +1138,7 @@ A reusable collection containing CIDR locations.
 
 ---
 
-# 153. Multivalue Answer Routing
+## 153. Multivalue Answer Routing
 
 Multivalue answer routing allows Route 53 to return multiple values for one DNS query.
 
@@ -1146,7 +1146,7 @@ Each resource can have its own record and optional health check.
 
 Route 53 returns up to eight healthy records in an answer.
 
-## Example
+### Example
 
 ```text
 app.example.com → 203.0.113.10
@@ -1156,7 +1156,7 @@ app.example.com → 203.0.113.30
 
 If one endpoint becomes unhealthy, Route 53 can stop including it in normal answers.
 
-## Multivalue vs Load Balancer
+### Multivalue vs Load Balancer
 
 | Multivalue DNS | Load balancer |
 | --- | --- |
@@ -1168,7 +1168,7 @@ If one endpoint becomes unhealthy, Route 53 can stop including it in normal answ
 
 Multivalue routing is not a replacement for an Elastic Load Balancer.
 
-## Important Behaviour
+### Important Behaviour
 
 - Records without health checks are always considered healthy.
 - Different resolvers may receive different sets or ordering.
@@ -1177,11 +1177,11 @@ Multivalue routing is not a replacement for an Elastic Load Balancer.
 
 ---
 
-# 154. Domain Registrar vs DNS Service
+## 154. Domain Registrar vs DNS Service
 
 Domain registration and DNS hosting are related but separate services.
 
-## Domain Registrar
+### Domain Registrar
 
 The registrar manages the registration of the domain.
 
@@ -1194,7 +1194,7 @@ Responsibilities can include:
 - Authoritative name-server delegation
 - Contact information
 
-## DNS Service
+### DNS Service
 
 The DNS service hosts and answers DNS records.
 
@@ -1206,7 +1206,7 @@ Responsibilities can include:
 - Routing policies
 - DNS health checks
 
-## Comparison
+### Comparison
 
 | Domain registrar | DNS service |
 | --- | --- |
@@ -1215,7 +1215,7 @@ Responsibilities can include:
 | Stores authoritative name-server delegation | Supplies the authoritative name servers |
 | Example: GoDaddy | Example: Amazon Route 53 |
 
-## They Do Not Need to Be the Same Company
+### They Do Not Need to Be the Same Company
 
 Example:
 
@@ -1231,11 +1231,11 @@ The registrar delegates DNS to the Route 53 name servers.
 
 ---
 
-# 155. GoDaddy as Registrar and Route 53 as DNS Service
+## 155. GoDaddy as Registrar and Route 53 as DNS Service
 
 A domain can remain registered with GoDaddy while Route 53 becomes its authoritative DNS service.
 
-## Architecture
+### Architecture
 
 ```mermaid
 flowchart LR
@@ -1244,7 +1244,7 @@ flowchart LR
     Zone --> ALB[Application Load Balancer]
 ```
 
-## Migration Process
+### Migration Process
 
 1. Record the existing DNS configuration.
 2. Export the existing zone file if the provider supports it.
@@ -1259,7 +1259,7 @@ flowchart LR
 11. Monitor website, API and email traffic.
 12. Keep the previous provider details temporarily in case rollback is needed.
 
-## Critical Warning
+### Critical Warning
 
 Do not change the registrar name servers until the required records exist in Route 53.
 
@@ -1271,7 +1271,7 @@ Missing records can break:
 - API endpoints
 - Subdomains
 
-## Verify Delegation
+### Verify Delegation
 
 ```bash
 dig NS example.com
@@ -1287,11 +1287,11 @@ The answer should eventually show the assigned Route 53 name servers.
 
 ---
 
-# 156. Third-Party Registrar with Amazon Route 53
+## 156. Third-Party Registrar with Amazon Route 53
 
 The same process works with most third-party registrars.
 
-## General Process
+### General Process
 
 ```text
 Register domain with third party
@@ -1307,13 +1307,13 @@ Update custom name servers at the registrar
 Test delegation and application traffic
 ```
 
-## What Changes at the Registrar?
+### What Changes at the Registrar?
 
 Only the authoritative name-server delegation needs to change when Route 53 becomes the DNS service.
 
 The domain can remain registered and renewed through the original registrar.
 
-## Safe Migration Checklist
+### Safe Migration Checklist
 
 - [ ] Confirm control of the correct domain.
 - [ ] Copy or export every existing DNS record.
@@ -1330,11 +1330,11 @@ The domain can remain registered and renewed through the original registrar.
 
 ---
 
-# Route 53 End-to-End Demo
+## Route 53 End-to-End Demo
 
 This demo connects a third-party domain to an internet-facing Application Load Balancer in `eu-west-2`.
 
-## Target Architecture
+### Target Architecture
 
 ```mermaid
 flowchart TD
@@ -1344,7 +1344,7 @@ flowchart TD
     ALB --> B[EC2 in eu-west-2b]
 ```
 
-## Prerequisites
+### Prerequisites
 
 - A domain you control
 - A working internet-facing ALB
@@ -1353,7 +1353,7 @@ flowchart TD
 - Access to the domain registrar
 - Permission to manage Route 53
 
-## Step 1: Check the Application First
+### Step 1: Check the Application First
 
 Open the ALB DNS name directly:
 
@@ -1363,7 +1363,7 @@ http://my-alb-123.eu-west-2.elb.amazonaws.com
 
 Do not start the DNS migration until the ALB and targets are working.
 
-## Step 2: Create a Public Hosted Zone
+### Step 2: Create a Public Hosted Zone
 
 1. Open **Route 53**.
 2. Select **Hosted zones**.
@@ -1373,7 +1373,7 @@ Do not start the DNS migration until the ALB and targets are working.
 6. Create the hosted zone.
 7. Record the four assigned name servers.
 
-## Step 3: Recreate Existing Records
+### Step 3: Recreate Existing Records
 
 Before changing registrar name servers, copy all required records into Route 53.
 
@@ -1385,7 +1385,7 @@ Pay particular attention to:
 - Domain-verification records
 - Existing subdomains
 
-## Step 4: Create the Root Alias Record
+### Step 4: Create the Root Alias Record
 
 Create:
 
@@ -1400,7 +1400,7 @@ Routing policy: Simple
 Evaluate target health: Yes
 ```
 
-## Step 5: Create the `www` Record
+### Step 5: Create the `www` Record
 
 Possible alias configuration:
 
@@ -1413,7 +1413,7 @@ Target: The same ALB
 
 Alternatively, a CNAME can point `www.example.com` to a suitable hostname, but an alias is convenient for a supported AWS target.
 
-## Step 6: Update the Registrar Name Servers
+### Step 6: Update the Registrar Name Servers
 
 At the registrar:
 
@@ -1425,7 +1425,7 @@ At the registrar:
 
 Do not copy trailing punctuation accidentally if the interface does not expect it.
 
-## Step 7: Verify DNS
+### Step 7: Verify DNS
 
 Check authoritative delegation:
 
@@ -1465,7 +1465,7 @@ Test the HTTP response:
 curl -I http://example.com
 ```
 
-## Step 8: Add HTTPS
+### Step 8: Add HTTPS
 
 1. Request or import a certificate in AWS Certificate Manager.
 2. Include the required names:
@@ -1489,7 +1489,7 @@ Test:
 curl -I https://example.com
 ```
 
-## Step 9: Inspect Route 53 with the CLI
+### Step 9: Inspect Route 53 with the CLI
 
 List hosted zones:
 
@@ -1511,7 +1511,7 @@ aws route53 list-resource-record-sets \
   --hosted-zone-id HOSTED_ZONE_ID
 ```
 
-## Example CLI Change File
+### Example CLI Change File
 
 `change-record.json`:
 
@@ -1550,7 +1550,7 @@ For an ALB, use an alias record instead.
 
 ---
 
-# Route 53 Troubleshooting
+## Route 53 Troubleshooting
 
 | Problem | Likely cause | Check |
 | --- | --- | --- |
@@ -1568,7 +1568,7 @@ For an ALB, use an alias record instead.
 | Weighted results look inaccurate | DNS caching or small sample | TTL and larger query sample |
 | Email stops after migration | Missing MX, TXT or DKIM records | Compare old and new zones |
 
-## Useful Commands
+### Useful Commands
 
 Query specific record types:
 
@@ -1601,7 +1601,7 @@ dig example.com +noall +answer
 
 ---
 
-# Route 53 Security Checklist
+## Route 53 Security Checklist
 
 - [ ] Enable MFA for privileged AWS and registrar access.
 - [ ] Protect the registrar account with a strong unique password.
@@ -1618,7 +1618,7 @@ dig example.com +noall +answer
 
 ---
 
-# Route 53 Cost Checklist
+## Route 53 Cost Checklist
 
 Potential costs include:
 
@@ -1644,7 +1644,7 @@ Cost-safety checks:
 
 ---
 
-# Route 53 Quick Revision Questions
+## Route 53 Quick Revision Questions
 
 1. What are the three main functions of Route 53?
 2. Why is Route 53 called Route 53?
@@ -1691,7 +1691,7 @@ Cost-safety checks:
 
 ---
 
-# Route 53 Key Takeaways
+## Route 53 Key Takeaways
 
 - DNS translates domain names into service information such as IP addresses.
 - Route 53 provides domain registration, DNS routing and health checking.
@@ -1718,7 +1718,7 @@ Cost-safety checks:
 
 ---
 
-# Official Route 53 References
+## Official Route 53 References
 
 - [What is Amazon Route 53?](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)
 - [Working with hosted zones](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-working-with.html)
@@ -1755,7 +1755,7 @@ Route 53 can be used to:
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 By the end of these notes, I should be able to:
 
@@ -1774,7 +1774,7 @@ By the end of these notes, I should be able to:
 
 ---
 
-# 133. Amazon Route 53
+## 133. Amazon Route 53
 
 Amazon Route 53 is a managed AWS DNS service.
 
@@ -1784,7 +1784,7 @@ It provides three main functions:
 2. **DNS routing** – directing DNS queries to the correct application or resource.
 3. **Health checking** – checking resources and helping route traffic away from unhealthy endpoints.
 
-## Simple Explanation
+### Simple Explanation
 
 People remember names more easily than IP addresses.
 
@@ -1809,7 +1809,7 @@ flowchart LR
     ALB --> App[EC2 application]
 ```
 
-## Important Route 53 Characteristics
+### Important Route 53 Characteristics
 
 - Route 53 is a global AWS service.
 - Hosted zones are not created inside one Availability Zone.
@@ -1818,7 +1818,7 @@ flowchart LR
 - Route 53 is authoritative for a domain only when the domain is delegated to its name servers.
 - Creating a hosted zone alone does not automatically update a third-party registrar.
 
-## Why Route 53 Matters to DevOps
+### Why Route 53 Matters to DevOps
 
 DevOps engineers use Route 53 for:
 
@@ -1834,7 +1834,7 @@ DevOps engineers use Route 53 for:
 
 ---
 
-# 134. Route 53 Hosted Zones
+## 134. Route 53 Hosted Zones
 
 A **hosted zone** is a container for DNS records belonging to a domain and its subdomains.
 
@@ -1853,7 +1853,7 @@ api.example.com
 mail.example.com
 ```
 
-## Records Inside a Hosted Zone
+### Records Inside a Hosted Zone
 
 | Record name | Type | Purpose |
 | --- | --- | --- |
@@ -1863,14 +1863,14 @@ mail.example.com
 | `example.com` | MX | Identify email servers |
 | `example.com` | TXT | Store verification or email-policy text |
 
-## Automatically Created Records
+### Automatically Created Records
 
 When Route 53 creates a hosted zone, it automatically creates:
 
 - An **NS record**
 - An **SOA record**
 
-### NS Record
+#### NS Record
 
 The NS record identifies the authoritative name servers for the hosted zone.
 
@@ -1885,13 +1885,13 @@ ns-789.awsdns-10.org
 ns-101.awsdns-11.co.uk
 ```
 
-### SOA Record
+#### SOA Record
 
 The **Start of Authority** record contains administrative information about the DNS zone.
 
 Do not delete or manually recreate the default NS and SOA records unless there is a specific, well-understood requirement.
 
-## View Hosted Zones with the AWS CLI
+### View Hosted Zones with the AWS CLI
 
 ```bash
 aws route53 list-hosted-zones
@@ -1908,11 +1908,11 @@ aws route53 list-resource-record-sets \
 
 ---
 
-# 135. Public vs Private Hosted Zones
+## 135. Public vs Private Hosted Zones
 
 Route 53 supports public and private hosted zones.
 
-## Public Hosted Zone
+### Public Hosted Zone
 
 A public hosted zone contains records that can be answered through public DNS.
 
@@ -1930,7 +1930,7 @@ Use a public hosted zone for:
 - Public verification records
 - Internet-facing AWS resources
 
-## Private Hosted Zone
+### Private Hosted Zone
 
 A private hosted zone provides DNS records inside associated VPCs.
 
@@ -1950,7 +1950,7 @@ Use a private hosted zone for:
 - Service discovery
 - Friendly names for private IP addresses
 
-## Comparison
+### Comparison
 
 | Public hosted zone | Private hosted zone |
 | --- | --- |
@@ -1960,7 +1960,7 @@ Use a private hosted zone for:
 | Common for websites and public APIs | Common for internal services |
 | Records can target public resources | Records commonly target private resources |
 
-## Split-Horizon DNS
+### Split-Horizon DNS
 
 The same domain name can exist in both a public and private hosted zone.
 
@@ -1977,7 +1977,7 @@ Internal VPC clients can receive the private answer while internet users receive
 
 ---
 
-# 136. What Is DNS?
+## 136. What Is DNS?
 
 **DNS** stands for **Domain Name System**.
 
@@ -1989,7 +1989,7 @@ The most common example is translating a domain name into an IP address.
 www.example.com → 203.0.113.20
 ```
 
-## DNS as the Internet’s Directory
+### DNS as the Internet’s Directory
 
 Think of DNS like a contact list:
 
@@ -1998,7 +1998,7 @@ Person's name → Telephone number
 Domain name   → IP address or service destination
 ```
 
-## DNS Does Not Carry the Website Traffic
+### DNS Does Not Carry the Website Traffic
 
 DNS normally tells the client where to connect.
 
@@ -2015,7 +2015,7 @@ sequenceDiagram
     W-->>U: Website response
 ```
 
-## Why DNS Is Important
+### Why DNS Is Important
 
 Without DNS, users would need to remember changing IP addresses for every service.
 
@@ -2025,9 +2025,9 @@ DNS allows infrastructure to change while the user-facing name remains stable.
 
 ---
 
-# 137. DNS Terminology
+## 137. DNS Terminology
 
-## Domain Name
+### Domain Name
 
 A human-readable name used to identify an internet resource.
 
@@ -2035,7 +2035,7 @@ A human-readable name used to identify an internet resource.
 example.com
 ```
 
-## Top-Level Domain
+### Top-Level Domain
 
 The final part of a domain name.
 
@@ -2048,7 +2048,7 @@ Examples:
 .uk
 ```
 
-## Second-Level Domain
+### Second-Level Domain
 
 The name directly before the top-level domain.
 
@@ -2064,7 +2064,7 @@ The second-level domain is:
 example
 ```
 
-## Subdomain
+### Subdomain
 
 A name added before the main domain.
 
@@ -2076,7 +2076,7 @@ api.example.com
 shop.example.com
 ```
 
-## Fully Qualified Domain Name
+### Fully Qualified Domain Name
 
 An **FQDN** identifies a complete name in the DNS hierarchy.
 
@@ -2086,7 +2086,7 @@ Example:
 api.example.com
 ```
 
-## Domain Registrar
+### Domain Registrar
 
 The organisation through which a domain is registered.
 
@@ -2097,17 +2097,17 @@ Examples include:
 - Namecheap
 - Cloudflare Registrar
 
-## Registrant
+### Registrant
 
 The person or organisation that holds the domain registration.
 
-## Name Server
+### Name Server
 
 A DNS server responsible for providing DNS information.
 
 An authoritative name server stores or serves the official records for a zone.
 
-## Recursive Resolver
+### Recursive Resolver
 
 A resolver receives a DNS query from a client and searches for the answer, using cached information where possible.
 
@@ -2118,25 +2118,25 @@ Resolvers may be operated by:
 - A cloud provider
 - A public DNS provider
 
-## DNS Zone
+### DNS Zone
 
 An administrative section of the DNS namespace.
 
 In Route 53, records for a zone are stored in a hosted zone.
 
-## Record
+### Record
 
 A DNS record contains information about a domain or subdomain.
 
-## TTL
+### TTL
 
 **Time To Live** determines how long a resolver can cache a DNS answer.
 
-## Authoritative DNS
+### Authoritative DNS
 
 The authoritative DNS service provides the official answer for a domain’s records.
 
-## DNS Propagation
+### DNS Propagation
 
 DNS propagation describes the period during which DNS caches and delegations are updating after a change.
 
@@ -2144,7 +2144,7 @@ The change may already exist on the authoritative server while some users still 
 
 ---
 
-# 138. How DNS Works
+## 138. How DNS Works
 
 Suppose a user requests:
 
@@ -2152,7 +2152,7 @@ Suppose a user requests:
 www.example.com
 ```
 
-## DNS Lookup Process
+### DNS Lookup Process
 
 1. The browser checks its DNS cache.
 2. The operating system checks its cache and local configuration.
@@ -2175,17 +2175,17 @@ flowchart TD
     Resolver --> Client
 ```
 
-## Recursive and Iterative Queries
+### Recursive and Iterative Queries
 
-### Recursive Query
+#### Recursive Query
 
 The client asks a resolver to obtain the final answer.
 
-### Iterative Query
+#### Iterative Query
 
 A DNS server may return a referral telling the resolver which server to ask next.
 
-## Local Hosts File
+### Local Hosts File
 
 A local hosts file can override normal DNS resolution on one computer.
 
@@ -2213,7 +2213,7 @@ This affects only the machine where the entry exists.
 
 ---
 
-# 139. Route 53 Routes
+## 139. Route 53 Routes
 
 Route 53 does not route network packets in the same way as a VPC route table.
 
@@ -2226,7 +2226,7 @@ DNS answer: Use the London load balancer.
 
 The client then attempts to connect to that destination.
 
-## DNS Routing Flow
+### DNS Routing Flow
 
 ```mermaid
 flowchart LR
@@ -2235,7 +2235,7 @@ flowchart LR
     Answer --> Connection[Client connects to endpoint]
 ```
 
-## DNS Routing vs VPC Routing
+### DNS Routing vs VPC Routing
 
 | Route 53 DNS routing | VPC route table |
 | --- | --- |
@@ -2248,11 +2248,11 @@ flowchart LR
 
 ---
 
-# 140. Route 53 Record Types
+## 140. Route 53 Record Types
 
 DNS record types store different kinds of information.
 
-## Common Records
+### Common Records
 
 | Type | Meaning | Example purpose |
 | --- | --- | --- |
@@ -2268,7 +2268,7 @@ DNS record types store different kinds of information.
 | SRV | Service locator | Identify a service’s host and port |
 | DS | Delegation Signer | Create a DNSSEC chain of trust |
 
-## A Record
+### A Record
 
 Maps a name to an IPv4 address.
 
@@ -2276,7 +2276,7 @@ Maps a name to an IPv4 address.
 app.example.com → 203.0.113.20
 ```
 
-## AAAA Record
+### AAAA Record
 
 Maps a name to an IPv6 address.
 
@@ -2284,7 +2284,7 @@ Maps a name to an IPv6 address.
 app.example.com → 2001:db8::20
 ```
 
-## CNAME Record
+### CNAME Record
 
 Maps one hostname to another hostname.
 
@@ -2292,7 +2292,7 @@ Maps one hostname to another hostname.
 www.example.com → app.example.net
 ```
 
-## MX Record
+### MX Record
 
 Specifies mail servers and their priority.
 
@@ -2302,7 +2302,7 @@ Specifies mail servers and their priority.
 
 A lower MX priority number is preferred.
 
-## TXT Record
+### TXT Record
 
 Stores text values used for purposes such as:
 
@@ -2311,7 +2311,7 @@ Stores text values used for purposes such as:
 - DKIM configuration
 - Third-party service verification
 
-## CAA Record
+### CAA Record
 
 Specifies which certificate authorities may issue certificates for a domain.
 
@@ -2321,7 +2321,7 @@ Example:
 0 issue "amazon.com"
 ```
 
-## NS and SOA Records
+### NS and SOA Records
 
 Route 53 creates these when it creates a hosted zone.
 
@@ -2329,7 +2329,7 @@ Avoid deleting or changing them without understanding the effect on the zone.
 
 ---
 
-# 141. Route 53 Record TTL
+## 141. Route 53 Record TTL
 
 **TTL** stands for **Time To Live**.
 
@@ -2343,7 +2343,7 @@ TTL: 300 seconds
 
 This means the answer may be cached for five minutes.
 
-## High vs Low TTL
+### High vs Low TTL
 
 | Low TTL | High TTL |
 | --- | --- |
@@ -2352,7 +2352,7 @@ This means the answer may be cached for five minutes.
 | Useful before migrations | Useful for stable records |
 | Can increase DNS query volume | Can delay failover or record changes |
 
-## Example TTL Values
+### Example TTL Values
 
 | TTL | Time |
 | ---: | --- |
@@ -2363,7 +2363,7 @@ This means the answer may be cached for five minutes.
 | 86,400 | 1 day |
 | 172,800 | 2 days |
 
-## Safe DNS Change Process
+### Safe DNS Change Process
 
 Before a planned migration:
 
@@ -2374,7 +2374,7 @@ Before a planned migration:
 5. Monitor the application.
 6. Increase the TTL again after the change is stable.
 
-## Important Client Behaviour
+### Important Client Behaviour
 
 Changing a record does not remove answers already stored in external caches.
 
@@ -2384,11 +2384,11 @@ Some users may continue receiving the old answer until their cached TTL expires.
 
 ---
 
-# 142. CNAME vs Alias
+## 142. CNAME vs Alias
 
 A CNAME record and a Route 53 alias record can both direct one name towards another destination, but they are not the same.
 
-## CNAME
+### CNAME
 
 A CNAME is a standard DNS record.
 
@@ -2412,7 +2412,7 @@ The zone apex is the root of the hosted zone:
 example.com
 ```
 
-## Route 53 Alias
+### Route 53 Alias
 
 An alias is a Route 53 extension to DNS.
 
@@ -2431,7 +2431,7 @@ An alias:
 - Can use **Evaluate target health** for supported targets
 - Does not let you enter a normal record TTL directly
 
-## Comparison
+### Comparison
 
 | CNAME | Route 53 alias |
 | --- | --- |
@@ -2446,11 +2446,11 @@ An alias:
 
 ---
 
-# 143. Route 53 Alias Records
+## 143. Route 53 Alias Records
 
 An alias record routes DNS traffic to a supported AWS resource or another record in the same hosted zone.
 
-## Example ALB Alias
+### Example ALB Alias
 
 ```text
 Name: example.com
@@ -2461,7 +2461,7 @@ Target: dualstack.my-alb.eu-west-2.elb.amazonaws.com
 
 This allows the root domain to point to a load balancer without placing a changing load-balancer IP address in an A record.
 
-## Evaluate Target Health
+### Evaluate Target Health
 
 For supported targets, an alias record can use:
 
@@ -2473,7 +2473,7 @@ Route 53 then considers the target resource’s health when selecting an answer.
 
 For an Application Load Balancer, target-group health can affect this evaluation.
 
-## Why Not Store an ALB IP Address?
+### Why Not Store an ALB IP Address?
 
 Load-balancer IP addresses can change.
 
@@ -2481,7 +2481,7 @@ Use the load balancer’s DNS name through an alias instead of attempting to sto
 
 ---
 
-# 144. Route 53 Alias Record Targets
+## 144. Route 53 Alias Record Targets
 
 Common alias targets include:
 
@@ -2498,7 +2498,7 @@ Common alias targets include:
 
 The Route 53 console displays valid targets for the selected record and hosted zone.
 
-## Common Architecture
+### Common Architecture
 
 ```mermaid
 flowchart LR
@@ -2507,7 +2507,7 @@ flowchart LR
     ALB --> Targets[EC2 target group]
 ```
 
-## Important Limitations
+### Important Limitations
 
 - An alias cannot point to any arbitrary external hostname.
 - An EC2 public IP is normally used with an A record, preferably through an Elastic IP if a fixed address is essential.
@@ -2517,11 +2517,11 @@ flowchart LR
 
 ---
 
-# 145. Route 53 Routing Policies
+## 145. Route 53 Routing Policies
 
 A routing policy determines how Route 53 selects a DNS response when multiple possible records or endpoints exist.
 
-## Main Policies
+### Main Policies
 
 | Policy | Main purpose |
 | --- | --- |
@@ -2534,7 +2534,7 @@ A routing policy determines how Route 53 selects a DNS response when multiple po
 | IP-based | Route using configured client-IP CIDR mappings |
 | Multivalue answer | Return multiple healthy values |
 
-## Routing Policy Does Not Filter Network Traffic
+### Routing Policy Does Not Filter Network Traffic
 
 Routing policies influence DNS answers.
 
@@ -2546,7 +2546,7 @@ They do not replace:
 - Load balancers
 - Application authentication
 
-## DNS Caching Still Applies
+### DNS Caching Still Applies
 
 Route 53 makes a decision when it receives a DNS query.
 
@@ -2554,7 +2554,7 @@ If a resolver already has a cached answer, it may not ask Route 53 again until t
 
 ---
 
-# 146. Simple Routing Policy
+## 146. Simple Routing Policy
 
 Simple routing is used when no specialised routing behaviour is required.
 
@@ -2564,7 +2564,7 @@ Example:
 app.example.com → One Application Load Balancer
 ```
 
-## Characteristics
+### Characteristics
 
 - Commonly routes to one resource
 - Can contain multiple values in one non-alias record
@@ -2572,7 +2572,7 @@ app.example.com → One Application Load Balancer
 - Multiple returned values may be presented in a random order
 - Can be used in public and private hosted zones
 
-## Use Cases
+### Use Cases
 
 - One website endpoint
 - One load balancer
@@ -2584,11 +2584,11 @@ app.example.com → One Application Load Balancer
 
 ---
 
-# 147. Weighted Routing Policy
+## 147. Weighted Routing Policy
 
 Weighted routing divides DNS responses between multiple resources using relative weights.
 
-## Example
+### Example
 
 | Endpoint | Weight | Approximate share |
 | --- | ---: | ---: |
@@ -2607,7 +2607,7 @@ For the new release:
 10 / (90 + 10) = 10%
 ```
 
-## Common Use Cases
+### Common Use Cases
 
 - Canary deployments
 - Blue/green deployments
@@ -2615,7 +2615,7 @@ For the new release:
 - A/B testing
 - Dividing traffic between application versions
 
-## Important Behaviour
+### Important Behaviour
 
 - Weights are relative, not fixed percentages.
 - Records in the group use the same name and record type.
@@ -2631,7 +2631,7 @@ flowchart TD
 
 ---
 
-# 148. Latency-Based Routing
+## 148. Latency-Based Routing
 
 Latency-based routing directs a DNS query towards the configured AWS Region expected to provide the lowest latency for that user.
 
@@ -2644,14 +2644,14 @@ US East (N. Virginia): us-east-1
 
 Route 53 uses AWS latency measurements to choose between the Regions for which latency records exist.
 
-## Use Cases
+### Use Cases
 
 - Global applications
 - Multi-Region APIs
 - Improving user response times
 - Directing users towards better-performing regional deployments
 
-## Important Points
+### Important Points
 
 - Lowest latency does not necessarily mean geographically closest.
 - Internet paths and latency can change over time.
@@ -2663,13 +2663,13 @@ Route 53 uses AWS latency measurements to choose between the Regions for which l
 
 ---
 
-# 149. Route 53 Health Checks
+## 149. Route 53 Health Checks
 
 Route 53 health checks monitor endpoint availability or other health signals.
 
 They can help Route 53 avoid returning unhealthy resources in supported routing configurations.
 
-## Health Check Types
+### Health Check Types
 
 Route 53 can monitor:
 
@@ -2677,7 +2677,7 @@ Route 53 can monitor:
 - The status of other Route 53 health checks
 - The state of a CloudWatch alarm
 
-## Endpoint Health Check
+### Endpoint Health Check
 
 Route 53 health checkers can send requests using protocols such as:
 
@@ -2702,7 +2702,7 @@ Example path:
 
 A useful health endpoint should verify enough of the application to show that it can serve users.
 
-## Private Endpoints
+### Private Endpoints
 
 Public Route 53 health checkers cannot directly reach a private IP address inside a VPC.
 
@@ -2712,7 +2712,7 @@ For private resources, possible approaches include:
 - Evaluating the health of an alias target such as an ALB
 - Monitoring through an appropriate public or managed application endpoint
 
-## DNS Failover
+### DNS Failover
 
 ```mermaid
 flowchart TD
@@ -2721,13 +2721,13 @@ flowchart TD
     Check -->|No| Secondary[Secondary endpoint]
 ```
 
-## Important Limitation
+### Important Limitation
 
 DNS failover is not always immediate because clients and resolvers may have cached the previous answer.
 
 Choose TTL values that match the required recovery objective, while considering query volume and stability.
 
-## Health Check Costs
+### Health Check Costs
 
 Route 53 health checks can create ongoing charges, with some features costing more than basic health checks.
 
@@ -2735,7 +2735,7 @@ Delete unused lab health checks.
 
 ---
 
-# 150. Geolocation Routing
+## 150. Geolocation Routing
 
 Geolocation routing chooses an answer based on the geographic origin of the DNS query.
 
@@ -2746,7 +2746,7 @@ Locations can include:
 - US states
 - A default location
 
-## Example
+### Example
 
 | User location | Destination |
 | --- | --- |
@@ -2754,7 +2754,7 @@ Locations can include:
 | United States | Virginia application |
 | Other locations | Default application |
 
-## Use Cases
+### Use Cases
 
 - Localised website content
 - Language selection
@@ -2762,7 +2762,7 @@ Locations can include:
 - Licensing restrictions
 - Data-sovereignty designs
 
-## Default Record
+### Default Record
 
 A default geolocation record handles users whose location:
 
@@ -2771,7 +2771,7 @@ A default geolocation record handles users whose location:
 
 Without an appropriate default record, some queries may receive no answer.
 
-## Most Specific Match
+### Most Specific Match
 
 A more specific matching location takes priority over a broader one.
 
@@ -2787,19 +2787,19 @@ Default record        → Everyone else
 
 ---
 
-# 151. Geoproximity Routing
+## 151. Geoproximity Routing
 
 Geoproximity routing directs users based on the location of users and resources.
 
 It normally sends traffic to the closest configured resource, but a **bias** can change the size of the geographic area routed to that resource.
 
-## Resource Locations
+### Resource Locations
 
 For AWS resources, a location can be an AWS Region or supported Local Zone group.
 
 For non-AWS resources, latitude and longitude can be provided.
 
-## Bias
+### Bias
 
 | Bias | Effect |
 | --- | --- |
@@ -2811,7 +2811,7 @@ AWS supports bias values from `-99` to `+99`.
 
 Change bias gradually to avoid suddenly overwhelming an endpoint.
 
-## Geolocation vs Geoproximity
+### Geolocation vs Geoproximity
 
 | Geolocation | Geoproximity |
 | --- | --- |
@@ -2824,15 +2824,15 @@ Change bias gradually to avoid suddenly overwhelming an endpoint.
 
 ---
 
-# 152. IP-Based Routing
+## 152. IP-Based Routing
 
 IP-based routing uses configured client-IP ranges to select a DNS response.
 
 It is useful when an organisation has its own knowledge about customers, networks or internet service providers.
 
-## Main Components
+### Main Components
 
-### CIDR Block
+#### CIDR Block
 
 An IP range such as:
 
@@ -2840,7 +2840,7 @@ An IP range such as:
 198.51.100.0/24
 ```
 
-### CIDR Location
+#### CIDR Location
 
 A named group of one or more CIDR blocks.
 
@@ -2850,11 +2850,11 @@ Example:
 uk-corporate-users
 ```
 
-### CIDR Collection
+#### CIDR Collection
 
 A reusable collection containing CIDR locations.
 
-## Example
+### Example
 
 | Source range | DNS destination |
 | --- | --- |
@@ -2862,14 +2862,14 @@ A reusable collection containing CIDR locations.
 | Partner network B | Endpoint B |
 | Default `*` | Public endpoint |
 
-## Use Cases
+### Use Cases
 
 - Route particular ISPs to selected endpoints
 - Optimise known network transit paths
 - Direct corporate client ranges
 - Override a more general location-based design
 
-## Important Points
+### Important Points
 
 - A default `*` location can handle unmatched queries.
 - CIDR planning must be accurate.
@@ -2878,7 +2878,7 @@ A reusable collection containing CIDR locations.
 
 ---
 
-# 153. Multivalue Answer Routing
+## 153. Multivalue Answer Routing
 
 Multivalue answer routing allows Route 53 to return multiple values for one DNS query.
 
@@ -2886,7 +2886,7 @@ Each resource can have its own record and optional health check.
 
 Route 53 returns up to eight healthy records in an answer.
 
-## Example
+### Example
 
 ```text
 app.example.com → 203.0.113.10
@@ -2896,7 +2896,7 @@ app.example.com → 203.0.113.30
 
 If one endpoint becomes unhealthy, Route 53 can stop including it in normal answers.
 
-## Multivalue vs Load Balancer
+### Multivalue vs Load Balancer
 
 | Multivalue DNS | Load balancer |
 | --- | --- |
@@ -2908,7 +2908,7 @@ If one endpoint becomes unhealthy, Route 53 can stop including it in normal answ
 
 Multivalue routing is not a replacement for an Elastic Load Balancer.
 
-## Important Behaviour
+### Important Behaviour
 
 - Records without health checks are always considered healthy.
 - Different resolvers may receive different sets or ordering.
@@ -2917,11 +2917,11 @@ Multivalue routing is not a replacement for an Elastic Load Balancer.
 
 ---
 
-# 154. Domain Registrar vs DNS Service
+## 154. Domain Registrar vs DNS Service
 
 Domain registration and DNS hosting are related but separate services.
 
-## Domain Registrar
+### Domain Registrar
 
 The registrar manages the registration of the domain.
 
@@ -2934,7 +2934,7 @@ Responsibilities can include:
 - Authoritative name-server delegation
 - Contact information
 
-## DNS Service
+### DNS Service
 
 The DNS service hosts and answers DNS records.
 
@@ -2946,7 +2946,7 @@ Responsibilities can include:
 - Routing policies
 - DNS health checks
 
-## Comparison
+### Comparison
 
 | Domain registrar | DNS service |
 | --- | --- |
@@ -2955,7 +2955,7 @@ Responsibilities can include:
 | Stores authoritative name-server delegation | Supplies the authoritative name servers |
 | Example: GoDaddy | Example: Amazon Route 53 |
 
-## They Do Not Need to Be the Same Company
+### They Do Not Need to Be the Same Company
 
 Example:
 
@@ -2971,11 +2971,11 @@ The registrar delegates DNS to the Route 53 name servers.
 
 ---
 
-# 155. GoDaddy as Registrar and Route 53 as DNS Service
+## 155. GoDaddy as Registrar and Route 53 as DNS Service
 
 A domain can remain registered with GoDaddy while Route 53 becomes its authoritative DNS service.
 
-## Architecture
+### Architecture
 
 ```mermaid
 flowchart LR
@@ -2984,7 +2984,7 @@ flowchart LR
     Zone --> ALB[Application Load Balancer]
 ```
 
-## Migration Process
+### Migration Process
 
 1. Record the existing DNS configuration.
 2. Export the existing zone file if the provider supports it.
@@ -2999,7 +2999,7 @@ flowchart LR
 11. Monitor website, API and email traffic.
 12. Keep the previous provider details temporarily in case rollback is needed.
 
-## Critical Warning
+### Critical Warning
 
 Do not change the registrar name servers until the required records exist in Route 53.
 
@@ -3011,7 +3011,7 @@ Missing records can break:
 - API endpoints
 - Subdomains
 
-## Verify Delegation
+### Verify Delegation
 
 ```bash
 dig NS example.com
@@ -3027,11 +3027,11 @@ The answer should eventually show the assigned Route 53 name servers.
 
 ---
 
-# 156. Third-Party Registrar with Amazon Route 53
+## 156. Third-Party Registrar with Amazon Route 53
 
 The same process works with most third-party registrars.
 
-## General Process
+### General Process
 
 ```text
 Register domain with third party
@@ -3047,13 +3047,13 @@ Update custom name servers at the registrar
 Test delegation and application traffic
 ```
 
-## What Changes at the Registrar?
+### What Changes at the Registrar?
 
 Only the authoritative name-server delegation needs to change when Route 53 becomes the DNS service.
 
 The domain can remain registered and renewed through the original registrar.
 
-## Safe Migration Checklist
+### Safe Migration Checklist
 
 - [ ] Confirm control of the correct domain.
 - [ ] Copy or export every existing DNS record.
@@ -3070,11 +3070,11 @@ The domain can remain registered and renewed through the original registrar.
 
 ---
 
-# Route 53 End-to-End Demo
+## Route 53 End-to-End Demo
 
 This demo connects a third-party domain to an internet-facing Application Load Balancer in `eu-west-2`.
 
-## Target Architecture
+### Target Architecture
 
 ```mermaid
 flowchart TD
@@ -3084,7 +3084,7 @@ flowchart TD
     ALB --> B[EC2 in eu-west-2b]
 ```
 
-## Prerequisites
+### Prerequisites
 
 - A domain you control
 - A working internet-facing ALB
@@ -3093,7 +3093,7 @@ flowchart TD
 - Access to the domain registrar
 - Permission to manage Route 53
 
-## Step 1: Check the Application First
+### Step 1: Check the Application First
 
 Open the ALB DNS name directly:
 
@@ -3103,7 +3103,7 @@ http://my-alb-123.eu-west-2.elb.amazonaws.com
 
 Do not start the DNS migration until the ALB and targets are working.
 
-## Step 2: Create a Public Hosted Zone
+### Step 2: Create a Public Hosted Zone
 
 1. Open **Route 53**.
 2. Select **Hosted zones**.
@@ -3113,7 +3113,7 @@ Do not start the DNS migration until the ALB and targets are working.
 6. Create the hosted zone.
 7. Record the four assigned name servers.
 
-## Step 3: Recreate Existing Records
+### Step 3: Recreate Existing Records
 
 Before changing registrar name servers, copy all required records into Route 53.
 
@@ -3125,7 +3125,7 @@ Pay particular attention to:
 - Domain-verification records
 - Existing subdomains
 
-## Step 4: Create the Root Alias Record
+### Step 4: Create the Root Alias Record
 
 Create:
 
@@ -3140,7 +3140,7 @@ Routing policy: Simple
 Evaluate target health: Yes
 ```
 
-## Step 5: Create the `www` Record
+### Step 5: Create the `www` Record
 
 Possible alias configuration:
 
@@ -3153,7 +3153,7 @@ Target: The same ALB
 
 Alternatively, a CNAME can point `www.example.com` to a suitable hostname, but an alias is convenient for a supported AWS target.
 
-## Step 6: Update the Registrar Name Servers
+### Step 6: Update the Registrar Name Servers
 
 At the registrar:
 
@@ -3165,7 +3165,7 @@ At the registrar:
 
 Do not copy trailing punctuation accidentally if the interface does not expect it.
 
-## Step 7: Verify DNS
+### Step 7: Verify DNS
 
 Check authoritative delegation:
 
@@ -3205,7 +3205,7 @@ Test the HTTP response:
 curl -I http://example.com
 ```
 
-## Step 8: Add HTTPS
+### Step 8: Add HTTPS
 
 1. Request or import a certificate in AWS Certificate Manager.
 2. Include the required names:
@@ -3229,7 +3229,7 @@ Test:
 curl -I https://example.com
 ```
 
-## Step 9: Inspect Route 53 with the CLI
+### Step 9: Inspect Route 53 with the CLI
 
 List hosted zones:
 
@@ -3251,7 +3251,7 @@ aws route53 list-resource-record-sets \
   --hosted-zone-id HOSTED_ZONE_ID
 ```
 
-## Example CLI Change File
+### Example CLI Change File
 
 `change-record.json`:
 
@@ -3290,7 +3290,7 @@ For an ALB, use an alias record instead.
 
 ---
 
-# Route 53 Troubleshooting
+## Route 53 Troubleshooting
 
 | Problem | Likely cause | Check |
 | --- | --- | --- |
@@ -3308,7 +3308,7 @@ For an ALB, use an alias record instead.
 | Weighted results look inaccurate | DNS caching or small sample | TTL and larger query sample |
 | Email stops after migration | Missing MX, TXT or DKIM records | Compare old and new zones |
 
-## Useful Commands
+### Useful Commands
 
 Query specific record types:
 
@@ -3341,7 +3341,7 @@ dig example.com +noall +answer
 
 ---
 
-# Route 53 Security Checklist
+## Route 53 Security Checklist
 
 - [ ] Enable MFA for privileged AWS and registrar access.
 - [ ] Protect the registrar account with a strong unique password.
@@ -3358,7 +3358,7 @@ dig example.com +noall +answer
 
 ---
 
-# Route 53 Cost Checklist
+## Route 53 Cost Checklist
 
 Potential costs include:
 
@@ -3384,7 +3384,7 @@ Cost-safety checks:
 
 ---
 
-# Route 53 Quick Revision Questions
+## Route 53 Quick Revision Questions
 
 1. What are the three main functions of Route 53?
 2. Why is Route 53 called Route 53?
@@ -3431,7 +3431,7 @@ Cost-safety checks:
 
 ---
 
-# Route 53 Key Takeaways
+## Route 53 Key Takeaways
 
 - DNS translates domain names into service information such as IP addresses.
 - Route 53 provides domain registration, DNS routing and health checking.
@@ -3458,7 +3458,7 @@ Cost-safety checks:
 
 ---
 
-# Official Route 53 References
+## Official Route 53 References
 
 - [What is Amazon Route 53?](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)
 - [Working with hosted zones](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-working-with.html)
@@ -3495,7 +3495,7 @@ Route 53 can be used to:
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 By the end of these notes, I should be able to:
 
@@ -3514,7 +3514,7 @@ By the end of these notes, I should be able to:
 
 ---
 
-# 133. Amazon Route 53
+## 133. Amazon Route 53
 
 Amazon Route 53 is a managed AWS DNS service.
 
@@ -3524,7 +3524,7 @@ It provides three main functions:
 2. **DNS routing** – directing DNS queries to the correct application or resource.
 3. **Health checking** – checking resources and helping route traffic away from unhealthy endpoints.
 
-## Simple Explanation
+### Simple Explanation
 
 People remember names more easily than IP addresses.
 
@@ -3549,7 +3549,7 @@ flowchart LR
     ALB --> App[EC2 application]
 ```
 
-## Important Route 53 Characteristics
+### Important Route 53 Characteristics
 
 - Route 53 is a global AWS service.
 - Hosted zones are not created inside one Availability Zone.
@@ -3558,7 +3558,7 @@ flowchart LR
 - Route 53 is authoritative for a domain only when the domain is delegated to its name servers.
 - Creating a hosted zone alone does not automatically update a third-party registrar.
 
-## Why Route 53 Matters to DevOps
+### Why Route 53 Matters to DevOps
 
 DevOps engineers use Route 53 for:
 
@@ -3574,7 +3574,7 @@ DevOps engineers use Route 53 for:
 
 ---
 
-# 134. Route 53 Hosted Zones
+## 134. Route 53 Hosted Zones
 
 A **hosted zone** is a container for DNS records belonging to a domain and its subdomains.
 
@@ -3593,7 +3593,7 @@ api.example.com
 mail.example.com
 ```
 
-## Records Inside a Hosted Zone
+### Records Inside a Hosted Zone
 
 | Record name | Type | Purpose |
 | --- | --- | --- |
@@ -3603,14 +3603,14 @@ mail.example.com
 | `example.com` | MX | Identify email servers |
 | `example.com` | TXT | Store verification or email-policy text |
 
-## Automatically Created Records
+### Automatically Created Records
 
 When Route 53 creates a hosted zone, it automatically creates:
 
 - An **NS record**
 - An **SOA record**
 
-### NS Record
+#### NS Record
 
 The NS record identifies the authoritative name servers for the hosted zone.
 
@@ -3625,13 +3625,13 @@ ns-789.awsdns-10.org
 ns-101.awsdns-11.co.uk
 ```
 
-### SOA Record
+#### SOA Record
 
 The **Start of Authority** record contains administrative information about the DNS zone.
 
 Do not delete or manually recreate the default NS and SOA records unless there is a specific, well-understood requirement.
 
-## View Hosted Zones with the AWS CLI
+### View Hosted Zones with the AWS CLI
 
 ```bash
 aws route53 list-hosted-zones
@@ -3648,11 +3648,11 @@ aws route53 list-resource-record-sets \
 
 ---
 
-# 135. Public vs Private Hosted Zones
+## 135. Public vs Private Hosted Zones
 
 Route 53 supports public and private hosted zones.
 
-## Public Hosted Zone
+### Public Hosted Zone
 
 A public hosted zone contains records that can be answered through public DNS.
 
@@ -3670,7 +3670,7 @@ Use a public hosted zone for:
 - Public verification records
 - Internet-facing AWS resources
 
-## Private Hosted Zone
+### Private Hosted Zone
 
 A private hosted zone provides DNS records inside associated VPCs.
 
@@ -3690,7 +3690,7 @@ Use a private hosted zone for:
 - Service discovery
 - Friendly names for private IP addresses
 
-## Comparison
+### Comparison
 
 | Public hosted zone | Private hosted zone |
 | --- | --- |
@@ -3700,7 +3700,7 @@ Use a private hosted zone for:
 | Common for websites and public APIs | Common for internal services |
 | Records can target public resources | Records commonly target private resources |
 
-## Split-Horizon DNS
+### Split-Horizon DNS
 
 The same domain name can exist in both a public and private hosted zone.
 
@@ -3717,7 +3717,7 @@ Internal VPC clients can receive the private answer while internet users receive
 
 ---
 
-# 136. What Is DNS?
+## 136. What Is DNS?
 
 **DNS** stands for **Domain Name System**.
 
@@ -3729,7 +3729,7 @@ The most common example is translating a domain name into an IP address.
 www.example.com → 203.0.113.20
 ```
 
-## DNS as the Internet’s Directory
+### DNS as the Internet’s Directory
 
 Think of DNS like a contact list:
 
@@ -3738,7 +3738,7 @@ Person's name → Telephone number
 Domain name   → IP address or service destination
 ```
 
-## DNS Does Not Carry the Website Traffic
+### DNS Does Not Carry the Website Traffic
 
 DNS normally tells the client where to connect.
 
@@ -3755,7 +3755,7 @@ sequenceDiagram
     W-->>U: Website response
 ```
 
-## Why DNS Is Important
+### Why DNS Is Important
 
 Without DNS, users would need to remember changing IP addresses for every service.
 
@@ -3765,9 +3765,9 @@ DNS allows infrastructure to change while the user-facing name remains stable.
 
 ---
 
-# 137. DNS Terminology
+## 137. DNS Terminology
 
-## Domain Name
+### Domain Name
 
 A human-readable name used to identify an internet resource.
 
@@ -3775,7 +3775,7 @@ A human-readable name used to identify an internet resource.
 example.com
 ```
 
-## Top-Level Domain
+### Top-Level Domain
 
 The final part of a domain name.
 
@@ -3788,7 +3788,7 @@ Examples:
 .uk
 ```
 
-## Second-Level Domain
+### Second-Level Domain
 
 The name directly before the top-level domain.
 
@@ -3804,7 +3804,7 @@ The second-level domain is:
 example
 ```
 
-## Subdomain
+### Subdomain
 
 A name added before the main domain.
 
@@ -3816,7 +3816,7 @@ api.example.com
 shop.example.com
 ```
 
-## Fully Qualified Domain Name
+### Fully Qualified Domain Name
 
 An **FQDN** identifies a complete name in the DNS hierarchy.
 
@@ -3826,7 +3826,7 @@ Example:
 api.example.com
 ```
 
-## Domain Registrar
+### Domain Registrar
 
 The organisation through which a domain is registered.
 
@@ -3837,17 +3837,17 @@ Examples include:
 - Namecheap
 - Cloudflare Registrar
 
-## Registrant
+### Registrant
 
 The person or organisation that holds the domain registration.
 
-## Name Server
+### Name Server
 
 A DNS server responsible for providing DNS information.
 
 An authoritative name server stores or serves the official records for a zone.
 
-## Recursive Resolver
+### Recursive Resolver
 
 A resolver receives a DNS query from a client and searches for the answer, using cached information where possible.
 
@@ -3858,25 +3858,25 @@ Resolvers may be operated by:
 - A cloud provider
 - A public DNS provider
 
-## DNS Zone
+### DNS Zone
 
 An administrative section of the DNS namespace.
 
 In Route 53, records for a zone are stored in a hosted zone.
 
-## Record
+### Record
 
 A DNS record contains information about a domain or subdomain.
 
-## TTL
+### TTL
 
 **Time To Live** determines how long a resolver can cache a DNS answer.
 
-## Authoritative DNS
+### Authoritative DNS
 
 The authoritative DNS service provides the official answer for a domain’s records.
 
-## DNS Propagation
+### DNS Propagation
 
 DNS propagation describes the period during which DNS caches and delegations are updating after a change.
 
@@ -3884,7 +3884,7 @@ The change may already exist on the authoritative server while some users still 
 
 ---
 
-# 138. How DNS Works
+## 138. How DNS Works
 
 Suppose a user requests:
 
@@ -3892,7 +3892,7 @@ Suppose a user requests:
 www.example.com
 ```
 
-## DNS Lookup Process
+### DNS Lookup Process
 
 1. The browser checks its DNS cache.
 2. The operating system checks its cache and local configuration.
@@ -3915,17 +3915,17 @@ flowchart TD
     Resolver --> Client
 ```
 
-## Recursive and Iterative Queries
+### Recursive and Iterative Queries
 
-### Recursive Query
+#### Recursive Query
 
 The client asks a resolver to obtain the final answer.
 
-### Iterative Query
+#### Iterative Query
 
 A DNS server may return a referral telling the resolver which server to ask next.
 
-## Local Hosts File
+### Local Hosts File
 
 A local hosts file can override normal DNS resolution on one computer.
 
@@ -3953,7 +3953,7 @@ This affects only the machine where the entry exists.
 
 ---
 
-# 139. Route 53 Routes
+## 139. Route 53 Routes
 
 Route 53 does not route network packets in the same way as a VPC route table.
 
@@ -3966,7 +3966,7 @@ DNS answer: Use the London load balancer.
 
 The client then attempts to connect to that destination.
 
-## DNS Routing Flow
+### DNS Routing Flow
 
 ```mermaid
 flowchart LR
@@ -3975,7 +3975,7 @@ flowchart LR
     Answer --> Connection[Client connects to endpoint]
 ```
 
-## DNS Routing vs VPC Routing
+### DNS Routing vs VPC Routing
 
 | Route 53 DNS routing | VPC route table |
 | --- | --- |
@@ -3988,11 +3988,11 @@ flowchart LR
 
 ---
 
-# 140. Route 53 Record Types
+## 140. Route 53 Record Types
 
 DNS record types store different kinds of information.
 
-## Common Records
+### Common Records
 
 | Type | Meaning | Example purpose |
 | --- | --- | --- |
@@ -4008,7 +4008,7 @@ DNS record types store different kinds of information.
 | SRV | Service locator | Identify a service’s host and port |
 | DS | Delegation Signer | Create a DNSSEC chain of trust |
 
-## A Record
+### A Record
 
 Maps a name to an IPv4 address.
 
@@ -4016,7 +4016,7 @@ Maps a name to an IPv4 address.
 app.example.com → 203.0.113.20
 ```
 
-## AAAA Record
+### AAAA Record
 
 Maps a name to an IPv6 address.
 
@@ -4024,7 +4024,7 @@ Maps a name to an IPv6 address.
 app.example.com → 2001:db8::20
 ```
 
-## CNAME Record
+### CNAME Record
 
 Maps one hostname to another hostname.
 
@@ -4032,7 +4032,7 @@ Maps one hostname to another hostname.
 www.example.com → app.example.net
 ```
 
-## MX Record
+### MX Record
 
 Specifies mail servers and their priority.
 
@@ -4042,7 +4042,7 @@ Specifies mail servers and their priority.
 
 A lower MX priority number is preferred.
 
-## TXT Record
+### TXT Record
 
 Stores text values used for purposes such as:
 
@@ -4051,7 +4051,7 @@ Stores text values used for purposes such as:
 - DKIM configuration
 - Third-party service verification
 
-## CAA Record
+### CAA Record
 
 Specifies which certificate authorities may issue certificates for a domain.
 
@@ -4061,7 +4061,7 @@ Example:
 0 issue "amazon.com"
 ```
 
-## NS and SOA Records
+### NS and SOA Records
 
 Route 53 creates these when it creates a hosted zone.
 
@@ -4069,7 +4069,7 @@ Avoid deleting or changing them without understanding the effect on the zone.
 
 ---
 
-# 141. Route 53 Record TTL
+## 141. Route 53 Record TTL
 
 **TTL** stands for **Time To Live**.
 
@@ -4083,7 +4083,7 @@ TTL: 300 seconds
 
 This means the answer may be cached for five minutes.
 
-## High vs Low TTL
+### High vs Low TTL
 
 | Low TTL | High TTL |
 | --- | --- |
@@ -4092,7 +4092,7 @@ This means the answer may be cached for five minutes.
 | Useful before migrations | Useful for stable records |
 | Can increase DNS query volume | Can delay failover or record changes |
 
-## Example TTL Values
+### Example TTL Values
 
 | TTL | Time |
 | ---: | --- |
@@ -4103,7 +4103,7 @@ This means the answer may be cached for five minutes.
 | 86,400 | 1 day |
 | 172,800 | 2 days |
 
-## Safe DNS Change Process
+### Safe DNS Change Process
 
 Before a planned migration:
 
@@ -4114,7 +4114,7 @@ Before a planned migration:
 5. Monitor the application.
 6. Increase the TTL again after the change is stable.
 
-## Important Client Behaviour
+### Important Client Behaviour
 
 Changing a record does not remove answers already stored in external caches.
 
@@ -4124,11 +4124,11 @@ Some users may continue receiving the old answer until their cached TTL expires.
 
 ---
 
-# 142. CNAME vs Alias
+## 142. CNAME vs Alias
 
 A CNAME record and a Route 53 alias record can both direct one name towards another destination, but they are not the same.
 
-## CNAME
+### CNAME
 
 A CNAME is a standard DNS record.
 
@@ -4152,7 +4152,7 @@ The zone apex is the root of the hosted zone:
 example.com
 ```
 
-## Route 53 Alias
+### Route 53 Alias
 
 An alias is a Route 53 extension to DNS.
 
@@ -4171,7 +4171,7 @@ An alias:
 - Can use **Evaluate target health** for supported targets
 - Does not let you enter a normal record TTL directly
 
-## Comparison
+### Comparison
 
 | CNAME | Route 53 alias |
 | --- | --- |
@@ -4186,11 +4186,11 @@ An alias:
 
 ---
 
-# 143. Route 53 Alias Records
+## 143. Route 53 Alias Records
 
 An alias record routes DNS traffic to a supported AWS resource or another record in the same hosted zone.
 
-## Example ALB Alias
+### Example ALB Alias
 
 ```text
 Name: example.com
@@ -4201,7 +4201,7 @@ Target: dualstack.my-alb.eu-west-2.elb.amazonaws.com
 
 This allows the root domain to point to a load balancer without placing a changing load-balancer IP address in an A record.
 
-## Evaluate Target Health
+### Evaluate Target Health
 
 For supported targets, an alias record can use:
 
@@ -4213,7 +4213,7 @@ Route 53 then considers the target resource’s health when selecting an answer.
 
 For an Application Load Balancer, target-group health can affect this evaluation.
 
-## Why Not Store an ALB IP Address?
+### Why Not Store an ALB IP Address?
 
 Load-balancer IP addresses can change.
 
@@ -4221,7 +4221,7 @@ Use the load balancer’s DNS name through an alias instead of attempting to sto
 
 ---
 
-# 144. Route 53 Alias Record Targets
+## 144. Route 53 Alias Record Targets
 
 Common alias targets include:
 
@@ -4238,7 +4238,7 @@ Common alias targets include:
 
 The Route 53 console displays valid targets for the selected record and hosted zone.
 
-## Common Architecture
+### Common Architecture
 
 ```mermaid
 flowchart LR
@@ -4247,7 +4247,7 @@ flowchart LR
     ALB --> Targets[EC2 target group]
 ```
 
-## Important Limitations
+### Important Limitations
 
 - An alias cannot point to any arbitrary external hostname.
 - An EC2 public IP is normally used with an A record, preferably through an Elastic IP if a fixed address is essential.
@@ -4257,11 +4257,11 @@ flowchart LR
 
 ---
 
-# 145. Route 53 Routing Policies
+## 145. Route 53 Routing Policies
 
 A routing policy determines how Route 53 selects a DNS response when multiple possible records or endpoints exist.
 
-## Main Policies
+### Main Policies
 
 | Policy | Main purpose |
 | --- | --- |
@@ -4274,7 +4274,7 @@ A routing policy determines how Route 53 selects a DNS response when multiple po
 | IP-based | Route using configured client-IP CIDR mappings |
 | Multivalue answer | Return multiple healthy values |
 
-## Routing Policy Does Not Filter Network Traffic
+### Routing Policy Does Not Filter Network Traffic
 
 Routing policies influence DNS answers.
 
@@ -4286,7 +4286,7 @@ They do not replace:
 - Load balancers
 - Application authentication
 
-## DNS Caching Still Applies
+### DNS Caching Still Applies
 
 Route 53 makes a decision when it receives a DNS query.
 
@@ -4294,7 +4294,7 @@ If a resolver already has a cached answer, it may not ask Route 53 again until t
 
 ---
 
-# 146. Simple Routing Policy
+## 146. Simple Routing Policy
 
 Simple routing is used when no specialised routing behaviour is required.
 
@@ -4304,7 +4304,7 @@ Example:
 app.example.com → One Application Load Balancer
 ```
 
-## Characteristics
+### Characteristics
 
 - Commonly routes to one resource
 - Can contain multiple values in one non-alias record
@@ -4312,7 +4312,7 @@ app.example.com → One Application Load Balancer
 - Multiple returned values may be presented in a random order
 - Can be used in public and private hosted zones
 
-## Use Cases
+### Use Cases
 
 - One website endpoint
 - One load balancer
@@ -4324,11 +4324,11 @@ app.example.com → One Application Load Balancer
 
 ---
 
-# 147. Weighted Routing Policy
+## 147. Weighted Routing Policy
 
 Weighted routing divides DNS responses between multiple resources using relative weights.
 
-## Example
+### Example
 
 | Endpoint | Weight | Approximate share |
 | --- | ---: | ---: |
@@ -4347,7 +4347,7 @@ For the new release:
 10 / (90 + 10) = 10%
 ```
 
-## Common Use Cases
+### Common Use Cases
 
 - Canary deployments
 - Blue/green deployments
@@ -4355,7 +4355,7 @@ For the new release:
 - A/B testing
 - Dividing traffic between application versions
 
-## Important Behaviour
+### Important Behaviour
 
 - Weights are relative, not fixed percentages.
 - Records in the group use the same name and record type.
@@ -4371,7 +4371,7 @@ flowchart TD
 
 ---
 
-# 148. Latency-Based Routing
+## 148. Latency-Based Routing
 
 Latency-based routing directs a DNS query towards the configured AWS Region expected to provide the lowest latency for that user.
 
@@ -4384,14 +4384,14 @@ US East (N. Virginia): us-east-1
 
 Route 53 uses AWS latency measurements to choose between the Regions for which latency records exist.
 
-## Use Cases
+### Use Cases
 
 - Global applications
 - Multi-Region APIs
 - Improving user response times
 - Directing users towards better-performing regional deployments
 
-## Important Points
+### Important Points
 
 - Lowest latency does not necessarily mean geographically closest.
 - Internet paths and latency can change over time.
@@ -4403,13 +4403,13 @@ Route 53 uses AWS latency measurements to choose between the Regions for which l
 
 ---
 
-# 149. Route 53 Health Checks
+## 149. Route 53 Health Checks
 
 Route 53 health checks monitor endpoint availability or other health signals.
 
 They can help Route 53 avoid returning unhealthy resources in supported routing configurations.
 
-## Health Check Types
+### Health Check Types
 
 Route 53 can monitor:
 
@@ -4417,7 +4417,7 @@ Route 53 can monitor:
 - The status of other Route 53 health checks
 - The state of a CloudWatch alarm
 
-## Endpoint Health Check
+### Endpoint Health Check
 
 Route 53 health checkers can send requests using protocols such as:
 
@@ -4442,7 +4442,7 @@ Example path:
 
 A useful health endpoint should verify enough of the application to show that it can serve users.
 
-## Private Endpoints
+### Private Endpoints
 
 Public Route 53 health checkers cannot directly reach a private IP address inside a VPC.
 
@@ -4452,7 +4452,7 @@ For private resources, possible approaches include:
 - Evaluating the health of an alias target such as an ALB
 - Monitoring through an appropriate public or managed application endpoint
 
-## DNS Failover
+### DNS Failover
 
 ```mermaid
 flowchart TD
@@ -4461,13 +4461,13 @@ flowchart TD
     Check -->|No| Secondary[Secondary endpoint]
 ```
 
-## Important Limitation
+### Important Limitation
 
 DNS failover is not always immediate because clients and resolvers may have cached the previous answer.
 
 Choose TTL values that match the required recovery objective, while considering query volume and stability.
 
-## Health Check Costs
+### Health Check Costs
 
 Route 53 health checks can create ongoing charges, with some features costing more than basic health checks.
 
@@ -4475,7 +4475,7 @@ Delete unused lab health checks.
 
 ---
 
-# 150. Geolocation Routing
+## 150. Geolocation Routing
 
 Geolocation routing chooses an answer based on the geographic origin of the DNS query.
 
@@ -4486,7 +4486,7 @@ Locations can include:
 - US states
 - A default location
 
-## Example
+### Example
 
 | User location | Destination |
 | --- | --- |
@@ -4494,7 +4494,7 @@ Locations can include:
 | United States | Virginia application |
 | Other locations | Default application |
 
-## Use Cases
+### Use Cases
 
 - Localised website content
 - Language selection
@@ -4502,7 +4502,7 @@ Locations can include:
 - Licensing restrictions
 - Data-sovereignty designs
 
-## Default Record
+### Default Record
 
 A default geolocation record handles users whose location:
 
@@ -4511,7 +4511,7 @@ A default geolocation record handles users whose location:
 
 Without an appropriate default record, some queries may receive no answer.
 
-## Most Specific Match
+### Most Specific Match
 
 A more specific matching location takes priority over a broader one.
 
@@ -4527,19 +4527,19 @@ Default record        → Everyone else
 
 ---
 
-# 151. Geoproximity Routing
+## 151. Geoproximity Routing
 
 Geoproximity routing directs users based on the location of users and resources.
 
 It normally sends traffic to the closest configured resource, but a **bias** can change the size of the geographic area routed to that resource.
 
-## Resource Locations
+### Resource Locations
 
 For AWS resources, a location can be an AWS Region or supported Local Zone group.
 
 For non-AWS resources, latitude and longitude can be provided.
 
-## Bias
+### Bias
 
 | Bias | Effect |
 | --- | --- |
@@ -4551,7 +4551,7 @@ AWS supports bias values from `-99` to `+99`.
 
 Change bias gradually to avoid suddenly overwhelming an endpoint.
 
-## Geolocation vs Geoproximity
+### Geolocation vs Geoproximity
 
 | Geolocation | Geoproximity |
 | --- | --- |
@@ -4564,15 +4564,15 @@ Change bias gradually to avoid suddenly overwhelming an endpoint.
 
 ---
 
-# 152. IP-Based Routing
+## 152. IP-Based Routing
 
 IP-based routing uses configured client-IP ranges to select a DNS response.
 
 It is useful when an organisation has its own knowledge about customers, networks or internet service providers.
 
-## Main Components
+### Main Components
 
-### CIDR Block
+#### CIDR Block
 
 An IP range such as:
 
@@ -4580,7 +4580,7 @@ An IP range such as:
 198.51.100.0/24
 ```
 
-### CIDR Location
+#### CIDR Location
 
 A named group of one or more CIDR blocks.
 
@@ -4590,11 +4590,11 @@ Example:
 uk-corporate-users
 ```
 
-### CIDR Collection
+#### CIDR Collection
 
 A reusable collection containing CIDR locations.
 
-## Example
+### Example
 
 | Source range | DNS destination |
 | --- | --- |
@@ -4602,14 +4602,14 @@ A reusable collection containing CIDR locations.
 | Partner network B | Endpoint B |
 | Default `*` | Public endpoint |
 
-## Use Cases
+### Use Cases
 
 - Route particular ISPs to selected endpoints
 - Optimise known network transit paths
 - Direct corporate client ranges
 - Override a more general location-based design
 
-## Important Points
+### Important Points
 
 - A default `*` location can handle unmatched queries.
 - CIDR planning must be accurate.
@@ -4618,7 +4618,7 @@ A reusable collection containing CIDR locations.
 
 ---
 
-# 153. Multivalue Answer Routing
+## 153. Multivalue Answer Routing
 
 Multivalue answer routing allows Route 53 to return multiple values for one DNS query.
 
@@ -4626,7 +4626,7 @@ Each resource can have its own record and optional health check.
 
 Route 53 returns up to eight healthy records in an answer.
 
-## Example
+### Example
 
 ```text
 app.example.com → 203.0.113.10
@@ -4636,7 +4636,7 @@ app.example.com → 203.0.113.30
 
 If one endpoint becomes unhealthy, Route 53 can stop including it in normal answers.
 
-## Multivalue vs Load Balancer
+### Multivalue vs Load Balancer
 
 | Multivalue DNS | Load balancer |
 | --- | --- |
@@ -4648,7 +4648,7 @@ If one endpoint becomes unhealthy, Route 53 can stop including it in normal answ
 
 Multivalue routing is not a replacement for an Elastic Load Balancer.
 
-## Important Behaviour
+### Important Behaviour
 
 - Records without health checks are always considered healthy.
 - Different resolvers may receive different sets or ordering.
@@ -4657,11 +4657,11 @@ Multivalue routing is not a replacement for an Elastic Load Balancer.
 
 ---
 
-# 154. Domain Registrar vs DNS Service
+## 154. Domain Registrar vs DNS Service
 
 Domain registration and DNS hosting are related but separate services.
 
-## Domain Registrar
+### Domain Registrar
 
 The registrar manages the registration of the domain.
 
@@ -4674,7 +4674,7 @@ Responsibilities can include:
 - Authoritative name-server delegation
 - Contact information
 
-## DNS Service
+### DNS Service
 
 The DNS service hosts and answers DNS records.
 
@@ -4686,7 +4686,7 @@ Responsibilities can include:
 - Routing policies
 - DNS health checks
 
-## Comparison
+### Comparison
 
 | Domain registrar | DNS service |
 | --- | --- |
@@ -4695,7 +4695,7 @@ Responsibilities can include:
 | Stores authoritative name-server delegation | Supplies the authoritative name servers |
 | Example: GoDaddy | Example: Amazon Route 53 |
 
-## They Do Not Need to Be the Same Company
+### They Do Not Need to Be the Same Company
 
 Example:
 
@@ -4711,11 +4711,11 @@ The registrar delegates DNS to the Route 53 name servers.
 
 ---
 
-# 155. GoDaddy as Registrar and Route 53 as DNS Service
+## 155. GoDaddy as Registrar and Route 53 as DNS Service
 
 A domain can remain registered with GoDaddy while Route 53 becomes its authoritative DNS service.
 
-## Architecture
+### Architecture
 
 ```mermaid
 flowchart LR
@@ -4724,7 +4724,7 @@ flowchart LR
     Zone --> ALB[Application Load Balancer]
 ```
 
-## Migration Process
+### Migration Process
 
 1. Record the existing DNS configuration.
 2. Export the existing zone file if the provider supports it.
@@ -4739,7 +4739,7 @@ flowchart LR
 11. Monitor website, API and email traffic.
 12. Keep the previous provider details temporarily in case rollback is needed.
 
-## Critical Warning
+### Critical Warning
 
 Do not change the registrar name servers until the required records exist in Route 53.
 
@@ -4751,7 +4751,7 @@ Missing records can break:
 - API endpoints
 - Subdomains
 
-## Verify Delegation
+### Verify Delegation
 
 ```bash
 dig NS example.com
@@ -4767,11 +4767,11 @@ The answer should eventually show the assigned Route 53 name servers.
 
 ---
 
-# 156. Third-Party Registrar with Amazon Route 53
+## 156. Third-Party Registrar with Amazon Route 53
 
 The same process works with most third-party registrars.
 
-## General Process
+### General Process
 
 ```text
 Register domain with third party
@@ -4787,13 +4787,13 @@ Update custom name servers at the registrar
 Test delegation and application traffic
 ```
 
-## What Changes at the Registrar?
+### What Changes at the Registrar?
 
 Only the authoritative name-server delegation needs to change when Route 53 becomes the DNS service.
 
 The domain can remain registered and renewed through the original registrar.
 
-## Safe Migration Checklist
+### Safe Migration Checklist
 
 - [ ] Confirm control of the correct domain.
 - [ ] Copy or export every existing DNS record.
@@ -4810,11 +4810,11 @@ The domain can remain registered and renewed through the original registrar.
 
 ---
 
-# Route 53 End-to-End Demo
+## Route 53 End-to-End Demo
 
 This demo connects a third-party domain to an internet-facing Application Load Balancer in `eu-west-2`.
 
-## Target Architecture
+### Target Architecture
 
 ```mermaid
 flowchart TD
@@ -4824,7 +4824,7 @@ flowchart TD
     ALB --> B[EC2 in eu-west-2b]
 ```
 
-## Prerequisites
+### Prerequisites
 
 - A domain you control
 - A working internet-facing ALB
@@ -4833,7 +4833,7 @@ flowchart TD
 - Access to the domain registrar
 - Permission to manage Route 53
 
-## Step 1: Check the Application First
+### Step 1: Check the Application First
 
 Open the ALB DNS name directly:
 
@@ -4843,7 +4843,7 @@ http://my-alb-123.eu-west-2.elb.amazonaws.com
 
 Do not start the DNS migration until the ALB and targets are working.
 
-## Step 2: Create a Public Hosted Zone
+### Step 2: Create a Public Hosted Zone
 
 1. Open **Route 53**.
 2. Select **Hosted zones**.
@@ -4853,7 +4853,7 @@ Do not start the DNS migration until the ALB and targets are working.
 6. Create the hosted zone.
 7. Record the four assigned name servers.
 
-## Step 3: Recreate Existing Records
+### Step 3: Recreate Existing Records
 
 Before changing registrar name servers, copy all required records into Route 53.
 
@@ -4865,7 +4865,7 @@ Pay particular attention to:
 - Domain-verification records
 - Existing subdomains
 
-## Step 4: Create the Root Alias Record
+### Step 4: Create the Root Alias Record
 
 Create:
 
@@ -4880,7 +4880,7 @@ Routing policy: Simple
 Evaluate target health: Yes
 ```
 
-## Step 5: Create the `www` Record
+### Step 5: Create the `www` Record
 
 Possible alias configuration:
 
@@ -4893,7 +4893,7 @@ Target: The same ALB
 
 Alternatively, a CNAME can point `www.example.com` to a suitable hostname, but an alias is convenient for a supported AWS target.
 
-## Step 6: Update the Registrar Name Servers
+### Step 6: Update the Registrar Name Servers
 
 At the registrar:
 
@@ -4905,7 +4905,7 @@ At the registrar:
 
 Do not copy trailing punctuation accidentally if the interface does not expect it.
 
-## Step 7: Verify DNS
+### Step 7: Verify DNS
 
 Check authoritative delegation:
 
@@ -4945,7 +4945,7 @@ Test the HTTP response:
 curl -I http://example.com
 ```
 
-## Step 8: Add HTTPS
+### Step 8: Add HTTPS
 
 1. Request or import a certificate in AWS Certificate Manager.
 2. Include the required names:
@@ -4969,7 +4969,7 @@ Test:
 curl -I https://example.com
 ```
 
-## Step 9: Inspect Route 53 with the CLI
+### Step 9: Inspect Route 53 with the CLI
 
 List hosted zones:
 
@@ -4991,7 +4991,7 @@ aws route53 list-resource-record-sets \
   --hosted-zone-id HOSTED_ZONE_ID
 ```
 
-## Example CLI Change File
+### Example CLI Change File
 
 `change-record.json`:
 
@@ -5030,7 +5030,7 @@ For an ALB, use an alias record instead.
 
 ---
 
-# Route 53 Troubleshooting
+## Route 53 Troubleshooting
 
 | Problem | Likely cause | Check |
 | --- | --- | --- |
@@ -5048,7 +5048,7 @@ For an ALB, use an alias record instead.
 | Weighted results look inaccurate | DNS caching or small sample | TTL and larger query sample |
 | Email stops after migration | Missing MX, TXT or DKIM records | Compare old and new zones |
 
-## Useful Commands
+### Useful Commands
 
 Query specific record types:
 
@@ -5081,7 +5081,7 @@ dig example.com +noall +answer
 
 ---
 
-# Route 53 Security Checklist
+## Route 53 Security Checklist
 
 - [ ] Enable MFA for privileged AWS and registrar access.
 - [ ] Protect the registrar account with a strong unique password.
@@ -5098,7 +5098,7 @@ dig example.com +noall +answer
 
 ---
 
-# Route 53 Cost Checklist
+## Route 53 Cost Checklist
 
 Potential costs include:
 
@@ -5124,7 +5124,7 @@ Cost-safety checks:
 
 ---
 
-# Route 53 Quick Revision Questions
+## Route 53 Quick Revision Questions
 
 1. What are the three main functions of Route 53?
 2. Why is Route 53 called Route 53?
@@ -5171,7 +5171,7 @@ Cost-safety checks:
 
 ---
 
-# Route 53 Key Takeaways
+## Route 53 Key Takeaways
 
 - DNS translates domain names into service information such as IP addresses.
 - Route 53 provides domain registration, DNS routing and health checking.
@@ -5198,7 +5198,7 @@ Cost-safety checks:
 
 ---
 
-# Official Route 53 References
+## Official Route 53 References
 
 - [What is Amazon Route 53?](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)
 - [Working with hosted zones](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-working-with.html)

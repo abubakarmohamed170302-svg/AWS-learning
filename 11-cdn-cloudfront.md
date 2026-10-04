@@ -19,7 +19,7 @@
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 By the end of this section, you should understand:
 
@@ -41,7 +41,7 @@ By the end of this section, you should understand:
 
 # 157. Amazon CloudFront
 
-## What Is a CDN?
+### What Is a CDN?
 
 **CDN** stands for **Content Delivery Network**.
 
@@ -79,7 +79,7 @@ flowchart TD
 
 ---
 
-## What Is Amazon CloudFront?
+### What Is Amazon CloudFront?
 
 **Amazon CloudFront** is AWS's Content Delivery Network.
 
@@ -95,7 +95,7 @@ CloudFront can deliver content from AWS services and non-AWS servers.
 
 ---
 
-## CloudFront Terminology
+### CloudFront Terminology
 
 | Term | Meaning |
 | --- | --- |
@@ -114,7 +114,7 @@ CloudFront can deliver content from AWS services and non-AWS servers.
 
 ---
 
-## What Is a CloudFront Distribution?
+### What Is a CloudFront Distribution?
 
 A **CloudFront distribution** contains the settings CloudFront needs to deliver an application.
 
@@ -154,7 +154,7 @@ https://static.aws.abubakarmohamed.dev/images/logo.png
 
 ---
 
-## What Is an Edge Location?
+### What Is an Edge Location?
 
 An **edge location** is an AWS location where CloudFront can cache and deliver content.
 
@@ -182,36 +182,36 @@ CloudFront can then cache the bucket's content at edge locations around the worl
 
 ---
 
-## Why Use CloudFront?
+### Why Use CloudFront?
 
 CloudFront can provide several benefits.
 
-### Reduced Latency
+#### Reduced Latency
 
 Content is served from a location closer to the user.
 
-### Reduced Origin Load
+#### Reduced Origin Load
 
 CloudFront can answer requests from its cache instead of repeatedly contacting the origin.
 
-### Improved Availability
+#### Improved Availability
 
 Cached content is distributed across CloudFront's global infrastructure.
 
-### HTTPS Support
+#### HTTPS Support
 
 CloudFront can provide secure HTTPS connections between:
 
 - The viewer and CloudFront
 - CloudFront and the origin
 
-### DDoS Protection
+#### DDoS Protection
 
 CloudFront includes protection through AWS Shield Standard.
 
 AWS WAF can also be associated with a CloudFront distribution.
 
-### Custom Domain Support
+#### Custom Domain Support
 
 CloudFront can deliver content through domains such as:
 
@@ -221,7 +221,7 @@ static.example.com
 api.example.com
 ```
 
-### Controlled Access
+#### Controlled Access
 
 CloudFront supports:
 
@@ -235,7 +235,7 @@ CloudFront supports:
 
 ---
 
-## Common CloudFront Use Cases
+### Common CloudFront Use Cases
 
 CloudFront is commonly used for:
 
@@ -252,7 +252,7 @@ CloudFront is commonly used for:
 
 ---
 
-## CloudFront and DevOps
+### CloudFront and DevOps
 
 CloudFront matters in DevOps because it helps teams create applications that are:
 
@@ -283,7 +283,7 @@ flowchart LR
 
 ---
 
-## CloudFront Is a Global Service
+### CloudFront Is a Global Service
 
 CloudFront is considered a **global AWS service**.
 
@@ -305,9 +305,9 @@ ACM viewer certificate: us-east-1
 
 ---
 
-# 158. CloudFront Origins
+## 158. CloudFront Origins
 
-## What Is an Origin?
+### What Is an Origin?
 
 An **origin** is the original location where CloudFront retrieves content.
 
@@ -325,7 +325,7 @@ CloudFront may retrieve content from the origin when:
 
 ---
 
-## Supported Origin Examples
+### Supported Origin Examples
 
 CloudFront can use origins such as:
 
@@ -342,7 +342,7 @@ CloudFront can use origins such as:
 
 ---
 
-## Origin Comparison
+### Origin Comparison
 
 | Origin | Common use |
 | --- | --- |
@@ -357,7 +357,7 @@ CloudFront can use origins such as:
 
 ---
 
-## Standard S3 Origin
+### Standard S3 Origin
 
 A standard S3 origin uses the S3 REST endpoint.
 
@@ -380,7 +380,7 @@ This is the recommended design for most private static-content solutions.
 
 ---
 
-## S3 Website Endpoint Origin
+### S3 Website Endpoint Origin
 
 An S3 bucket configured for static website hosting has a website endpoint.
 
@@ -412,7 +412,7 @@ Important limitations include:
 
 ---
 
-## Custom Origins
+### Custom Origins
 
 A **custom origin** is an HTTP or HTTPS server that CloudFront can contact.
 
@@ -440,7 +440,7 @@ origin.example.com
 
 ---
 
-## Multiple Origins
+### Multiple Origins
 
 One CloudFront distribution can contain multiple origins.
 
@@ -467,7 +467,7 @@ The route is selected using CloudFront **cache behaviours**.
 
 ---
 
-## Cache Behaviours
+### Cache Behaviours
 
 A cache behaviour tells CloudFront how to handle requests matching a path pattern.
 
@@ -504,7 +504,7 @@ A behaviour can control:
 
 ---
 
-## Behaviour Priority
+### Behaviour Priority
 
 CloudFront checks behaviours in priority order.
 
@@ -540,7 +540,7 @@ matches the default behaviour.
 
 ---
 
-## Origin Protocol Policy
+### Origin Protocol Policy
 
 The **origin protocol policy** controls how CloudFront communicates with a custom origin.
 
@@ -564,7 +564,7 @@ flowchart LR
 
 ---
 
-## Viewer Protocol Policy
+### Viewer Protocol Policy
 
 The **viewer protocol policy** controls how users communicate with CloudFront.
 
@@ -584,7 +584,7 @@ Redirect HTTP to HTTPS
 
 ---
 
-## Origin Custom Headers
+### Origin Custom Headers
 
 CloudFront can add a custom HTTP header before sending a request to an origin.
 
@@ -611,7 +611,7 @@ Important rules:
 
 ---
 
-## Origin Groups
+### Origin Groups
 
 An **origin group** contains:
 
@@ -639,7 +639,7 @@ They are not a replacement for:
 
 ---
 
-## Origin Shield
+### Origin Shield
 
 **Origin Shield** provides an additional centralised caching layer between CloudFront's regional caches and the origin.
 
@@ -654,9 +654,9 @@ Origin Shield can create additional charges, so it should be enabled when its be
 
 ---
 
-# 159. CloudFront at a High Level
+## 159. CloudFront at a High Level
 
-## How a CloudFront Request Works
+### How a CloudFront Request Works
 
 When a user requests content:
 
@@ -679,7 +679,7 @@ flowchart TD
 
 ---
 
-## Cache Hit
+### Cache Hit
 
 A **cache hit** occurs when CloudFront already has a valid cached copy of the requested content.
 
@@ -696,7 +696,7 @@ Benefits include:
 
 ---
 
-## Cache Miss
+### Cache Miss
 
 A **cache miss** occurs when CloudFront does not have a valid cached copy.
 
@@ -714,7 +714,7 @@ A cache miss can occur because:
 
 ---
 
-## Regional Edge Caches
+### Regional Edge Caches
 
 CloudFront also uses **regional edge caches**.
 
@@ -733,7 +733,7 @@ Regional edge caches help reduce the number of requests that reach the origin.
 
 ---
 
-## Cache Key
+### Cache Key
 
 The **cache key** determines whether two requests can use the same cached response.
 
@@ -757,7 +757,7 @@ If the `colour` query string is included in the cache key, CloudFront treats the
 
 ---
 
-## Why the Cache Key Matters
+### Why the Cache Key Matters
 
 An unnecessarily large cache key reduces the cache hit ratio.
 
@@ -785,7 +785,7 @@ Cache key:
 
 ---
 
-## Cache Policy vs Origin Request Policy
+### Cache Policy vs Origin Request Policy
 
 These two policies have different purposes.
 
@@ -800,7 +800,7 @@ This can improve the cache hit ratio while still giving the origin required info
 
 ---
 
-## Time to Live
+### Time to Live
 
 **TTL** stands for **Time to Live**.
 
@@ -828,7 +828,7 @@ This requests that the content be cached for:
 
 ---
 
-## TTL Trade-Off
+### TTL Trade-Off
 
 | Short TTL | Long TTL |
 | --- | --- |
@@ -849,15 +849,15 @@ Examples:
 
 ---
 
-## Cache-Control Examples
+### Cache-Control Examples
 
-### Cache for One Hour
+#### Cache for One Hour
 
 ```http
 Cache-Control: public, max-age=3600
 ```
 
-### Cache for One Year
+#### Cache for One Year
 
 ```http
 Cache-Control: public, max-age=31536000, immutable
@@ -870,7 +870,7 @@ app.7d91c2.js
 styles.a810de.css
 ```
 
-### Prevent Shared Caching
+#### Prevent Shared Caching
 
 ```http
 Cache-Control: private, no-store
@@ -886,11 +886,11 @@ Use careful caching rules for:
 
 ---
 
-## Static and Dynamic Content
+### Static and Dynamic Content
 
 CloudFront can deliver both static and dynamic content.
 
-### Static Content
+#### Static Content
 
 Static content is usually the same for every user.
 
@@ -904,7 +904,7 @@ Examples:
 
 Static content is usually suitable for caching.
 
-### Dynamic Content
+#### Dynamic Content
 
 Dynamic content may change for each request.
 
@@ -929,7 +929,7 @@ However, dynamic or personalised responses must not be cached incorrectly.
 
 ---
 
-## HTTP Methods
+### HTTP Methods
 
 CloudFront can process methods including:
 
@@ -949,7 +949,7 @@ Only enable the methods required by the application.
 
 ---
 
-## CloudFront Invalidations
+### CloudFront Invalidations
 
 An **invalidation** removes objects from CloudFront caches before their TTL expires.
 
@@ -973,7 +973,7 @@ After invalidation, the next request retrieves the current object from the origi
 
 ---
 
-## Invalidations vs File Versioning
+### Invalidations vs File Versioning
 
 Instead of replacing:
 
@@ -1009,7 +1009,7 @@ A common strategy is:
 
 ---
 
-## Custom Domains and HTTPS
+### Custom Domains and HTTPS
 
 A CloudFront distribution can use a custom domain.
 
@@ -1049,7 +1049,7 @@ eu-west-2
 
 ---
 
-## CloudFront Security Services
+### CloudFront Security Services
 
 CloudFront can integrate with:
 
@@ -1066,11 +1066,11 @@ CloudFront can integrate with:
 
 ---
 
-## Signed URLs and Signed Cookies
+### Signed URLs and Signed Cookies
 
 Signed URLs and cookies can be used to restrict access to private content.
 
-### Signed URL
+#### Signed URL
 
 Provides access to one specific URL.
 
@@ -1080,7 +1080,7 @@ Example use cases:
 - One video file
 - A temporary software package
 
-### Signed Cookie
+#### Signed Cookie
 
 Provides access to multiple protected files.
 
@@ -1098,7 +1098,7 @@ Example use cases:
 
 ---
 
-## Viewing CloudFront Response Headers
+### Viewing CloudFront Response Headers
 
 Use `curl` to inspect the response:
 
@@ -1131,9 +1131,9 @@ x-cache: Hit from cloudfront
 
 ---
 
-# 160. CloudFront – S3 as an Origin
+## 160. CloudFront – S3 as an Origin
 
-## S3 and CloudFront Architecture
+### S3 and CloudFront Architecture
 
 Amazon S3 is commonly used to store static files.
 
@@ -1160,7 +1160,7 @@ Private S3 bucket in eu-west-2
 
 ---
 
-## Why Place CloudFront in Front of S3?
+### Why Place CloudFront in Front of S3?
 
 CloudFront can provide:
 
@@ -1176,7 +1176,7 @@ CloudFront can provide:
 
 ---
 
-## Origin Access Control
+### Origin Access Control
 
 **Origin Access Control**, or **OAC**, allows CloudFront to send authenticated requests to S3.
 
@@ -1188,7 +1188,7 @@ AWS recommends OAC instead of the older **Origin Access Identity**, or OAI.
 
 ---
 
-## OAC vs OAI
+### OAC vs OAI
 
 | OAC | OAI |
 | --- | --- |
@@ -1201,7 +1201,7 @@ AWS recommends OAC instead of the older **Origin Access Identity**, or OAI.
 
 ---
 
-## Secure S3 Design
+### Secure S3 Design
 
 The secure design should normally include:
 
@@ -1215,7 +1215,7 @@ The secure design should normally include:
 
 ---
 
-## Example S3 Bucket Policy for OAC
+### Example S3 Bucket Policy for OAC
 
 Replace:
 
@@ -1249,9 +1249,9 @@ The `AWS:SourceArn` condition restricts access to the specified CloudFront distr
 
 ---
 
-## Practical Demo: Private S3 Website Through CloudFront
+### Practical Demo: Private S3 Website Through CloudFront
 
-### Demo Goal
+#### Demo Goal
 
 Create this architecture:
 
@@ -1267,7 +1267,7 @@ The user should be able to access the website through CloudFront but not directl
 
 ---
 
-## Step 1: Create the Website File
+### Step 1: Create the Website File
 
 Create a file called:
 
@@ -1320,7 +1320,7 @@ Example content:
 
 ---
 
-## Step 2: Create the S3 Bucket
+### Step 2: Create the S3 Bucket
 
 1. Open the **Amazon S3** console.
 2. Select **Create bucket**.
@@ -1345,7 +1345,7 @@ Do not enable public static website hosting for this OAC demo.
 
 ---
 
-## Step 3: Create the CloudFront Distribution
+### Step 3: Create the CloudFront Distribution
 
 1. Open the **CloudFront** console.
 2. Select **Create distribution**.
@@ -1386,7 +1386,7 @@ index.html
 
 ---
 
-## Step 4: Update the Bucket Policy
+### Step 4: Update the Bucket Policy
 
 CloudFront may offer to copy or update the required bucket policy.
 
@@ -1401,7 +1401,7 @@ Do not create a public `"Principal": "*"` read policy for this design.
 
 ---
 
-## Step 5: Wait for Deployment
+### Step 5: Wait for Deployment
 
 CloudFront distributes its configuration globally.
 
@@ -1425,7 +1425,7 @@ The `index.html` page should appear.
 
 ---
 
-## Step 6: Test Direct S3 Access
+### Step 6: Test Direct S3 Access
 
 Attempt to open the direct S3 object URL.
 
@@ -1448,7 +1448,7 @@ This proves that:
 
 ---
 
-## Step 7: Inspect the Response
+### Step 7: Inspect the Response
 
 Run:
 
@@ -1476,7 +1476,7 @@ x-cache: Hit from cloudfront
 
 ---
 
-## Step 8: Upload an Updated File
+### Step 8: Upload an Updated File
 
 Update the page and upload it again:
 
@@ -1507,7 +1507,7 @@ Use `/*` carefully because invalidation requests can create charges beyond the i
 
 ---
 
-## Step 9: Add a Custom Domain
+### Step 9: Add a Custom Domain
 
 Example domain:
 
@@ -1515,7 +1515,7 @@ Example domain:
 static.aws.abubakarmohamed.dev
 ```
 
-### Request a Certificate
+#### Request a Certificate
 
 1. Open AWS Certificate Manager.
 2. Change the Region to:
@@ -1532,7 +1532,7 @@ static.aws.abubakarmohamed.dev
 
 4. Complete DNS validation.
 
-### Attach the Domain to CloudFront
+#### Attach the Domain to CloudFront
 
 Add this alternate domain name:
 
@@ -1542,7 +1542,7 @@ static.aws.abubakarmohamed.dev
 
 Select the validated ACM certificate.
 
-### Create the Route 53 Record
+#### Create the Route 53 Record
 
 Create a Route 53 alias record:
 
@@ -1567,7 +1567,7 @@ https://static.aws.abubakarmohamed.dev
 
 ---
 
-## S3 and CloudFront Troubleshooting
+### S3 and CloudFront Troubleshooting
 
 | Problem | Possible cause |
 | --- | --- |
@@ -1587,7 +1587,7 @@ https://static.aws.abubakarmohamed.dev
 
 ---
 
-## Important S3 Origin Rules
+### Important S3 Origin Rules
 
 - Keep Block Public Access enabled when using OAC.
 - Use the S3 REST endpoint, not the website endpoint.
@@ -1601,13 +1601,13 @@ https://static.aws.abubakarmohamed.dev
 
 ---
 
-# 161. CloudFront – ALB or EC2 as an Origin
+## 161. CloudFront – ALB or EC2 as an Origin
 
 CloudFront can use a web application running behind an Application Load Balancer or directly on EC2 as its origin.
 
 ---
 
-## CloudFront with an Application Load Balancer
+### CloudFront with an Application Load Balancer
 
 An Application Load Balancer distributes traffic across multiple targets.
 
@@ -1634,7 +1634,7 @@ This design can provide:
 
 ---
 
-## Why Use an ALB Instead of One EC2 Instance?
+### Why Use an ALB Instead of One EC2 Instance?
 
 | ALB origin | Direct EC2 origin |
 | --- | --- |
@@ -1659,7 +1659,7 @@ EC2 instances across multiple AZs
 
 ---
 
-## Traditional Internet-Facing ALB Origin
+### Traditional Internet-Facing ALB Origin
 
 A traditional CloudFront custom origin can use an internet-facing ALB.
 
@@ -1677,11 +1677,11 @@ Security controls should therefore restrict direct access as much as possible.
 
 ---
 
-## Protecting an Internet-Facing ALB Origin
+### Protecting an Internet-Facing ALB Origin
 
 AWS supports several protective measures.
 
-### Custom Origin Header
+#### Custom Origin Header
 
 CloudFront adds a secret custom header:
 
@@ -1701,7 +1701,7 @@ flowchart TD
     ALB -->|"Header invalid"| X["403 response"]
 ```
 
-### CloudFront Managed Prefix List
+#### CloudFront Managed Prefix List
 
 The ALB security group can allow inbound traffic from the AWS-managed CloudFront origin-facing prefix list.
 
@@ -1713,7 +1713,7 @@ com.amazonaws.global.cloudfront.origin-facing
 
 This allows traffic from CloudFront's origin-facing network rather than from every IPv4 address.
 
-### HTTPS to the Origin
+#### HTTPS to the Origin
 
 Configure CloudFront to communicate with the ALB through HTTPS.
 
@@ -1723,13 +1723,13 @@ Example:
 Viewer → HTTPS → CloudFront → HTTPS → ALB
 ```
 
-### AWS WAF
+#### AWS WAF
 
 AWS WAF can inspect requests at CloudFront before they reach the ALB.
 
 ---
 
-## Important Custom-Header Security Rules
+### Important Custom-Header Security Rules
 
 The custom header value must be treated like a credential.
 
@@ -1746,7 +1746,7 @@ Use a cryptographically random value and rotate it if exposed.
 
 ---
 
-## CloudFront VPC Origins
+### CloudFront VPC Origins
 
 CloudFront **VPC origins** allow CloudFront to connect to supported resources inside private subnets.
 
@@ -1769,7 +1769,7 @@ Europe (London), `eu-west-2`, supports CloudFront VPC origins.
 
 ---
 
-## VPC Origin Requirements
+### VPC Origin Requirements
 
 A VPC-origin design requires:
 
@@ -1796,7 +1796,7 @@ Do not manually create or edit a security group using this reserved naming patte
 
 ---
 
-## VPC Origin Security Group
+### VPC Origin Security Group
 
 The origin security group can allow traffic from:
 
@@ -1816,7 +1816,7 @@ Source: CloudFront-VPCOrigins-Service-SG
 
 ---
 
-## Traditional Origin vs VPC Origin
+### Traditional Origin vs VPC Origin
 
 | Traditional custom origin | VPC origin |
 | --- | --- |
@@ -1829,7 +1829,7 @@ Source: CloudFront-VPCOrigins-Service-SG
 
 ---
 
-## EC2 as a Direct Origin
+### EC2 as a Direct Origin
 
 An EC2 instance can act as a CloudFront custom origin.
 
@@ -1865,7 +1865,7 @@ Do not allow SSH from:
 
 ---
 
-## Why Direct EC2 Is Less Resilient
+### Why Direct EC2 Is Less Resilient
 
 A single EC2 origin can fail because of:
 
@@ -1890,9 +1890,9 @@ CloudFront → One EC2 instance
 
 ---
 
-## Practical Demo: CloudFront with an ALB Origin
+### Practical Demo: CloudFront with an ALB Origin
 
-### Prerequisites
+#### Prerequisites
 
 Before creating the CloudFront distribution, confirm:
 
@@ -1905,7 +1905,7 @@ Before creating the CloudFront distribution, confirm:
 
 ---
 
-## Step 1: Test the ALB
+### Step 1: Test the ALB
 
 Open the ALB DNS name:
 
@@ -1923,7 +1923,7 @@ Do not continue until the application works through the ALB.
 
 ---
 
-## Step 2: Create the Distribution
+### Step 2: Create the Distribution
 
 1. Open the CloudFront console.
 2. Select **Create distribution**.
@@ -1948,7 +1948,7 @@ Redirect HTTP to HTTPS
 
 ---
 
-## Step 3: Choose the Correct Cache Policy
+### Step 3: Choose the Correct Cache Policy
 
 For static content:
 
@@ -1978,7 +1978,7 @@ unless the cache key and application design safely separate every user.
 
 ---
 
-## Step 4: Test CloudFront
+### Step 4: Test CloudFront
 
 Open:
 
@@ -2000,7 +2000,7 @@ curl -I https://DISTRIBUTION_DOMAIN
 
 ---
 
-## Step 5: Restrict Direct ALB Access
+### Step 5: Restrict Direct ALB Access
 
 For an internet-facing ALB:
 
@@ -2020,7 +2020,7 @@ Direct ALB URL → Rejected
 
 ---
 
-## Step 6: Add a Custom Domain
+### Step 6: Add a Custom Domain
 
 Example viewer domain:
 
@@ -2044,9 +2044,9 @@ Create a Route 53 alias pointing the viewer domain to CloudFront.
 
 ---
 
-## ALB and EC2 Caching Considerations
+### ALB and EC2 Caching Considerations
 
-### Suitable for Caching
+#### Suitable for Caching
 
 - Images
 - CSS
@@ -2055,7 +2055,7 @@ Create a Route 53 alias pointing the viewer domain to CloudFront.
 - Public documentation
 - Public API responses that change infrequently
 
-### Usually Unsuitable for Shared Caching
+#### Usually Unsuitable for Shared Caching
 
 - Login responses
 - Account dashboards
@@ -2076,7 +2076,7 @@ A safe design may use different behaviours:
 
 ---
 
-## CloudFront and ALB Health
+### CloudFront and ALB Health
 
 The ALB performs health checks against its targets.
 
@@ -2096,9 +2096,9 @@ CloudFront origin groups can provide another form of failover between separate o
 
 ---
 
-## Common CloudFront Errors
+### Common CloudFront Errors
 
-### 403 Forbidden
+#### 403 Forbidden
 
 Possible causes:
 
@@ -2110,7 +2110,7 @@ Possible causes:
 - Geographic restriction blocked the request
 - Requested object is private
 
-### 404 Not Found
+#### 404 Not Found
 
 Possible causes:
 
@@ -2120,7 +2120,7 @@ Possible causes:
 - Application route does not exist
 - Uppercase/lowercase mismatch
 
-### 502 Bad Gateway
+#### 502 Bad Gateway
 
 Possible causes:
 
@@ -2131,7 +2131,7 @@ Possible causes:
 - Incorrect origin port
 - Application returned an invalid response
 
-### 504 Gateway Timeout
+#### 504 Gateway Timeout
 
 Possible causes:
 
@@ -2142,7 +2142,7 @@ Possible causes:
 - Network route is incorrect
 - Origin response timeout is too low
 
-### Too Many Redirects
+#### Too Many Redirects
 
 Possible causes:
 
@@ -2153,7 +2153,7 @@ Possible causes:
 
 ---
 
-## CloudFront Troubleshooting Checklist
+### CloudFront Troubleshooting Checklist
 
 ```text
 Correct distribution?
@@ -2179,7 +2179,7 @@ AWS WAF blocking the request?
 
 ---
 
-## Useful AWS CLI Commands
+### Useful AWS CLI Commands
 
 List CloudFront distributions:
 
@@ -2247,7 +2247,7 @@ aws elbv2 describe-target-health \
 
 ---
 
-# CloudFront Security Checklist
+## CloudFront Security Checklist
 
 - [ ] Redirect HTTP viewers to HTTPS.
 - [ ] Use HTTPS between CloudFront and custom origins.
@@ -2267,7 +2267,7 @@ aws elbv2 describe-target-health \
 
 ---
 
-# CloudFront Cost Checklist
+## CloudFront Cost Checklist
 
 CloudFront can create charges for:
 
@@ -2307,7 +2307,7 @@ Cost-safety steps:
 
 ---
 
-# CloudFront Cleanup
+## CloudFront Cleanup
 
 A CloudFront distribution must normally be disabled before it can be deleted.
 
@@ -2330,7 +2330,7 @@ Suggested cleanup order:
 
 ---
 
-# CloudFront Quick Revision Questions
+## CloudFront Quick Revision Questions
 
 1. What does CDN stand for?
 2. What problem does a CDN solve?
@@ -2380,7 +2380,7 @@ Suggested cleanup order:
 
 ---
 
-# CloudFront Key Takeaways
+## CloudFront Key Takeaways
 
 - A CDN delivers content from locations closer to users.
 - Amazon CloudFront is AWS's global CDN.
@@ -2406,7 +2406,7 @@ Suggested cleanup order:
 
 ---
 
-# Official CloudFront References
+## Official CloudFront References
 
 - [What is Amazon CloudFront?](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html)
 - [How CloudFront delivers content](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HowCloudFrontWorks.html)

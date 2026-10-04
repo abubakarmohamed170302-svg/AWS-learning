@@ -17,7 +17,7 @@ The developer can concentrate on application code, events and business logic.
 
 ---
 
-## Serverless Learning Objectives
+### Serverless Learning Objectives
 
 By the end of this section, you should understand:
 
@@ -35,7 +35,7 @@ By the end of this section, you should understand:
 
 ---
 
-# 100. Serverless Overview
+## 100. Serverless Overview
 
 In a traditional environment, an organisation must provision and manage servers before running an application.
 
@@ -54,7 +54,7 @@ Serverless computing transfers much of this infrastructure management to the clo
 
 ---
 
-## Traditional Server Model
+### Traditional Server Model
 
 ```mermaid
 flowchart TD
@@ -68,7 +68,7 @@ The organisation manages both the application and the server environment.
 
 ---
 
-## Serverless Model
+### Serverless Model
 
 ```mermaid
 flowchart TD
@@ -82,9 +82,9 @@ The developer provides the code and configuration. The cloud provider manages th
 
 ---
 
-## Main Characteristics of Serverless Computing
+### Main Characteristics of Serverless Computing
 
-### No Direct Server Management
+#### No Direct Server Management
 
 You do not normally:
 
@@ -94,7 +94,7 @@ You do not normally:
 - Replace failed hardware
 - Manually add servers during traffic increases
 
-### Event-Driven Execution
+#### Event-Driven Execution
 
 Serverless applications are commonly triggered by events.
 
@@ -107,13 +107,13 @@ Examples include:
 - A scheduled time is reached
 - An EventBridge event occurs
 
-### Automatic Scaling
+#### Automatic Scaling
 
 The platform can create more execution environments when more events arrive.
 
 If demand decreases, the platform can reduce the amount of active compute.
 
-### Pay for Usage
+#### Pay for Usage
 
 Serverless compute is normally charged according to usage, such as:
 
@@ -126,7 +126,7 @@ Serverless compute is normally charged according to usage, such as:
 
 There is usually no charge for an idle Lambda function that is not being invoked, although optional features and connected services may still create charges.
 
-### Stateless Design
+#### Stateless Design
 
 Serverless functions should generally be designed as stateless.
 
@@ -142,7 +142,7 @@ Persistent information should be stored in services such as:
 
 ---
 
-## Traditional Servers vs Serverless
+### Traditional Servers vs Serverless
 
 | Traditional server | Serverless |
 | --- | --- |
@@ -157,11 +157,11 @@ Persistent information should be stored in services such as:
 
 ---
 
-## Shared Responsibility Still Applies
+### Shared Responsibility Still Applies
 
 Serverless does not remove the customer's security responsibilities.
 
-### AWS Manages
+#### AWS Manages
 
 AWS manages areas such as:
 
@@ -172,7 +172,7 @@ AWS manages areas such as:
 - Core Lambda execution infrastructure
 - Infrastructure availability
 
-### The Customer Manages
+#### The Customer Manages
 
 The customer remains responsible for:
 
@@ -191,7 +191,7 @@ The customer remains responsible for:
 
 ---
 
-## Benefits of Serverless
+### Benefits of Serverless
 
 - Less infrastructure administration
 - Faster application development
@@ -204,7 +204,7 @@ The customer remains responsible for:
 
 ---
 
-## Serverless Challenges
+### Serverless Challenges
 
 Serverless also introduces trade-offs.
 
@@ -220,13 +220,13 @@ Serverless also introduces trade-offs.
 
 ---
 
-# 101. Serverless in AWS
+## 101. Serverless in AWS
 
 AWS provides several managed services that can be combined to create serverless applications.
 
 ---
 
-## Common AWS Serverless Services
+### Common AWS Serverless Services
 
 | AWS service | Purpose |
 | --- | --- |
@@ -248,7 +248,7 @@ Not every managed service is serverless in exactly the same way. However, these 
 
 ---
 
-## Example Serverless API
+### Example Serverless API
 
 ```mermaid
 flowchart LR
@@ -270,7 +270,7 @@ No EC2 instance is required to host the application code.
 
 ---
 
-## Example Event-Driven File Processing
+### Example Event-Driven File Processing
 
 ```mermaid
 flowchart TD
@@ -284,7 +284,7 @@ The image upload is the event that starts the workflow.
 
 ---
 
-## Event-Driven Architecture
+### Event-Driven Architecture
 
 An **event** is a record showing that something happened.
 
@@ -303,9 +303,9 @@ In an event-driven architecture, services respond to events instead of constantl
 
 ---
 
-## Important Event Services
+### Important Event Services
 
-### Amazon EventBridge
+#### Amazon EventBridge
 
 EventBridge receives events and routes them to matching targets.
 
@@ -318,7 +318,7 @@ Possible targets include:
 - ECS tasks
 - Other event buses
 
-### Amazon SQS
+#### Amazon SQS
 
 SQS stores messages in a queue until a consumer processes them.
 
@@ -331,7 +331,7 @@ flowchart LR
     Lambda --> Service["Downstream service"]
 ```
 
-### Amazon SNS
+#### Amazon SNS
 
 SNS publishes one message to multiple subscribers.
 
@@ -342,7 +342,7 @@ Subscribers could include:
 - Email endpoints
 - HTTP endpoints
 
-### AWS Step Functions
+#### AWS Step Functions
 
 Step Functions coordinates several tasks into a workflow.
 
@@ -357,7 +357,7 @@ It can support:
 
 ---
 
-## Example Serverless Use Cases
+### Example Serverless Use Cases
 
 - REST APIs
 - Website backends
@@ -375,7 +375,7 @@ It can support:
 
 ---
 
-## Serverless and DevOps
+### Serverless and DevOps
 
 Serverless is important in DevOps because it supports:
 
@@ -403,7 +403,7 @@ A DevOps engineer may still need to manage:
 
 ---
 
-# 102. Why AWS Lambda?
+## 102. Why AWS Lambda?
 
 **AWS Lambda** is a serverless compute service that runs code in response to events.
 
@@ -413,7 +413,7 @@ A piece of code deployed to Lambda is called a **Lambda function**.
 
 ---
 
-## Basic Lambda Flow
+### Basic Lambda Flow
 
 ```mermaid
 flowchart LR
@@ -433,7 +433,7 @@ Result: Thumbnail is uploaded to another bucket
 
 ---
 
-## Main Lambda Components
+### Main Lambda Components
 
 | Component | Purpose |
 | --- | --- |
@@ -453,7 +453,7 @@ Result: Thumbnail is uploaded to another bucket
 
 ---
 
-## Lambda Handler
+### Lambda Handler
 
 The **handler** is the function Lambda calls when an invocation begins.
 
@@ -487,11 +487,11 @@ Function: lambda_handler
 
 ---
 
-## Invocation Types
+### Invocation Types
 
 Lambda can be invoked in several ways.
 
-### Synchronous Invocation
+#### Synchronous Invocation
 
 The caller waits for Lambda to finish and return a response.
 
@@ -510,7 +510,7 @@ sequenceDiagram
     L-->>C: Return response
 ```
 
-### Asynchronous Invocation
+#### Asynchronous Invocation
 
 The event is placed into Lambda's internal processing system and the caller does not wait for the function result.
 
@@ -522,7 +522,7 @@ Examples include:
 
 Lambda can retry asynchronous events when processing fails.
 
-### Event Source Mapping
+#### Event Source Mapping
 
 Lambda can poll supported services for records and invoke a function with batches of records.
 
@@ -535,7 +535,7 @@ Examples include:
 
 ---
 
-## Lambda Execution Role
+### Lambda Execution Role
 
 A Lambda execution role is an IAM role that the function assumes while running.
 
@@ -553,7 +553,7 @@ The function should receive only the permissions it requires.
 
 ---
 
-## Execution Role vs Resource-Based Policy
+### Execution Role vs Resource-Based Policy
 
 These two permission types perform different jobs.
 
@@ -571,7 +571,7 @@ Lambda needs permission to read and write S3 objects.
 
 ---
 
-## Environment Variables
+### Environment Variables
 
 Environment variables store function configuration separately from the code.
 
@@ -605,7 +605,7 @@ Do not hard-code:
 
 ---
 
-## Lambda Resource Configuration
+### Lambda Resource Configuration
 
 A standard Lambda function can currently be configured with:
 
@@ -620,7 +620,7 @@ A function should be given enough memory and time to complete its work, without 
 
 ---
 
-## Temporary Storage
+### Temporary Storage
 
 Lambda functions can use the following directory during execution:
 
@@ -643,9 +643,9 @@ Use S3, EFS or a database when information must persist reliably.
 
 ---
 
-## Cold and Warm Starts
+### Cold and Warm Starts
 
-### Cold Start
+#### Cold Start
 
 A cold start happens when Lambda creates and prepares a new execution environment.
 
@@ -656,7 +656,7 @@ This may include:
 - Loading dependencies
 - Running initialisation code
 
-### Warm Start
+#### Warm Start
 
 Lambda may reuse an existing execution environment for another invocation.
 
@@ -666,7 +666,7 @@ However, code must not assume that an environment will always be reused.
 
 ---
 
-## Reusing SDK Clients
+### Reusing SDK Clients
 
 Objects that can safely be reused should normally be created outside the handler.
 
@@ -683,7 +683,7 @@ This may allow an existing SDK client or connection to be reused during warm inv
 
 ---
 
-## Lambda Scaling
+### Lambda Scaling
 
 When more events arrive, Lambda can create additional execution environments to process them concurrently.
 
@@ -703,11 +703,11 @@ For example, hundreds of Lambda invocations could create hundreds of database co
 
 ---
 
-## Lambda Concurrency
+### Lambda Concurrency
 
 **Concurrency** is the number of function invocations running at the same time.
 
-### Reserved Concurrency
+#### Reserved Concurrency
 
 Reserved concurrency can:
 
@@ -716,7 +716,7 @@ Reserved concurrency can:
 - Protect downstream systems
 - Prevent one function from consuming all account concurrency
 
-### Provisioned Concurrency
+#### Provisioned Concurrency
 
 Provisioned concurrency prepares execution environments before requests arrive.
 
@@ -724,7 +724,7 @@ This can reduce cold-start latency, but it creates additional cost.
 
 ---
 
-## Workloads Suitable for Lambda
+### Workloads Suitable for Lambda
 
 Lambda is well suited to:
 
@@ -740,7 +740,7 @@ Lambda is well suited to:
 
 ---
 
-## Workloads That May Need Another Service
+### Workloads That May Need Another Service
 
 Lambda may not be suitable when a workload:
 
@@ -762,7 +762,7 @@ Possible alternatives include:
 
 ---
 
-## Lambda vs Containers vs EC2
+### Lambda vs Containers vs EC2
 
 | AWS Lambda | ECS with Fargate | Amazon EC2 |
 | --- | --- | --- |
@@ -775,13 +775,13 @@ Possible alternatives include:
 
 ---
 
-# 103. Benefits of AWS Lambda
+## 103. Benefits of AWS Lambda
 
 AWS Lambda provides several technical and operational benefits.
 
 ---
 
-## No Server Administration
+### No Server Administration
 
 With Lambda, you do not normally manage:
 
@@ -795,7 +795,7 @@ This reduces operational work.
 
 ---
 
-## Automatic Scaling
+### Automatic Scaling
 
 Lambda can create additional execution environments when demand increases.
 
@@ -803,7 +803,7 @@ This makes it useful for workloads where traffic changes unexpectedly.
 
 ---
 
-## Pay for Execution
+### Pay for Execution
 
 Lambda charges are generally based on areas such as:
 
@@ -828,7 +828,7 @@ However, connected resources such as these can still cost money:
 
 ---
 
-## Built-In Availability
+### Built-In Availability
 
 Lambda runs functions using AWS-managed infrastructure designed for availability within a Region.
 
@@ -845,7 +845,7 @@ The application still needs resilient design, including:
 
 ---
 
-## AWS Service Integrations
+### AWS Service Integrations
 
 Lambda integrates with many AWS services.
 
@@ -866,7 +866,7 @@ This makes Lambda useful for connecting AWS services through event-driven automa
 
 ---
 
-## Faster Deployment
+### Faster Deployment
 
 A function is often smaller than a complete server application.
 
@@ -880,7 +880,7 @@ This can make it easier to:
 
 ---
 
-## Lambda Versions and Aliases
+### Lambda Versions and Aliases
 
 A **version** is an immutable snapshot of a Lambda function.
 
@@ -904,7 +904,7 @@ Aliases can help with:
 
 ---
 
-## Monitoring
+### Monitoring
 
 Lambda automatically integrates with Amazon CloudWatch.
 
@@ -937,7 +937,7 @@ aws logs tail /aws/lambda/create-thumbnail \
 
 ---
 
-## Lambda Challenges and Responses
+### Lambda Challenges and Responses
 
 | Challenge | Possible response |
 | --- | --- |
@@ -954,7 +954,7 @@ aws logs tail /aws/lambda/create-thumbnail \
 
 ---
 
-## Idempotency
+### Idempotency
 
 An operation is **idempotent** when processing the same event more than once produces the same final result.
 
@@ -970,7 +970,7 @@ If the event is processed twice, the second execution replaces the same thumbnai
 
 ---
 
-## Error Handling
+### Error Handling
 
 Depending on the invocation type, Lambda may retry a failed invocation.
 
@@ -995,7 +995,7 @@ Without idempotency, retries could repeat a business action.
 
 ---
 
-## Lambda Security Best Practices
+### Lambda Security Best Practices
 
 - Use a dedicated execution role.
 - Apply least privilege.
@@ -1013,13 +1013,13 @@ Without idempotency, retries could repeat a business action.
 
 ---
 
-# 104. AWS Lambda Language Support
+## 104. AWS Lambda Language Support
 
 AWS Lambda supports several programming languages through managed or custom runtimes.
 
 ---
 
-## Managed Lambda Runtimes
+### Managed Lambda Runtimes
 
 AWS provides managed runtimes for language families including:
 
@@ -1035,7 +1035,7 @@ Always check the current AWS Lambda runtime documentation before starting a new 
 
 ---
 
-## Additional Language Options
+### Additional Language Options
 
 Other languages can be used through:
 
@@ -1053,7 +1053,7 @@ Examples can include:
 
 ---
 
-## Runtime Responsibilities
+### Runtime Responsibilities
 
 A Lambda runtime:
 
@@ -1065,9 +1065,9 @@ A Lambda runtime:
 
 ---
 
-## Handler Examples
+### Handler Examples
 
-### Python
+#### Python
 
 File:
 
@@ -1088,7 +1088,7 @@ Handler:
 lambda_function.lambda_handler
 ```
 
-### Node.js
+#### Node.js
 
 File:
 
@@ -1112,7 +1112,7 @@ Handler:
 index.handler
 ```
 
-### Java
+#### Java
 
 A Java handler may use a class and method reference.
 
@@ -1122,7 +1122,7 @@ Example format:
 com.example.Handler::handleRequest
 ```
 
-### .NET
+#### .NET
 
 A .NET handler normally identifies:
 
@@ -1132,7 +1132,7 @@ Assembly::Namespace.Class::Method
 
 ---
 
-## Choosing a Language
+### Choosing a Language
 
 Consider:
 
@@ -1149,7 +1149,7 @@ For beginner Lambda labs, Python is commonly used because the code is concise an
 
 ---
 
-## AWS SDKs in Lambda
+### AWS SDKs in Lambda
 
 Lambda functions commonly use an AWS SDK to call other AWS services.
 
@@ -1173,9 +1173,9 @@ Production deployments should package and control important dependency versions 
 
 ---
 
-## Deployment Package Options
+### Deployment Package Options
 
-### ZIP Deployment Package
+#### ZIP Deployment Package
 
 A ZIP package can contain:
 
@@ -1195,7 +1195,7 @@ deployment-package.zip
 
 Dependencies containing native code must be built for a compatible Linux environment and processor architecture.
 
-### Lambda Layer
+#### Lambda Layer
 
 A layer can contain shared:
 
@@ -1206,7 +1206,7 @@ A layer can contain shared:
 
 Layers can reduce duplication across multiple functions, although layer versions must still be maintained.
 
-### Container Image
+#### Container Image
 
 Lambda can run a compatible container image stored in Amazon ECR.
 
@@ -1219,7 +1219,7 @@ This is useful when:
 
 ---
 
-## Example Lambda Container Image
+### Example Lambda Container Image
 
 `Dockerfile`:
 
@@ -1260,7 +1260,7 @@ The container image must be compatible with Lambda and its configured processor 
 
 ---
 
-## Runtime Deprecation
+### Runtime Deprecation
 
 Language versions eventually reach end of support.
 
@@ -1277,13 +1277,13 @@ When a runtime approaches deprecation:
 
 ---
 
-# 105. Example: Serverless Thumbnail Creation
+## 105. Example: Serverless Thumbnail Creation
 
 This example creates thumbnails automatically whenever an image is uploaded to an S3 bucket.
 
 ---
 
-## Architecture
+### Architecture
 
 ```mermaid
 flowchart TD
@@ -1296,7 +1296,7 @@ flowchart TD
 
 ---
 
-## Workflow
+### Workflow
 
 1. A user uploads an image to the source bucket.
 2. S3 produces an object-created event.
@@ -1309,7 +1309,7 @@ flowchart TD
 
 ---
 
-## Why Use Two Buckets?
+### Why Use Two Buckets?
 
 Use separate source and destination buckets:
 
@@ -1332,7 +1332,7 @@ An alternative is using carefully separated prefixes and event filters, but two 
 
 ---
 
-## Planned Resources
+### Planned Resources
 
 Example resource names:
 
@@ -1351,7 +1351,7 @@ Replace `UNIQUE` with a suitable unique value.
 
 ---
 
-## Before Starting
+### Before Starting
 
 Check:
 
@@ -1374,7 +1374,7 @@ The S3 bucket and Lambda function used by the direct trigger must be in the same
 
 ---
 
-## Step 1: Create the S3 Buckets
+### Step 1: Create the S3 Buckets
 
 Create two general-purpose S3 buckets in `eu-west-2`.
 
@@ -1395,7 +1395,7 @@ Recommended settings:
 
 ---
 
-## Step 2: Create the Lambda Execution Role
+### Step 2: Create the Lambda Execution Role
 
 Create a role trusted by the Lambda service.
 
@@ -1405,7 +1405,7 @@ The role needs permission to:
 - Write objects to the destination bucket
 - Create and write CloudWatch logs
 
-### Trust Policy
+#### Trust Policy
 
 ```json
 {
@@ -1424,7 +1424,7 @@ The role needs permission to:
 
 ---
 
-## Example Least-Privilege S3 Policy
+### Example Least-Privilege S3 Policy
 
 Replace the example bucket names with your actual bucket names.
 
@@ -1462,7 +1462,7 @@ Avoid granting full S3 access when the function only requires access to two part
 
 ---
 
-## Step 3: Prepare the Function Code
+### Step 3: Prepare the Function Code
 
 This example uses Python and the Pillow image-processing library.
 
@@ -1554,9 +1554,9 @@ def lambda_handler(event, context):
 
 ---
 
-## Understanding the Code
+### Understanding the Code
 
-### Read Configuration
+#### Read Configuration
 
 ```python
 DESTINATION_BUCKET = os.environ["DESTINATION_BUCKET"]
@@ -1564,7 +1564,7 @@ DESTINATION_BUCKET = os.environ["DESTINATION_BUCKET"]
 
 The destination bucket is stored as configuration rather than hard-coded into the function.
 
-### Read the S3 Event
+#### Read the S3 Event
 
 ```python
 source_bucket = record["s3"]["bucket"]["name"]
@@ -1575,7 +1575,7 @@ The S3 event provides the source bucket and object name.
 
 `unquote_plus()` correctly decodes characters in the object key.
 
-### Download the Image
+#### Download the Image
 
 ```python
 response = s3.get_object(
@@ -1586,7 +1586,7 @@ response = s3.get_object(
 
 Lambda uses its execution role to read the object.
 
-### Resize the Image
+#### Resize the Image
 
 ```python
 image.thumbnail(
@@ -1597,7 +1597,7 @@ image.thumbnail(
 
 This keeps the image within the selected dimensions while preserving its aspect ratio.
 
-### Upload the Thumbnail
+#### Upload the Thumbnail
 
 ```python
 s3.put_object(
@@ -1612,7 +1612,7 @@ The processed image is written to the destination bucket.
 
 ---
 
-## Step 4: Package Pillow
+### Step 4: Package Pillow
 
 Pillow is not guaranteed to be available in the standard Lambda Python environment.
 
@@ -1632,7 +1632,7 @@ Building Pillow on an unrelated operating system may result in an import error.
 
 ---
 
-## Step 5: Create the Lambda Function
+### Step 5: Create the Lambda Function
 
 In the Lambda console:
 
@@ -1663,7 +1663,7 @@ These are starting values for the lab, not requirements for every image-processi
 
 ---
 
-## Step 6: Configure Environment Variables
+### Step 6: Configure Environment Variables
 
 Add:
 
@@ -1676,7 +1676,7 @@ Do not include passwords or access keys.
 
 ---
 
-## Step 7: Add the S3 Trigger
+### Step 7: Add the S3 Trigger
 
 Configure an S3 trigger with:
 
@@ -1694,7 +1694,7 @@ When the trigger is created through the AWS console, AWS can add the Lambda reso
 
 ---
 
-## Step 8: Upload a Test Image
+### Step 8: Upload a Test Image
 
 Upload an image to the source bucket.
 
@@ -1725,7 +1725,7 @@ aws s3 cp \
 
 ---
 
-## Step 9: Check the Logs
+### Step 9: Check the Logs
 
 Open:
 
@@ -1754,7 +1754,7 @@ aws logs tail /aws/lambda/create-thumbnail \
 
 ---
 
-## Duplicate and Out-of-Order Events
+### Duplicate and Out-of-Order Events
 
 S3 Event Notifications are designed for at-least-once delivery.
 
@@ -1782,7 +1782,7 @@ For more advanced applications, duplicate detection could use:
 
 ---
 
-## Failure Handling
+### Failure Handling
 
 For a production workflow, consider:
 
@@ -1800,7 +1800,7 @@ An SQS queue can also be placed between the event producer and Lambda when buffe
 
 ---
 
-## Common Thumbnail Demo Problems
+### Common Thumbnail Demo Problems
 
 | Problem | Likely cause | Suggested check |
 | --- | --- | --- |
@@ -1819,7 +1819,7 @@ An SQS queue can also be placed between the event producer and Lambda when buffe
 
 ---
 
-## Cost Considerations
+### Cost Considerations
 
 This example may create costs from:
 
@@ -1844,7 +1844,7 @@ Prevent unexpected costs by:
 
 ---
 
-## Cleanup
+### Cleanup
 
 After completing the lab:
 
@@ -1863,9 +1863,9 @@ After completing the lab:
 
 ---
 
-# Serverless Architecture Best Practices
+## Serverless Architecture Best Practices
 
-## Keep Functions Focused
+### Keep Functions Focused
 
 Each function should perform a clear task.
 
@@ -1878,7 +1878,7 @@ Too broad: Process images, send emails, update billing and generate reports
 
 ---
 
-## Store State Outside the Function
+### Store State Outside the Function
 
 Use durable services such as:
 
@@ -1892,7 +1892,7 @@ Do not depend on local memory or `/tmp` remaining available between invocations.
 
 ---
 
-## Design for Retries
+### Design for Retries
 
 Assume that an event could be processed again.
 
@@ -1906,7 +1906,7 @@ Use:
 
 ---
 
-## Apply Least Privilege
+### Apply Least Privilege
 
 A thumbnail function should not receive:
 
@@ -1919,7 +1919,7 @@ It should receive only the required actions against the required resources.
 
 ---
 
-## Protect Downstream Systems
+### Protect Downstream Systems
 
 Automatic Lambda scaling can overload:
 
@@ -1938,7 +1938,7 @@ Use:
 
 ---
 
-## Monitor the Application
+### Monitor the Application
 
 Monitor:
 
@@ -1954,7 +1954,7 @@ Monitor:
 
 ---
 
-## Use Infrastructure as Code
+### Use Infrastructure as Code
 
 Serverless resources can be deployed using:
 
@@ -1975,7 +1975,7 @@ Never commit credentials or secrets into an Infrastructure as Code repository.
 
 ---
 
-# Serverless Security Checklist
+## Serverless Security Checklist
 
 - [ ] The root user is not being used.
 - [ ] The function has a dedicated execution role.
@@ -1995,7 +1995,7 @@ Never commit credentials or secrets into an Infrastructure as Code repository.
 
 ---
 
-# Serverless Cost-Safety Checklist
+## Serverless Cost-Safety Checklist
 
 - [ ] A budget and billing alerts are configured.
 - [ ] The Lambda timeout is appropriate.
@@ -2012,7 +2012,7 @@ Never commit credentials or secrets into an Infrastructure as Code repository.
 
 ---
 
-# Serverless Quick Revision Questions
+## Serverless Quick Revision Questions
 
 1. What does serverless computing mean?
 2. Does serverless mean that no servers exist?
@@ -2057,7 +2057,7 @@ Never commit credentials or secrets into an Infrastructure as Code repository.
 
 ---
 
-# Serverless Key Takeaways
+## Serverless Key Takeaways
 
 - Serverless means that the cloud provider manages the underlying servers.
 - The customer is still responsible for code, permissions, configuration and data.
@@ -2082,7 +2082,7 @@ Never commit credentials or secrets into an Infrastructure as Code repository.
 
 ---
 
-# Official Serverless References
+## Official Serverless References
 
 - [What is AWS Lambda?](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html)
 - [AWS Lambda runtimes](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html)

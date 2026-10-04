@@ -1,6 +1,6 @@
 # Security Groups and Cloud Networking Basics
 
-## Learning Objectives
+### Learning Objectives
 
 By the end of these notes, I should be able to:
 
@@ -18,7 +18,7 @@ By the end of these notes, I should be able to:
 
 ---
 
-# 39. Introduction to Security Groups
+## 39. Introduction to Security Groups
 
 A **security group** is a stateful virtual firewall used to control allowed network traffic for AWS resources.
 
@@ -36,7 +36,7 @@ For an EC2 instance, the security group is applied to its network interface.
 
 ---
 
-## Why Are Security Groups Needed?
+### Why Are Security Groups Needed?
 
 An EC2 instance could run several network services.
 
@@ -62,7 +62,7 @@ Block all other unsolicited inbound traffic
 
 ---
 
-## Inbound and Outbound Traffic
+### Inbound and Outbound Traffic
 
 Security groups control two directions of traffic.
 
@@ -71,7 +71,7 @@ Security groups control two directions of traffic.
 | Inbound | Traffic entering the resource | A browser sends an HTTP request |
 | Outbound | Traffic leaving the resource | EC2 downloads an Ubuntu package |
 
-### Inbound Example
+#### Inbound Example
 
 A user visits an NGINX website:
 
@@ -89,7 +89,7 @@ Port: 80
 Source: 0.0.0.0/0
 ```
 
-### Outbound Example
+#### Outbound Example
 
 An Ubuntu server downloads an NGINX package:
 
@@ -101,7 +101,7 @@ The security group needs to permit the required outbound traffic.
 
 ---
 
-## Security Group Rule Components
+### Security Group Rule Components
 
 A security-group rule normally contains:
 
@@ -116,7 +116,7 @@ A security-group rule normally contains:
 
 ---
 
-## Example Inbound Rules
+### Example Inbound Rules
 
 | Type | Protocol | Port | Source | Purpose |
 | --- | --- | ---: | --- | --- |
@@ -127,7 +127,7 @@ A security-group rule normally contains:
 
 ---
 
-## What Does `0.0.0.0/0` Mean?
+### What Does `0.0.0.0/0` Mean?
 
 ```text
 0.0.0.0/0
@@ -159,7 +159,7 @@ where possible.
 
 ---
 
-## What Does `::/0` Mean?
+### What Does `::/0` Mean?
 
 ```text
 ::/0
@@ -179,7 +179,7 @@ A separate IPv6 rule is required.
 
 ---
 
-## Default Behaviour
+### Default Behaviour
 
 A newly created security group normally:
 
@@ -204,9 +204,9 @@ management-sg
 
 ---
 
-# 40. Security Groups Deeper Dive
+## 40. Security Groups Deeper Dive
 
-## Security Groups Are Stateful
+### Security Groups Are Stateful
 
 Security groups are **stateful**.
 
@@ -214,7 +214,7 @@ This means they remember allowed connections.
 
 If an inbound request is allowed, its response is automatically allowed to leave.
 
-### Example
+#### Example
 
 A browser sends an HTTP request:
 
@@ -238,7 +238,7 @@ If an instance starts an allowed outbound connection, the response is automatica
 
 ---
 
-## Security Groups Only Contain Allow Rules
+### Security Groups Only Contain Allow Rules
 
 Security groups support:
 
@@ -264,7 +264,7 @@ If an explicit network deny is required, other controls may be used, such as:
 
 ---
 
-## All Rules Are Evaluated Together
+### All Rules Are Evaluated Together
 
 Security-group rules do not have a numbered priority order.
 
@@ -272,7 +272,7 @@ AWS evaluates all applicable security groups and rules together.
 
 If one applicable rule allows the traffic, the security-group layer permits it.
 
-### Example
+#### Example
 
 An EC2 network interface has two security groups.
 
@@ -292,7 +292,7 @@ Attaching an extra security group cannot be used to remove access already allowe
 
 ---
 
-## Security Groups and Connection Tracking
+### Security Groups and Connection Tracking
 
 Because security groups are stateful, they track information about network connections.
 
@@ -309,7 +309,7 @@ Network ACLs are stateless, so their return traffic may need separate rules.
 
 ---
 
-## Security Groups vs Network ACLs
+### Security Groups vs Network ACLs
 
 | Security group | Network ACL |
 | --- | --- |
@@ -324,7 +324,7 @@ Security groups should normally be the main method of controlling access to EC2 
 
 ---
 
-## Security Group Scope
+### Security Group Scope
 
 Security groups belong to:
 
@@ -337,7 +337,7 @@ A security group from one VPC cannot normally be attached to a resource in anoth
 
 ---
 
-## Security Group Changes
+### Security Group Changes
 
 Security-group rules can be changed while the instance is running.
 
@@ -351,13 +351,13 @@ However, changing a rule can immediately affect active and new connections.
 
 ---
 
-# 41. Security Groups
+## 41. Security Groups
 
 Security groups should be designed around the purpose of the resource.
 
 ---
 
-## Public Web-Server Security Group
+### Public Web-Server Security Group
 
 Example:
 
@@ -368,7 +368,7 @@ VPC: Default VPC
 Region: eu-west-2
 ```
 
-### Inbound Rules
+#### Inbound Rules
 
 | Type | Protocol | Port | Source | Reason |
 | --- | --- | ---: | --- | --- |
@@ -385,7 +385,7 @@ If IPv6 is configured, separate IPv6 rules can be added:
 
 ---
 
-## Database Security Group
+### Database Security Group
 
 A database should not normally allow connections from the entire internet.
 
@@ -409,7 +409,7 @@ This allows database connections from resources associated with the application 
 
 ---
 
-## Least Privilege
+### Least Privilege
 
 The principle of least privilege means allowing only the traffic required for the application.
 
@@ -422,7 +422,7 @@ Ask:
 5. Can access be limited to another security group?
 6. Is public access actually required?
 
-### Poor Rule
+#### Poor Rule
 
 ```text
 All traffic
@@ -431,7 +431,7 @@ All ports
 Source: 0.0.0.0/0
 ```
 
-### Better Rules
+#### Better Rules
 
 ```text
 SSH
@@ -447,7 +447,7 @@ Source: 0.0.0.0/0
 
 ---
 
-## Useful Rule Descriptions
+### Useful Rule Descriptions
 
 Security-group descriptions should explain why a rule exists.
 
@@ -471,7 +471,7 @@ allow
 
 ---
 
-## Host Firewall vs Security Group
+### Host Firewall vs Security Group
 
 An EC2 instance may also have a firewall inside its operating system.
 
@@ -500,9 +500,9 @@ A correct security-group rule does not help if NGINX is stopped or the operating
 
 ---
 
-# 42. Security Groups – Good to Know
+## 42. Security Groups – Good to Know
 
-## Security Groups Are Attached to Network Interfaces
+### Security Groups Are Attached to Network Interfaces
 
 Security groups are associated with elastic network interfaces rather than directly with the EC2 operating system.
 
@@ -516,7 +516,7 @@ or represented in AWS as an **Elastic Network Interface**, also called an **ENI*
 
 ---
 
-## Multiple Security Groups
+### Multiple Security Groups
 
 A network interface can have multiple security groups.
 
@@ -534,7 +534,7 @@ The resource receives the combined allowed access.
 
 ---
 
-## Security Groups Do Not Filter Every Type of Traffic
+### Security Groups Do Not Filter Every Type of Traffic
 
 Security groups are designed for traffic reaching and leaving supported network interfaces.
 
@@ -551,7 +551,7 @@ A security group allowing HTTPS does not decide which user can sign in to the ap
 
 ---
 
-## Ping Uses ICMP
+### Ping Uses ICMP
 
 The `ping` command does not use a TCP or UDP port.
 
@@ -575,7 +575,7 @@ A failed ping also does not automatically mean that the server is unavailable be
 
 ---
 
-## Security Groups Do Not Open Applications
+### Security Groups Do Not Open Applications
 
 A security-group rule only permits traffic to reach a resource.
 
@@ -605,7 +605,7 @@ sudo systemctl status nginx
 
 ---
 
-## SSH Source IP Can Change
+### SSH Source IP Can Change
 
 A home or mobile internet connection may receive a different public IP address later.
 
@@ -624,7 +624,7 @@ Do not solve the problem by permanently opening SSH to:
 
 ---
 
-## Rule Changes Can Affect Access Immediately
+### Rule Changes Can Affect Access Immediately
 
 Deleting an SSH rule while connected may prevent new SSH connections.
 
@@ -637,7 +637,7 @@ Before changing administrative rules:
 
 ---
 
-# 43. Referencing Other Security Groups
+## 43. Referencing Other Security Groups
 
 A security-group rule can use another security group as its source or destination.
 
@@ -645,7 +645,7 @@ This is often safer and easier to manage than entering individual IP addresses.
 
 ---
 
-## Three-Tier Application Example
+### Three-Tier Application Example
 
 Consider an application with:
 
@@ -661,21 +661,21 @@ application-sg
 database-sg
 ```
 
-### Load Balancer Security Group
+#### Load Balancer Security Group
 
 ```text
 Inbound:
 HTTPS TCP 443 from 0.0.0.0/0
 ```
 
-### Application Security Group
+#### Application Security Group
 
 ```text
 Inbound:
 Application port TCP 8080 from load-balancer-sg
 ```
 
-### Database Security Group
+#### Database Security Group
 
 ```text
 Inbound:
@@ -696,7 +696,7 @@ Database
 
 ---
 
-## What a Security-Group Reference Means
+### What a Security-Group Reference Means
 
 Suppose this rule is added to `database-sg`:
 
@@ -714,7 +714,7 @@ It only uses membership of `application-sg` to identify the permitted source res
 
 ---
 
-## What Referencing Does Not Do
+### What Referencing Does Not Do
 
 Referencing another security group does not:
 
@@ -729,7 +729,7 @@ The protocol and port must still be specified.
 
 ---
 
-## Why References Are Better Than Fixed Private IPs
+### Why References Are Better Than Fixed Private IPs
 
 Instances may be:
 
@@ -742,7 +742,7 @@ If the rule references `application-sg`, new application instances using that gr
 
 ---
 
-## Security-Group Reference Example
+### Security-Group Reference Example
 
 ```text
 Frontend instance:
@@ -768,7 +768,7 @@ Result:
 
 ---
 
-# 44. Classic Ports to Know
+## 44. Classic Ports to Know
 
 A **port** identifies a network service running on a computer.
 
@@ -782,7 +782,7 @@ Ports from `0–1023` are commonly known as well-known ports.
 
 ---
 
-## Most Important Ports to Memorise
+### Most Important Ports to Memorise
 
 | Service | Port | Protocol | Purpose |
 | --- | ---: | --- | --- |
@@ -808,7 +808,7 @@ Ports from `0–1023` are commonly known as well-known ports.
 
 ---
 
-## Database and Application Ports
+### Database and Application Ports
 
 | Service | Port | Purpose |
 | --- | ---: | --- |
@@ -824,7 +824,7 @@ Ports from `0–1023` are commonly known as well-known ports.
 
 ---
 
-## Secure and Insecure Protocols
+### Secure and Insecure Protocols
 
 | Less secure | More secure alternative |
 | --- | --- |
@@ -839,13 +839,13 @@ In production, encrypted protocols should be used whenever possible.
 
 ---
 
-# Security Groups Demo 1
+## Security Groups Demo 1
 
 This demo uses the Ubuntu NGINX instance from the previous EC2 lab.
 
 ---
 
-## Demo Goal
+### Demo Goal
 
 Create a security group that:
 
@@ -855,7 +855,7 @@ Create a security group that:
 
 ---
 
-## Step 1: Create the Security Group
+### Step 1: Create the Security Group
 
 1. Open the AWS Management Console.
 2. Select **Europe (London) – `eu-west-2`**.
@@ -873,7 +873,7 @@ VPC: Same VPC as the EC2 instance
 
 ---
 
-## Step 2: Configure Inbound Rules
+### Step 2: Configure Inbound Rules
 
 Add:
 
@@ -890,7 +890,7 @@ If the VPC and instance use IPv6, also add:
 
 ---
 
-## Step 3: Attach the Security Group
+### Step 3: Attach the Security Group
 
 1. Open **EC2 Instances**.
 2. Select `nginx-networking-lab`.
@@ -904,7 +904,7 @@ Before removing an existing security group, confirm that the replacement contain
 
 ---
 
-## Step 4: Test HTTP
+### Step 4: Test HTTP
 
 Copy the instance’s public IP and open:
 
@@ -920,7 +920,7 @@ Hello from Amazon EC2!
 
 ---
 
-## Step 5: Test the HTTP Rule
+### Step 5: Test the HTTP Rule
 
 Temporarily remove the inbound HTTP rule.
 
@@ -934,7 +934,7 @@ The website should become reachable again.
 
 ---
 
-## Step 6: Test SSH
+### Step 6: Test SSH
 
 Connect using:
 
@@ -948,13 +948,13 @@ It should not be available from unrelated public IP addresses.
 
 ---
 
-# Security Groups Demo 2
+## Security Groups Demo 2
 
 This demo shows how one security group can reference another.
 
 ---
 
-## Demo Architecture
+### Demo Architecture
 
 ```text
 Frontend EC2 instance
@@ -966,7 +966,7 @@ Security group: backend-sg
 
 ---
 
-## Step 1: Create `frontend-sg`
+### Step 1: Create `frontend-sg`
 
 Example inbound rules:
 
@@ -977,7 +977,7 @@ Example inbound rules:
 
 ---
 
-## Step 2: Create `backend-sg`
+### Step 2: Create `backend-sg`
 
 Add:
 
@@ -995,7 +995,7 @@ The backend service should only be reachable from resources using `frontend-sg`.
 
 ---
 
-## Step 3: Run a Test Service on the Backend
+### Step 3: Run a Test Service on the Backend
 
 On the backend server:
 
@@ -1010,7 +1010,7 @@ The Python service listens on TCP port 8080.
 
 ---
 
-## Step 4: Find the Backend Private IP
+### Step 4: Find the Backend Private IP
 
 In the EC2 console, select the backend instance and copy its private IPv4 address.
 
@@ -1022,7 +1022,7 @@ Example:
 
 ---
 
-## Step 5: Test from the Frontend
+### Step 5: Test from the Frontend
 
 Connect to the frontend instance and run:
 
@@ -1045,7 +1045,7 @@ This works because:
 
 ---
 
-## Step 6: Test from an Unauthorised Source
+### Step 6: Test from an Unauthorised Source
 
 A resource that is not associated with `frontend-sg` should not be able to connect to backend port 8080 unless another rule permits it.
 
@@ -1053,7 +1053,7 @@ This demonstrates group-based access instead of public access or fixed IP rules.
 
 ---
 
-# 47. IPv4 vs IPv6
+## 47. IPv4 vs IPv6
 
 An **IP address** identifies a network interface so that data can be sent to and from it.
 
@@ -1064,7 +1064,7 @@ The two major versions are:
 
 ---
 
-## IPv4
+### IPv4
 
 IPv4 uses a 32-bit address.
 
@@ -1094,7 +1094,7 @@ Technologies such as NAT are used to allow many devices to share fewer public IP
 
 ---
 
-## IPv6
+### IPv6
 
 IPv6 uses a 128-bit address.
 
@@ -1127,7 +1127,7 @@ can become:
 
 ---
 
-## IPv4 and IPv6 Comparison
+### IPv4 and IPv6 Comparison
 
 | IPv4 | IPv6 |
 | --- | --- |
@@ -1141,7 +1141,7 @@ can become:
 
 ---
 
-## Dual-Stack Networking
+### Dual-Stack Networking
 
 A dual-stack network supports both:
 
@@ -1158,7 +1158,7 @@ Applications should be tested over both protocols.
 
 ---
 
-## IPv6 Security
+### IPv6 Security
 
 A globally routable IPv6 address does not mean the instance is automatically open to the internet.
 
@@ -1191,7 +1191,7 @@ must also be added.
 
 ---
 
-## Egress-Only Internet Gateway
+### Egress-Only Internet Gateway
 
 For IPv6, an **egress-only internet gateway** can allow instances to start outbound internet connections without accepting unsolicited inbound connections.
 
@@ -1201,7 +1201,7 @@ It is conceptually similar to the outbound protection a NAT gateway provides for
 
 ---
 
-# 48. Private vs Public IP – IPv4 Example
+## 48. Private vs Public IP – IPv4 Example
 
 An EC2 instance normally receives a private IPv4 address from its subnet.
 
@@ -1218,7 +1218,7 @@ The addresses serve different purposes.
 
 ---
 
-## Private IPv4 Address
+### Private IPv4 Address
 
 A private IP is used for communication inside private networks such as a VPC.
 
@@ -1234,7 +1234,7 @@ Private IPv4 addresses are not directly routable across the public internet.
 
 ---
 
-## Public IPv4 Address
+### Public IPv4 Address
 
 A public IPv4 address can be reached through internet routing when:
 
@@ -1247,7 +1247,7 @@ A public IPv4 address can be reached through internet routing when:
 
 ---
 
-## EC2 Public IPv4 Mapping
+### EC2 Public IPv4 Mapping
 
 For an EC2 instance, the public IPv4 address is mapped to the instance’s primary private IPv4 address.
 
@@ -1255,7 +1255,7 @@ The operating system normally sees its private IP address.
 
 The internet gateway performs the required address translation.
 
-### Incoming Traffic
+#### Incoming Traffic
 
 ```text
 Internet user
@@ -1269,7 +1269,7 @@ Private IPv4 address
 EC2 instance
 ```
 
-### Outgoing Traffic
+#### Outgoing Traffic
 
 ```text
 EC2 private IPv4
@@ -1283,7 +1283,7 @@ Internet
 
 ---
 
-## Practical Example
+### Practical Example
 
 The NGINX instance has:
 
@@ -1308,7 +1308,7 @@ Both addresses reach the same EC2 instance through different network paths.
 
 ---
 
-# 49. Private vs Public IPv4 Differences
+## 49. Private vs Public IPv4 Differences
 
 | Private IPv4 | Public IPv4 |
 | --- | --- |
@@ -1322,11 +1322,11 @@ Both addresses reach the same EC2 instance through different network paths.
 
 ---
 
-## What Happens When EC2 Stops and Starts?
+### What Happens When EC2 Stops and Starts?
 
 For an ordinary EBS-backed instance:
 
-### Private IPv4
+#### Private IPv4
 
 The primary private IPv4 address normally remains the same after:
 
@@ -1334,7 +1334,7 @@ The primary private IPv4 address normally remains the same after:
 Stop → Start
 ```
 
-### Auto-Assigned Public IPv4
+#### Auto-Assigned Public IPv4
 
 The normal public IPv4 address is released when the instance stops.
 
@@ -1351,7 +1351,7 @@ This can break systems that depend on the previous public IP.
 
 ---
 
-## What Happens During a Reboot?
+### What Happens During a Reboot?
 
 A reboot normally keeps:
 
@@ -1363,7 +1363,7 @@ A reboot is different from stopping and starting the instance.
 
 ---
 
-## Public IP Does Not Automatically Mean Publicly Reachable
+### Public IP Does Not Automatically Mean Publicly Reachable
 
 An instance can have a public IP and still be unreachable.
 
@@ -1379,7 +1379,7 @@ It also needs:
 
 ---
 
-# 50. Elastic IPs
+## 50. Elastic IPs
 
 An **Elastic IP address**, also called an **EIP**, is a static public IPv4 address allocated to an AWS account.
 
@@ -1387,7 +1387,7 @@ Unlike an automatically assigned public IPv4 address, an Elastic IP does not nor
 
 ---
 
-## Elastic IP Characteristics
+### Elastic IP Characteristics
 
 - It is a static public IPv4 address.
 - It is allocated to an AWS account.
@@ -1401,7 +1401,7 @@ Unlike an automatically assigned public IPv4 address, an Elastic IP does not nor
 
 ---
 
-## Elastic IP Lifecycle
+### Elastic IP Lifecycle
 
 ```text
 Allocate Elastic IP
@@ -1417,15 +1417,15 @@ Release from the AWS account
 
 ---
 
-## Allocate vs Associate
+### Allocate vs Associate
 
-### Allocate
+#### Allocate
 
 Allocating an Elastic IP reserves the address for the AWS account.
 
 It does not automatically attach it to an EC2 instance.
 
-### Associate
+#### Associate
 
 Associating the Elastic IP connects it to:
 
@@ -1435,15 +1435,15 @@ Associating the Elastic IP connects it to:
 
 ---
 
-## Disassociate vs Release
+### Disassociate vs Release
 
-### Disassociate
+#### Disassociate
 
 Disassociating removes the Elastic IP from the resource, but the address remains allocated to the AWS account.
 
 Charges can continue.
 
-### Release
+#### Release
 
 Releasing returns the Elastic IP to AWS.
 
@@ -1455,7 +1455,7 @@ After release:
 
 ---
 
-## Important Elastic IP Rules
+### Important Elastic IP Rules
 
 - An Elastic IP is Region-specific.
 - It cannot be moved directly from London to another Region.
@@ -1468,7 +1468,7 @@ After release:
 
 ---
 
-## Elastic IP Cost Warning
+### Elastic IP Cost Warning
 
 AWS charges for public IPv4 addresses, including Elastic IP addresses.
 
@@ -1490,13 +1490,13 @@ Release unused Elastic IPs immediately after a lab.
 
 ---
 
-# 51. Elastic IP Demo
+## 51. Elastic IP Demo
 
 This demo attaches a static public IPv4 address to the NGINX EC2 instance.
 
 ---
 
-## Before Starting
+### Before Starting
 
 Confirm:
 
@@ -1510,7 +1510,7 @@ Confirm:
 
 ---
 
-## Step 1: Record the Current Public IP
+### Step 1: Record the Current Public IP
 
 Open the EC2 instance details and record:
 
@@ -1523,7 +1523,7 @@ Open the existing public IP in a browser and confirm the NGINX page works.
 
 ---
 
-## Step 2: Allocate an Elastic IP
+### Step 2: Allocate an Elastic IP
 
 1. Open the **EC2 console**.
 2. Select **Elastic IPs**.
@@ -1542,7 +1542,7 @@ The address is now allocated but not necessarily associated.
 
 ---
 
-## Step 3: Associate the Elastic IP
+### Step 3: Associate the Elastic IP
 
 1. Select the new Elastic IP.
 2. Select **Actions**.
@@ -1554,7 +1554,7 @@ The address is now allocated but not necessarily associated.
 
 ---
 
-## Step 4: Verify the Address
+### Step 4: Verify the Address
 
 Open:
 
@@ -1568,7 +1568,7 @@ The EC2 details should now show the Elastic IP as its public IPv4 address.
 
 ---
 
-## Step 5: Test Stop and Start
+### Step 5: Test Stop and Start
 
 1. Stop the EC2 instance.
 2. Wait for it to stop.
@@ -1584,7 +1584,7 @@ Remember that stopping the instance does not remove the EIP charge.
 
 ---
 
-## Step 6: Disassociate the Elastic IP
+### Step 6: Disassociate the Elastic IP
 
 1. Open **Elastic IPs**.
 2. Select the address.
@@ -1596,7 +1596,7 @@ The address remains allocated to the account and can continue generating charges
 
 ---
 
-## Step 7: Release the Elastic IP
+### Step 7: Release the Elastic IP
 
 1. Select the disassociated Elastic IP.
 2. Select **Actions**.
@@ -1607,7 +1607,7 @@ Only release the address after confirming it is no longer needed.
 
 ---
 
-## Elastic IP AWS CLI Commands
+### Elastic IP AWS CLI Commands
 
 Allocate an Elastic IP:
 
@@ -1654,15 +1654,15 @@ Always verify the identifiers before releasing an address.
 
 ---
 
-# 52. When to Use Elastic IPs
+## 52. When to Use Elastic IPs
 
 Elastic IPs can be useful when a resource requires a stable public IPv4 address.
 
 ---
 
-## Suitable Use Cases
+### Suitable Use Cases
 
-### IP Allowlisting
+#### IP Allowlisting
 
 A third-party system may only permit requests from approved IP addresses.
 
@@ -1674,21 +1674,21 @@ Example:
 Partner firewall allows only 18.130.50.20
 ```
 
-### Legacy Applications
+#### Legacy Applications
 
 An older application may require a fixed public IPv4 address rather than a DNS name.
 
-### Fast Remapping
+#### Fast Remapping
 
 An Elastic IP can be moved from one failed EC2 instance to another replacement instance.
 
-### Fixed Outbound Address
+#### Fixed Outbound Address
 
 A NAT gateway uses Elastic IP addressing to provide a predictable public IPv4 address for outbound connections.
 
 This is useful when external services allowlist the organisation’s outgoing IP.
 
-### Small Learning or Testing Environment
+#### Small Learning or Testing Environment
 
 An Elastic IP can make testing easier when an instance must keep the same address across stop and start operations.
 
@@ -1696,7 +1696,7 @@ It should still be released when the lab is complete.
 
 ---
 
-## When Not to Use an Elastic IP
+### When Not to Use an Elastic IP
 
 An Elastic IP is not always the best solution.
 
@@ -1712,7 +1712,7 @@ Avoid relying on one EIP when:
 
 ---
 
-## Alternatives to Elastic IPs
+### Alternatives to Elastic IPs
 
 | Requirement | Possible solution |
 | --- | --- |
@@ -1726,7 +1726,7 @@ Avoid relying on one EIP when:
 
 ---
 
-## Elastic IP Does Not Provide High Availability by Itself
+### Elastic IP Does Not Provide High Availability by Itself
 
 Attaching an Elastic IP to one EC2 instance does not make the application highly available.
 
@@ -1745,9 +1745,9 @@ An Elastic IP can be remapped, but the failover process must still be designed a
 
 ---
 
-# Security Group Troubleshooting
+## Security Group Troubleshooting
 
-## Website Does Not Load
+### Website Does Not Load
 
 Check:
 
@@ -1777,7 +1777,7 @@ sudo ss -tulpn
 
 ---
 
-## SSH Does Not Work
+### SSH Does Not Work
 
 Check:
 
@@ -1798,7 +1798,7 @@ ssh -i abu-nginx-key.pem ubuntu@PUBLIC-IP-ADDRESS
 
 ---
 
-## Security-Group Reference Does Not Work
+### Security-Group Reference Does Not Work
 
 Check:
 
@@ -1813,7 +1813,7 @@ Check:
 
 ---
 
-## Elastic IP Does Not Work
+### Elastic IP Does Not Work
 
 Check:
 
@@ -1827,7 +1827,7 @@ Check:
 
 ---
 
-# Security and Cost Checklist
+## Security and Cost Checklist
 
 - [ ] Give every security group a meaningful name.
 - [ ] Add descriptions to rules.
@@ -1848,7 +1848,7 @@ Check:
 
 ---
 
-# Quick Revision Questions
+## Quick Revision Questions
 
 1. What is a security group?
 2. What is the difference between inbound and outbound traffic?
@@ -1888,7 +1888,7 @@ Check:
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - Security groups are stateful virtual firewalls.
 - They control allowed inbound and outbound traffic.
@@ -1915,7 +1915,7 @@ Check:
 - Unused Elastic IPs should be released immediately.
 - DNS, load balancers and Auto Scaling are often better than relying on one Elastic IP.
 
-# Official AWS References
+## Official AWS References
 
 - [Security groups](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html)
 - [Security-group rules](https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html)

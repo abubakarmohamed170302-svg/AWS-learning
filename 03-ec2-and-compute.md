@@ -1,6 +1,6 @@
 # EC2 and Compute
 
-## 33. Amazon Compute
+### 33. Amazon Compute
 
 In cloud computing, **compute** means the processing power used to run operating systems, applications, containers, scripts and other workloads.
 
@@ -19,7 +19,7 @@ AWS allows businesses to rent compute resources when they need them.
 
 ---
 
-## AWS Compute Services
+### AWS Compute Services
 
 AWS provides different compute services for different types of workloads.
 
@@ -36,7 +36,7 @@ AWS provides different compute services for different types of workloads.
 
 ---
 
-## Choosing a Compute Service
+### Choosing a Compute Service
 
 Ask the following questions:
 
@@ -48,7 +48,7 @@ Ask the following questions:
 6. How much management work do I want AWS to perform?
 7. What are the performance and cost requirements?
 
-### Example
+#### Example
 
 | Requirement | Suitable service |
 | --- | --- |
@@ -81,7 +81,7 @@ AWS manages:
 
 ---
 
-# 34. Amazon EC2
+## 34. Amazon EC2
 
 **Amazon EC2** stands for **Amazon Elastic Compute Cloud**.
 
@@ -97,9 +97,9 @@ For example, an Ubuntu server created in AWS and used to run NGINX is an EC2 ins
 
 ---
 
-## Why Is It Called Elastic Compute Cloud?
+### Why Is It Called Elastic Compute Cloud?
 
-### Elastic
+#### Elastic
 
 Resources can be increased or decreased depending on demand.
 
@@ -110,17 +110,17 @@ For example:
 - Add more instances
 - Remove unnecessary instances
 
-### Compute
+#### Compute
 
 The processing power used to run applications.
 
-### Cloud
+#### Cloud
 
 The server is hosted in AWS data centres and accessed through a network.
 
 ---
 
-## Benefits of EC2
+### Benefits of EC2
 
 EC2 allows organisations to:
 
@@ -137,7 +137,7 @@ EC2 allows organisations to:
 
 ---
 
-## What Makes Up an EC2 Instance?
+### What Makes Up an EC2 Instance?
 
 | Component | Purpose |
 | --- | --- |
@@ -154,7 +154,7 @@ EC2 allows organisations to:
 
 ---
 
-## EC2 Instance Lifecycle
+### EC2 Instance Lifecycle
 
 An EC2 instance can move through several states.
 
@@ -168,11 +168,11 @@ An EC2 instance can move through several states.
 | Hibernate | Saves the contents of memory when supported |
 | Terminate | Permanently deletes the instance |
 
-### Start
+#### Start
 
 Starting an instance powers on a stopped virtual server.
 
-### Stop
+#### Stop
 
 Stopping an EBS-backed instance:
 
@@ -183,13 +183,13 @@ Stopping an EBS-backed instance:
 
 However, storage and other related resources can continue generating charges.
 
-### Reboot
+#### Reboot
 
 Rebooting restarts the operating system.
 
 It is similar to restarting a physical computer.
 
-### Terminate
+#### Terminate
 
 Terminating an instance permanently deletes it.
 
@@ -197,7 +197,7 @@ Terminating an instance permanently deletes it.
 
 ---
 
-## Important EC2 Cost and Data Behaviour
+### Important EC2 Cost and Data Behaviour
 
 - Compute is not normally charged while an instance is stopped.
 - Attached EBS volumes can continue generating storage charges.
@@ -210,7 +210,7 @@ Terminating an instance permanently deletes it.
 
 ---
 
-# 35. EC2 Sizing and Configuration Options
+## 35. EC2 Sizing and Configuration Options
 
 When launching an EC2 instance, several options must be configured.
 
@@ -218,7 +218,7 @@ The configuration should match the requirements of the workload.
 
 ---
 
-## 1. Name and Tags
+### 1. Name and Tags
 
 Give the instance a meaningful name.
 
@@ -247,7 +247,7 @@ Tags can be used for:
 
 ---
 
-## 2. Amazon Machine Image
+### 2. Amazon Machine Image
 
 An **Amazon Machine Image**, or **AMI**, is the template used to create an EC2 instance.
 
@@ -277,7 +277,7 @@ Common architectures include:
 
 ---
 
-## 3. Instance Type
+### 3. Instance Type
 
 The instance type determines the virtual hardware available to the server.
 
@@ -301,7 +301,7 @@ t3.micro
 
 ---
 
-## 4. Key Pair
+### 4. Key Pair
 
 A key pair can be used to securely connect to a Linux EC2 instance through SSH.
 
@@ -335,7 +335,7 @@ Other connection methods include:
 
 ---
 
-## 5. Networking
+### 5. Networking
 
 Important networking choices include:
 
@@ -353,7 +353,7 @@ It may also receive a public IP address if it needs direct internet communicatio
 
 ---
 
-## 6. Storage
+### 6. Storage
 
 Most EC2 instances use **Amazon Elastic Block Store**, also known as **Amazon EBS**.
 
@@ -374,7 +374,7 @@ Depending on its configuration, an EBS volume may also remain after the instance
 
 ---
 
-## 7. IAM Role
+### 7. IAM Role
 
 An IAM role can give applications running on EC2 permission to access other AWS services.
 
@@ -391,7 +391,7 @@ Do not save permanent access keys on the server.
 
 ---
 
-## 8. User Data
+### 8. User Data
 
 User Data can automatically install and configure software when the instance launches.
 
@@ -404,7 +404,7 @@ For example, User Data could:
 
 ---
 
-## 9. Additional Settings
+### 9. Additional Settings
 
 Advanced EC2 settings can include:
 
@@ -420,11 +420,11 @@ Advanced EC2 settings can include:
 
 ---
 
-## EC2 Right-Sizing
+### EC2 Right-Sizing
 
 **Right-sizing** means selecting an instance with enough resources for the workload without paying for unnecessary capacity.
 
-### Right-Sizing Process
+#### Right-Sizing Process
 
 1. Identify the workload.
 2. Estimate the required CPU and memory.
@@ -448,7 +448,7 @@ An undersized instance may have:
 
 ---
 
-# 36. EC2 User Data
+## 36. EC2 User Data
 
 **EC2 User Data** is a script or configuration passed to an EC2 instance when it launches.
 
@@ -458,7 +458,7 @@ This process is called **bootstrapping**.
 
 ---
 
-## Common Uses of User Data
+### Common Uses of User Data
 
 User Data can:
 
@@ -473,7 +473,7 @@ User Data can:
 
 ---
 
-## User Data Example
+### User Data Example
 
 ```bash
 #!/bin/bash
@@ -494,7 +494,7 @@ This script:
 
 ---
 
-## Important User Data Behaviour
+### Important User Data Behaviour
 
 - Linux User Data commonly uses shell scripts or cloud-init.
 - The first line should normally contain a shebang such as `#!/bin/bash`.
@@ -508,7 +508,7 @@ This script:
 
 ---
 
-## User Data Process
+### User Data Process
 
 ```text
 Launch EC2 instance
@@ -524,7 +524,7 @@ Application service starts
 
 ---
 
-## User Data Security Warning
+### User Data Security Warning
 
 Do not place the following inside User Data:
 
@@ -545,7 +545,7 @@ Use services such as:
 
 ---
 
-## Troubleshooting User Data
+### Troubleshooting User Data
 
 On many Linux AMIs, the output can be checked with:
 
@@ -584,7 +584,7 @@ User Data may fail because:
 
 ---
 
-# 37. EC2 User Data – Demo
+## 37. EC2 User Data – Demo
 
 This User Data script installs NGINX on Ubuntu and creates a simple webpage.
 
@@ -616,7 +616,7 @@ systemctl restart nginx
 
 ---
 
-## What the Script Does
+### What the Script Does
 
 | Command | Purpose |
 | --- | --- |
@@ -630,7 +630,7 @@ systemctl restart nginx
 
 ---
 
-## Verify the User Data Demo
+### Verify the User Data Demo
 
 After the instance has launched:
 
@@ -647,7 +647,7 @@ The custom webpage should appear.
 
 ---
 
-## If the Website Does Not Load
+### If the Website Does Not Load
 
 Check:
 
@@ -679,7 +679,7 @@ curl http://localhost
 
 ---
 
-# 38. EC2 Instance Types – Overview
+## 38. EC2 Instance Types – Overview
 
 An **EC2 instance type** defines the virtual hardware available to an instance.
 
@@ -692,7 +692,7 @@ The name usually contains:
 
 ---
 
-## Example: `t3.micro`
+### Example: `t3.micro`
 
 ```text
 t3.micro
@@ -709,7 +709,7 @@ t3.micro
 
 ---
 
-## Example: `m7g.large`
+### Example: `m7g.large`
 
 | Part | Meaning |
 | --- | --- |
@@ -728,7 +728,7 @@ Additional letters may describe:
 
 ---
 
-## Main Instance Categories
+### Main Instance Categories
 
 | Category | Common families | Best suited for |
 | --- | --- | --- |
@@ -741,7 +741,7 @@ Additional letters may describe:
 
 ---
 
-## General-Purpose Instances
+### General-Purpose Instances
 
 General-purpose instances provide a balance of:
 
@@ -766,7 +766,7 @@ M
 
 ---
 
-## Burstable T Instances
+### Burstable T Instances
 
 T-family instances provide a baseline level of CPU performance.
 
@@ -786,7 +786,7 @@ They may not be suitable for applications requiring continuous high CPU performa
 
 ---
 
-## Compute-Optimised Instances
+### Compute-Optimised Instances
 
 Compute-optimised instances provide a higher ratio of CPU to memory.
 
@@ -807,7 +807,7 @@ Common uses include:
 
 ---
 
-## Memory-Optimised Instances
+### Memory-Optimised Instances
 
 Memory-optimised instances provide large amounts of RAM.
 
@@ -828,7 +828,7 @@ Common uses include:
 
 ---
 
-## Storage-Optimised Instances
+### Storage-Optimised Instances
 
 Storage-optimised instances are designed for workloads requiring high storage throughput or large local storage capacity.
 
@@ -850,7 +850,7 @@ Common uses include:
 
 ---
 
-## Accelerated-Computing Instances
+### Accelerated-Computing Instances
 
 Accelerated instances may use GPUs or specialist AWS processors.
 
@@ -873,7 +873,7 @@ Common uses include:
 
 ---
 
-## Instance Sizes
+### Instance Sizes
 
 Common size names include:
 
@@ -910,9 +910,9 @@ Always check:
 
 ---
 
-## Vertical and Horizontal Scaling
+### Vertical and Horizontal Scaling
 
-### Vertical Scaling
+#### Vertical Scaling
 
 Vertical scaling means changing the size of one server.
 
@@ -926,7 +926,7 @@ This gives the server more CPU and memory.
 
 An EBS-backed instance normally needs to be stopped before changing its instance type.
 
-### Horizontal Scaling
+#### Horizontal Scaling
 
 Horizontal scaling means adding or removing instances.
 
@@ -947,13 +947,13 @@ The servers could be placed behind a load balancer.
 
 ---
 
-# Running a Web Server on an EC2 Instance – Demo
+## Running a Web Server on an EC2 Instance – Demo
 
 This demo creates an Ubuntu EC2 instance in the London Region and automatically installs NGINX.
 
 ---
 
-## Architecture
+### Architecture
 
 ```text
 Internet user
@@ -973,7 +973,7 @@ NGINX web server
 
 ---
 
-## Step 1: Select the Region
+### Step 1: Select the Region
 
 Select:
 
@@ -985,7 +985,7 @@ AWS resources are Region-specific, so always confirm the selected Region.
 
 ---
 
-## Step 2: Launch the Instance
+### Step 2: Launch the Instance
 
 1. Open the AWS Management Console.
 2. Search for **EC2**.
@@ -994,7 +994,7 @@ AWS resources are Region-specific, so always confirm the selected Region.
 
 ---
 
-## Step 3: Configure the Instance
+### Step 3: Configure the Instance
 
 | Setting | Example |
 | --- | --- |
@@ -1014,7 +1014,7 @@ Always check the price shown in the AWS console before launching.
 
 ---
 
-## Step 4: Configure the Security Group
+### Step 4: Configure the Security Group
 
 Create or select a security group with the required rules.
 
@@ -1036,7 +1036,7 @@ for the SSH source.
 
 ---
 
-## Step 5: Add User Data
+### Step 5: Add User Data
 
 Open **Advanced details** and find the **User data** section.
 
@@ -1069,7 +1069,7 @@ systemctl restart nginx
 
 ---
 
-## Step 6: Review the Configuration
+### Step 6: Review the Configuration
 
 Before launching, check:
 
@@ -1090,7 +1090,7 @@ Select **Launch instance**.
 
 ---
 
-## Step 7: Verify the Website
+### Step 7: Verify the Website
 
 Wait for:
 
@@ -1109,7 +1109,7 @@ The custom NGINX page should appear.
 
 ---
 
-## Step 8: Connect Through SSH
+### Step 8: Connect Through SSH
 
 Protect the private key:
 
@@ -1133,7 +1133,7 @@ ubuntu
 
 ---
 
-## Step 9: Check NGINX
+### Step 9: Check NGINX
 
 Check its status:
 
@@ -1161,7 +1161,7 @@ sudo ss -tulpn | grep :80
 
 ---
 
-## Step 10: Clean Up
+### Step 10: Clean Up
 
 When the lab is complete:
 
@@ -1175,7 +1175,7 @@ When the lab is complete:
 
 ---
 
-# 45. EC2 Instance Purchasing Options
+## 45. EC2 Instance Purchasing Options
 
 AWS offers different EC2 purchasing options.
 
@@ -1190,11 +1190,11 @@ The selected option affects:
 
 ---
 
-## On-Demand Instances
+### On-Demand Instances
 
 On-Demand Instances allow customers to use EC2 without a long-term commitment.
 
-### Advantages
+#### Advantages
 
 - No upfront commitment
 - Flexible
@@ -1202,7 +1202,7 @@ On-Demand Instances allow customers to use EC2 without a long-term commitment.
 - Suitable for unpredictable workloads
 - No interruption caused by AWS reclaiming Spot capacity
 
-### Best For
+#### Best For
 
 - Short-term workloads
 - Testing
@@ -1211,7 +1211,7 @@ On-Demand Instances allow customers to use EC2 without a long-term commitment.
 - Irregular workloads
 - Applications that cannot be interrupted
 
-### Disadvantage
+#### Disadvantage
 
 On-Demand normally has a higher rate than commitment-based purchasing options.
 
@@ -1219,19 +1219,19 @@ On-Demand normally has a higher rate than commitment-based purchasing options.
 
 ---
 
-## Spot Instances
+### Spot Instances
 
 Spot Instances use unused AWS EC2 capacity at a discounted price.
 
 AWS can interrupt a Spot Instance when it needs the capacity back.
 
-### Advantages
+#### Advantages
 
 - Can provide a large discount
 - Useful for flexible workloads
 - Suitable for workloads that can restart or move
 
-### Best For
+#### Best For
 
 - Batch processing
 - Data analysis
@@ -1241,7 +1241,7 @@ AWS can interrupt a Spot Instance when it needs the capacity back.
 - Fault-tolerant containers
 - Testing at scale
 
-### Disadvantages
+#### Disadvantages
 
 - AWS can interrupt the instance.
 - Capacity is not always available.
@@ -1253,7 +1253,7 @@ Avoid using Spot as the only capacity for an important workload that cannot be i
 
 ---
 
-## Savings Plans
+### Savings Plans
 
 Savings Plans provide lower prices in exchange for committing to a consistent amount of compute usage.
 
@@ -1270,21 +1270,21 @@ The commitment normally lasts:
 
 Savings Plans are useful for predictable, long-term compute usage.
 
-### Advantages
+#### Advantages
 
 - Lower price than standard On-Demand usage
 - Can offer more flexibility than narrowly matched reservations
 - Suitable for organisations with consistent compute usage
 
-### Disadvantage
+#### Disadvantage
 
 The customer makes a long-term financial commitment.
 
 ---
 
-# 46. EC2 Instance Purchasing Options – Part 2
+## 46. EC2 Instance Purchasing Options – Part 2
 
-## Reserved Instances
+### Reserved Instances
 
 Reserved Instances provide a billing discount when running EC2 usage matches the reservation requirements.
 
@@ -1302,15 +1302,15 @@ Types include:
 - Standard Reserved Instances
 - Convertible Reserved Instances
 
-### Standard Reserved Instances
+#### Standard Reserved Instances
 
 Provide a larger potential discount but less flexibility.
 
-### Convertible Reserved Instances
+#### Convertible Reserved Instances
 
 Provide more flexibility to exchange the reservation for another eligible configuration but may offer a smaller discount.
 
-### Best For
+#### Best For
 
 - Predictable long-term workloads
 - Applications running continuously
@@ -1320,13 +1320,13 @@ AWS often recommends evaluating Savings Plans because they can provide a simpler
 
 ---
 
-## On-Demand Capacity Reservations
+### On-Demand Capacity Reservations
 
 An On-Demand Capacity Reservation reserves EC2 capacity inside a specific Availability Zone.
 
 This is useful when an organisation must guarantee that capacity will be available.
 
-### Important Difference
+#### Important Difference
 
 A Capacity Reservation focuses on:
 
@@ -1344,7 +1344,7 @@ Unused Capacity Reservations may still generate charges.
 
 ---
 
-## Dedicated Instances
+### Dedicated Instances
 
 Dedicated Instances run on hardware dedicated to a single AWS customer account.
 
@@ -1358,7 +1358,7 @@ They may be used when an organisation needs:
 
 ---
 
-## Dedicated Hosts
+### Dedicated Hosts
 
 A Dedicated Host is an entire physical EC2 server dedicated to one customer.
 
@@ -1379,7 +1379,7 @@ Dedicated Hosts are normally more expensive and are unnecessary for ordinary lea
 
 ---
 
-## Capacity Blocks
+### Capacity Blocks
 
 Capacity Blocks allow customers to reserve supported accelerator capacity for a future period.
 
@@ -1391,7 +1391,7 @@ They are designed for eligible workloads such as:
 
 ---
 
-## Purchasing Options Comparison
+### Purchasing Options Comparison
 
 | Option | Main benefit | Main consideration |
 | --- | --- | --- |
@@ -1406,9 +1406,9 @@ They are designed for eligible workloads such as:
 
 ---
 
-## Example Purchasing Decisions
+### Example Purchasing Decisions
 
-### Temporary Development Server
+#### Temporary Development Server
 
 ```text
 On-Demand
@@ -1416,7 +1416,7 @@ On-Demand
 
 Reason: The server may only be required for a short period.
 
-### Fault-Tolerant Batch Processing
+#### Fault-Tolerant Batch Processing
 
 ```text
 Spot
@@ -1424,7 +1424,7 @@ Spot
 
 Reason: The workload can restart if AWS interrupts the instance.
 
-### Application Running Continuously for Several Years
+#### Application Running Continuously for Several Years
 
 ```text
 Savings Plan or Reserved Instance
@@ -1432,7 +1432,7 @@ Savings Plan or Reserved Instance
 
 Reason: Predictable usage may justify a long-term commitment.
 
-### Application That Must Launch in a Particular Availability Zone
+#### Application That Must Launch in a Particular Availability Zone
 
 ```text
 Capacity Reservation
@@ -1440,7 +1440,7 @@ Capacity Reservation
 
 Reason: The priority is guaranteed capacity.
 
-### Specialist Software Licensed Per Physical Server
+#### Specialist Software Licensed Per Physical Server
 
 ```text
 Dedicated Host
@@ -1450,13 +1450,13 @@ Reason: The customer may need visibility into the physical host.
 
 ---
 
-# Security Groups and Cloud Networking Basics
+## Security Groups and Cloud Networking Basics
 
 A public EC2 web server depends on both security-group rules and correct VPC networking.
 
 ---
 
-## Security Groups
+### Security Groups
 
 A **security group** is a stateful virtual firewall that controls allowed traffic for associated AWS resources.
 
@@ -1472,7 +1472,7 @@ A security-group rule contains:
 
 ---
 
-## Inbound and Outbound Traffic
+### Inbound and Outbound Traffic
 
 | Direction | Meaning | Example |
 | --- | --- | --- |
@@ -1481,7 +1481,7 @@ A security-group rule contains:
 
 ---
 
-## Security Group Characteristics
+### Security Group Characteristics
 
 - Security groups are stateful.
 - Security groups contain allow rules.
@@ -1490,7 +1490,7 @@ A security-group rule contains:
 - Changes apply without rebooting the EC2 instance.
 - Rules can reference IP ranges or other security groups.
 
-### What Does Stateful Mean?
+#### What Does Stateful Mean?
 
 If an inbound request is allowed, the response traffic is automatically allowed.
 
@@ -1504,7 +1504,7 @@ A separate outbound rule is not required specifically for that response.
 
 ---
 
-## Common Ports
+### Common Ports
 
 | Service | Protocol | Port | Recommended source |
 | --- | --- | --- | --- |
@@ -1519,7 +1519,7 @@ Administrative and database ports should not normally be open to the entire inte
 
 ---
 
-## CIDR Examples
+### CIDR Examples
 
 | CIDR | Meaning |
 | --- | --- |
@@ -1546,7 +1546,7 @@ whenever possible.
 
 ---
 
-## VPC Networking Components
+### VPC Networking Components
 
 | Component | Purpose |
 | --- | --- |
@@ -1564,9 +1564,9 @@ whenever possible.
 
 ---
 
-## Public and Private Subnets
+### Public and Private Subnets
 
-### Public Subnet
+#### Public Subnet
 
 A public subnet has a route to an internet gateway.
 
@@ -1582,7 +1582,7 @@ A resource still needs:
 - A route to the internet gateway
 - Security rules allowing the traffic
 
-### Private Subnet
+#### Private Subnet
 
 A private subnet does not have a direct route to an internet gateway.
 
@@ -1598,7 +1598,7 @@ A NAT gateway can allow resources in a private subnet to start outbound IPv4 con
 
 ---
 
-## How a Browser Reaches an EC2 Web Server
+### How a Browser Reaches an EC2 Web Server
 
 ```text
 User enters the EC2 public IP
@@ -1627,7 +1627,7 @@ For this to work:
 
 ---
 
-## Security Group vs Network ACL
+### Security Group vs Network ACL
 
 | Security group | Network ACL |
 | --- | --- |
@@ -1639,7 +1639,7 @@ For this to work:
 
 ---
 
-# Useful AWS CLI Commands
+## Useful AWS CLI Commands
 
 Confirm the current AWS identity:
 
@@ -1676,9 +1676,9 @@ Never upload AWS credentials or private key files to GitHub.
 
 ---
 
-# EC2 Troubleshooting
+## EC2 Troubleshooting
 
-## Cannot Connect Through SSH
+### Cannot Connect Through SSH
 
 Check:
 
@@ -1700,7 +1700,7 @@ ubuntu
 
 ---
 
-## Website Does Not Load
+### Website Does Not Load
 
 Check:
 
@@ -1728,7 +1728,7 @@ sudo less /var/log/cloud-init-output.log
 
 ---
 
-## Instance Appears to Be Missing
+### Instance Appears to Be Missing
 
 Check:
 
@@ -1740,7 +1740,7 @@ Check:
 
 ---
 
-# EC2 Cost and Security Checklist
+## EC2 Cost and Security Checklist
 
 - [ ] Confirm the correct AWS account.
 - [ ] Confirm the correct AWS Region.
@@ -1762,7 +1762,7 @@ Check:
 
 ---
 
-# EC2 Quick Revision Questions
+## EC2 Quick Revision Questions
 
 1. What does EC2 stand for?
 2. What is the difference between EC2 and an EC2 instance?
@@ -1799,7 +1799,7 @@ Check:
 
 ---
 
-# EC2 Key Takeaways
+## EC2 Key Takeaways
 
 - Compute provides the processing power required to run applications.
 - AWS offers virtual machines, containers, functions and other compute models.
@@ -1822,7 +1822,7 @@ Check:
 
 ---
 
-# Official AWS References
+## Official AWS References
 
 - [Amazon EC2 documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)
 - [EC2 launch parameters](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-launch-parameters.html)
