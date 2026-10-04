@@ -1,21 +1,21 @@
-  # CDN and Amazon CloudFront
+# CDN and Amazon CloudFront
 
-  A **Content Delivery Network (CDN)** is a globally distributed network of servers that delivers content closer to users.
+A **Content Delivery Network (CDN)** is a globally distributed network of servers that delivers content closer to users.
 
-  AWS provides its CDN service through **Amazon CloudFront**.
+AWS provides its CDN service through **Amazon CloudFront**.
 
-  CloudFront can deliver:
+CloudFront can deliver:
 
-  - Websites
-  - Images
-  - Videos
-  - CSS and JavaScript files
-  - Software downloads
-  - APIs
-  - Static content
-  - Dynamic content
+- Websites
+- Images
+- Videos
+- CSS and JavaScript files
+- Software downloads
+- APIs
+- Static content
+- Dynamic content
 
-  CloudFront improves performance by storing cached copies of content at locations called **edge locations**.
+CloudFront improves performance by storing cached copies of content at locations called **edge locations**.
 
 ---
 

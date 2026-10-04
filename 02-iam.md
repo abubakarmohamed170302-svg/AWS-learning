@@ -824,7 +824,7 @@ Monitor important security events, including:
 
 ---
 
-## 32. IAM Section Summary
+## IAM Key Takeaways
 
 - IAM controls authentication and authorisation in AWS.
 - Users represent individual identities or legacy technical identities.
